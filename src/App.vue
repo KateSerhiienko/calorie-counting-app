@@ -39,13 +39,42 @@ export default {
   },
   methods: {
     addFood() {
-      const calories = (this.caloriesPer100g / 100) * this.foodWeight;
+      // check input validity
+      if (
+        this.foodName.trim() === '' ||
+        this.caloriesPer100g < 0 ||
+        this.foodWeight <= 0
+      ) {
+        console.log('Error');
+        // todo - Error message
+        return;
+      }
+
+      // calculate calories
+      let calories = 0;
+      if (this.caloriesPer100g > 0) {
+        calories = (this.caloriesPer100g / 100) * this.foodWeight;
+      }
+
+      // round weight and calories to integers
+      const roundedWeight = Math.round(this.foodWeight);
+      const roundedCalories = Math.round(calories);
+
+      // add the food to the list
       const foodToAdd = {
         name: this.foodName,
-        weight: this.foodWeight,
-        calories: calories,
+        weight: roundedWeight,
+        calories: roundedCalories,
       };
       this.foodsList.push(foodToAdd);
+
+      // clear input fields
+      this.clearInputFields();
+    },
+    clearInputFields() {
+      this.foodName = '';
+      this.caloriesPer100g = 0;
+      this.foodWeight = 0;
     },
   },
   computed: {
@@ -64,3 +93,13 @@ span {
   margin-right: 10px;
 }
 </style>
+
+<!--
+  todo
+  Checking for correctness of data entry
+
+  todo
+  Clearing input fields after adding a product
+
+  - data rounding
+-->
