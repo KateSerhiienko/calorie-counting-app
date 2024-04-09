@@ -1,22 +1,33 @@
 <template>
-  <ol>
-    <li v-for="(food, index) in foodsList" :key="food.id">
-      <span>{{ food.name }}</span>
-      <span>{{ food.weight.toFixed(0) }} grams</span>
-      <span>{{ countedCalories[food.id].toFixed(0) }} kcal</span>
-      <button type="button" @click="removeFood(index)">Remove</button>
-      <button type="button" @click="editFood(index)">Edit</button>
-      <div v-show="index === editIndex">
-        <p>Name:</p>
-        <input type="string" v-model="editedFood.name" />
-        <p>Weight:</p>
-        <input type="number" v-model="editedFood.weight" min="1" />
-        <p>Calorie per 100g:</p>
-        <input type="number" v-model="editedFood.caloriesPer100g" min="0" />
-        <button type="button" @click="saveEditedFood(index)">Save</button>
-      </div>
-    </li>
-  </ol>
+  <div v-for="(mealtime, index) in mealtimeMap" :key="index">
+    <div v-if="filteredFoods(mealtime).length > 0">
+      <h2>{{ mealtime }}</h2>
+      <ol>
+        <li
+          v-for="(food, foodIndex) in filteredFoods(mealtime)"
+          :key="foodIndex"
+        >
+          <div>
+            <span>{{ food.name }}</span>
+            <span>{{ food.weight.toFixed(0) }} grams</span>
+            <span>{{ countedCalories[food.id].toFixed(0) }} kcal</span>
+            <button type="button" @click="removeFood(food.id)">Remove</button>
+            <button type="button" @click="editFood(food.id)">Edit</button>
+          </div>
+
+          <div v-show="food.id === editId">
+            <p>Name:</p>
+            <input type="string" v-model="editedFood.name" />
+            <p>Weight:</p>
+            <input type="number" v-model="editedFood.weight" min="1" />
+            <p>Calorie per 100g:</p>
+            <input type="number" v-model="editedFood.caloriesPer100g" min="0" />
+            <button type="button" @click="saveEditedFood(food.id)">Save</button>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
   <div>
     <span>Total:</span>
     <span>{{ totalWeight.toFixed(0) }} grams</span>
@@ -28,7 +39,7 @@
 export default {
   data() {
     return {
-      editIndex: -1,
+      editId: -1,
       editedFood: {},
     };
   },
@@ -37,21 +48,28 @@ export default {
       type: Array,
       required: true,
     },
+    mealtimeMap: {
+      type: Object,
+      required: true,
+    },
   },
   methods: {
-    removeFood(index) {
-      if (this.editIndex === -1) {
+    removeFood(id) {
+      const index = this.foodsList.findIndex((food) => food.id === id);
+      if (this.editId === -1) {
         this.foodsList.splice(index, 1);
       }
       // todo - alert "food removed"
     },
-    editFood(index) {
-      if (this.editIndex === -1) {
-        this.editIndex = index;
-        this.editedFood = { ...this.foodsList[index] };
+    editFood(id) {
+      if (this.editId === -1) {
+        this.editId = id;
+        const food = this.foodsList.find((food) => food.id === id);
+        this.editedFood = { ...food };
       }
     },
-    saveEditedFood(index) {
+    saveEditedFood(id) {
+      const index = this.foodsList.findIndex((food) => food.id === id);
       const editedFood = this.foodsList[index];
       if (
         this.editedFood.name.trim() === '' ||
@@ -64,7 +82,10 @@ export default {
       }
 
       this.foodsList[index] = { ...this.editedFood };
-      this.editIndex = -1;
+      this.editId = -1;
+    },
+    filteredFoods(mealtime) {
+      return this.foodsList.filter((food) => food.mealtime === mealtime);
     },
   },
   computed: {

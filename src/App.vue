@@ -1,5 +1,11 @@
 <template>
   <h1>Calorie Counting App</h1>
+  <p>Mealtime</p>
+  <select v-model="mealtime">
+    <option v-for="mealtimeName in mealtimeMap" :key="mealtimeName">
+      {{ mealtimeName }}
+    </option>
+  </select>
   <div>
     <p>Name of the food</p>
     <input type="string" v-model="foodName" />
@@ -12,7 +18,7 @@
     <button type="button" @click="addFood">Add</button>
   </div>
   <br />
-  <foods-list :foods-list="foodsList"></foods-list>
+  <foods-list :foods-list="foodsList" :mealtime-map="mealtimeMap"></foods-list>
 </template>
 
 <script>
@@ -26,13 +32,41 @@ export default {
   },
   data() {
     return {
+      mealtimeMap: [
+        'breakfast',
+        'brunch',
+        'lunch',
+        'snack',
+        'dinner',
+        'supper',
+        'unnamed',
+      ],
+      mealtime: 'unnamed',
       foodName: '',
       caloriesPer100g: 0,
       foodWeight: 1,
       foodsList: [
-        { id: 111, name: 'food-1', weight: 100, caloriesPer100g: 100.5 },
-        { id: 222, name: 'food-2', weight: 100, caloriesPer100g: 102.5 },
-        { id: 333, name: 'food-3', weight: 30, caloriesPer100g: 300 },
+        {
+          id: 111,
+          mealtime: 'lunch',
+          name: 'food-1',
+          weight: 100,
+          caloriesPer100g: 100.5,
+        },
+        {
+          id: 222,
+          mealtime: 'lunch',
+          name: 'food-2',
+          weight: 100,
+          caloriesPer100g: 102.5,
+        },
+        {
+          id: 333,
+          mealtime: 'breakfast',
+          name: 'food-3',
+          weight: 30,
+          caloriesPer100g: 300,
+        },
       ],
     };
   },
@@ -52,6 +86,7 @@ export default {
       // add the food to the list
       const foodToAdd = {
         id: uuidv4(),
+        mealtime: this.mealtime,
         name: this.foodName,
         weight: this.foodWeight,
         caloriesPer100g: this.caloriesPer100g,
