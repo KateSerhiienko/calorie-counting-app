@@ -4,9 +4,9 @@
     <p>Name of the food</p>
     <input type="string" v-model="foodName" />
     <p>Calorie content per 100g</p>
-    <input type="number" v-model="caloriesPer100g" />
+    <input type="number" v-model="caloriesPer100g" min="0" />
     <p>Amount of food eaten in grams</p>
-    <input type="number" v-model="foodWeight" />
+    <input type="number" v-model="foodWeight" min="1" />
     <br />
     <br />
     <button type="button" @click="addFood">Add</button>
@@ -27,8 +27,12 @@ export default {
     return {
       foodName: '',
       caloriesPer100g: 0,
-      foodWeight: 0,
-      foodsList: [],
+      foodWeight: 1,
+      foodsList: [
+        { name: 'food-1', weight: 100, caloriesPer100g: 100.5 },
+        { name: 'food-2', weight: 100, caloriesPer100g: 102.5 },
+        { name: 'food-3', weight: 30, caloriesPer100g: 300 },
+      ],
     };
   },
   methods: {
@@ -44,21 +48,11 @@ export default {
         return;
       }
 
-      // calculate calories
-      let calories = 0;
-      if (this.caloriesPer100g > 0) {
-        calories = (this.caloriesPer100g / 100) * this.foodWeight;
-      }
-
-      // round weight and calories to integers
-      const roundedWeight = Math.round(this.foodWeight);
-      const roundedCalories = Math.round(calories);
-
       // add the food to the list
       const foodToAdd = {
         name: this.foodName,
-        weight: roundedWeight,
-        calories: roundedCalories,
+        weight: this.foodWeight,
+        caloriesPer100g: this.caloriesPer100g,
       };
       this.foodsList.push(foodToAdd);
 
@@ -68,7 +62,7 @@ export default {
     clearInputFields() {
       this.foodName = '';
       this.caloriesPer100g = 0;
-      this.foodWeight = 0;
+      this.foodWeight = 1;
     },
   },
 };
