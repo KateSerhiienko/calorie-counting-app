@@ -3,7 +3,7 @@
     <li v-for="(food, index) in foodsList" :key="index">
       <span>{{ food.name }}</span>
       <span>{{ food.weight.toFixed(0) }} grams</span>
-      <span>{{ countedCalories[index] }} kcal</span>
+      <span>{{ countedCalories[index].toFixed(0) }} kcal</span>
       <button type="button" @click="removeFood(index)">Remove</button>
       <button type="button" @click="editFood(index)">Edit</button>
       <div v-show="index === editIndex">
