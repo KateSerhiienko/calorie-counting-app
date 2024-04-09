@@ -93,3 +93,13 @@ span {
   margin-right: 10px;
 }
 </style>
+
+<!--
+  todo
+  Checking for correctness of data entry
+
+  todo
+  Clearing input fields after adding a product
+
+  - data rounding
+-->
