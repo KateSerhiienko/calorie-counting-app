@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid';
 import foodsList from './components/FoodsList.vue';
 
 export default {
@@ -29,9 +30,9 @@ export default {
       caloriesPer100g: 0,
       foodWeight: 1,
       foodsList: [
-        { name: 'food-1', weight: 100, caloriesPer100g: 100.5 },
-        { name: 'food-2', weight: 100, caloriesPer100g: 102.5 },
-        { name: 'food-3', weight: 30, caloriesPer100g: 300 },
+        { id: 111, name: 'food-1', weight: 100, caloriesPer100g: 100.5 },
+        { id: 222, name: 'food-2', weight: 100, caloriesPer100g: 102.5 },
+        { id: 333, name: 'food-3', weight: 30, caloriesPer100g: 300 },
       ],
     };
   },
@@ -50,6 +51,7 @@ export default {
 
       // add the food to the list
       const foodToAdd = {
+        id: uuidv4(),
         name: this.foodName,
         weight: this.foodWeight,
         caloriesPer100g: this.caloriesPer100g,

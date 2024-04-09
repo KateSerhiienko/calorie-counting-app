@@ -1,9 +1,9 @@
 <template>
   <ol>
-    <li v-for="(food, index) in foodsList" :key="index">
+    <li v-for="(food, index) in foodsList" :key="food.id">
       <span>{{ food.name }}</span>
       <span>{{ food.weight.toFixed(0) }} grams</span>
-      <span>{{ countedCalories[index].toFixed(0) }} kcal</span>
+      <span>{{ countedCalories[food.id].toFixed(0) }} kcal</span>
       <button type="button" @click="removeFood(index)">Remove</button>
       <button type="button" @click="editFood(index)">Edit</button>
       <div v-show="index === editIndex">
@@ -69,19 +69,18 @@ export default {
   },
   computed: {
     countedCalories() {
-      return this.foodsList.map(
-        (food) =>
-          (food.caloriesPer100g.toFixed(0) / 100) * food.weight.toFixed(0)
-      );
+      const calories = {};
+      this.foodsList.forEach((food) => {
+        calories[food.id] = (food.caloriesPer100g / 100) * food.weight;
+      });
+      return calories;
     },
     totalWeight() {
       return this.foodsList.reduce((total, food) => total + food.weight, 0);
     },
     totalCalories() {
-      return this.countedCalories.reduce(
-        (total, calories) => total + calories,
-        0
-      );
+      const values = Object.values(this.countedCalories);
+      return values.reduce((total, calories) => total + calories, 0);
     },
   },
 };
