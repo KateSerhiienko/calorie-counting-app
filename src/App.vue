@@ -12,23 +12,17 @@
     <button type="button" @click="addFood">Add</button>
   </div>
   <br />
-  <ol>
-    <li v-for="(food, index) in foodsList" :key="index">
-      <span>{{ food.name }}</span>
-      <span>{{ food.weight }} grams</span>
-      <span>{{ food.calories }} kcal</span>
-    </li>
-  </ol>
-  <div>
-    <span>Total:</span>
-    <span>{{ totalWeight }} grams</span>
-    <span>{{ totalCalories }} kcal</span>
-  </div>
+  <foods-list :foods-list="foodsList"></foods-list>
 </template>
 
 <script>
+import foodsList from './components/FoodsList.vue';
+
 export default {
   name: 'App',
+  components: {
+    foodsList,
+  },
   data() {
     return {
       foodName: '',
@@ -77,29 +71,5 @@ export default {
       this.foodWeight = 0;
     },
   },
-  computed: {
-    totalWeight() {
-      return this.foodsList.reduce((total, food) => total + food.weight, 0);
-    },
-    totalCalories() {
-      return this.foodsList.reduce((total, food) => total + food.calories, 0);
-    },
-  },
 };
 </script>
-
-<style scoped>
-span {
-  margin-right: 10px;
-}
-</style>
-
-<!--
-  todo
-  Checking for correctness of data entry
-
-  todo
-  Clearing input fields after adding a product
-
-  - data rounding
--->
