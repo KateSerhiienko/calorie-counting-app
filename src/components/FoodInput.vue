@@ -24,8 +24,9 @@
           {{ food.name }} {{ food.caloriesPer100g }} kcal
         </li>
       </ul>
-      <div>
-        {{ foodName }} {{ caloriesPer100g }} <button type="button">Edit</button>
+      <div v-show="foodName">
+        {{ foodName }} {{ caloriesPer100g }}
+        <button type="button">Edit</button>
       </div>
     </div>
 

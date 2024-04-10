@@ -57,3 +57,9 @@ export default {
   },
 };
 </script>
+
+<style>
+span {
+  margin: 0 5px;
+}
+</style>
