@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'FoodListTotal',
+  name: 'FoodsListTotal',
   props: {
     totalWeight: {
       type: Number,

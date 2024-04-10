@@ -7,33 +7,33 @@
           v-for="(food, foodIndex) in filteredFoods(mealtime)"
           :key="foodIndex"
         >
-          <food-list-item
+          <foods-list-item
             :food="food"
             :countedCalories="countedCalories"
             @remove="removeFood"
             @edit="editFood"
-          ></food-list-item>
-          <food-list-edit
+          ></foods-list-item>
+          <food-edit
             v-if="food.id === editId"
             :food="food"
             :editId="editId"
             :editedFood="editedFood"
             @save-edited-food="saveEditedFood(food.id)"
-          ></food-list-edit>
+          ></food-edit>
         </li>
       </ol>
     </div>
   </div>
-  <food-list-total
+  <foods-list-total
     :totalWeight="totalWeight"
     :totalCalories="totalCalories"
-  ></food-list-total>
+  ></foods-list-total>
 </template>
 
 <script>
-import FoodListItem from './FoodListItem.vue';
-import FoodListEdit from './FoodListEdit.vue';
-import FoodListTotal from './FoodListTotal.vue';
+import FoodsListItem from './FoodsListItem.vue';
+import FoodEdit from './FoodEdit.vue';
+import FoodsListTotal from './FoodsListTotal.vue';
 
 export default {
   name: 'FoodList',
@@ -48,9 +48,9 @@ export default {
     },
   },
   components: {
-    FoodListEdit,
-    FoodListItem,
-    FoodListTotal,
+    FoodEdit,
+    FoodsListItem,
+    FoodsListTotal,
   },
   data() {
     return {

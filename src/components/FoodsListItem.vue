@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'FoodListItem',
+  name: 'FoodsListItem',
   props: {
     food: {
       type: Object,

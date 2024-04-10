@@ -24,18 +24,16 @@
           {{ food.name }} {{ food.caloriesPer100g }} kcal
         </li>
       </ul>
+      <div>
+        {{ foodName }} {{ caloriesPer100g }} <button type="button">Edit</button>
+      </div>
     </div>
 
     <div v-show="inputMode === 'manual'">
       <p>Name of the food</p>
-      <input type="text" v-model="foodName" @input="searchQuery = ''" />
+      <input type="text" v-model="foodName" />
       <p>Calorie content per 100g</p>
-      <input
-        type="number"
-        v-model="caloriesPer100g"
-        min="0"
-        @input="searchQuery = ''"
-      />
+      <input type="number" v-model="caloriesPer100g" min="0" />
     </div>
 
     <p>Amount of food eaten in grams</p>
@@ -85,11 +83,13 @@ export default {
   methods: {
     toggleMode(mode) {
       this.inputMode = mode;
+      this.clearInputFields();
     },
     addFromDatabase(food) {
       this.searchQuery = food.name;
       this.foodName = food.name;
       this.caloriesPer100g = food.caloriesPer100g;
+      this.searchQuery = '';
     },
     addFood() {
       if (!this.isValidInput()) {
