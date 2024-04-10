@@ -1,6 +1,6 @@
 <template>
   <h1>Calorie Counting App</h1>
-  <food-input :mealtimeMap="mealtimeMap" @food-added="addFood"></food-input>
+  <food-input :mealtimeMap="mealtimeMap" @add-food="addFood"></food-input>
   <foods-list :foods-list="foodsList" :mealtime-map="mealtimeMap"></foods-list>
 </template>
 

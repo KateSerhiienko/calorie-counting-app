@@ -10,20 +10,21 @@
 export default {
   name: 'FoodsListTotal',
   props: {
-    totalWeight: {
-      type: Number,
+    foodsList: {
+      type: Object,
       required: true,
     },
-    totalCalories: {
-      type: Number,
-      required: true,
+  },
+  computed: {
+    totalWeight() {
+      return this.foodsList.reduce((total, food) => total + food.weight, 0);
+    },
+    totalCalories() {
+      return this.foodsList.reduce(
+        (total, food) => total + (food.caloriesPer100g / 100) * food.weight,
+        0
+      );
     },
   },
 };
 </script>
-
-<style scoped>
-span {
-  margin-right: 10px;
-}
-</style>

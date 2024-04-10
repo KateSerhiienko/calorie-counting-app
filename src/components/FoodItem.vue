@@ -1,18 +1,20 @@
-<!-- FoodItem.vue -->
 <template>
   <div>
-    <span>{{ food.name }}</span>
-    <span>{{ food.weight.toFixed(0) }} grams</span>
-    <span>{{ countedCalories[food.id].toFixed(0) }} kcal</span>
-    <button type="button" @click="removeFood">Remove</button>
-    <button type="button" @click="editFood">Edit</button>
-    <food-edit
-      v-if="food.id === editId"
-      :food="food"
-      :editId="editId"
-      :editedFood="editedFood"
-      @save-edited-food="saveEditedFood"
-    ></food-edit>
+    <div>
+      <span>{{ food.name }}</span>
+      <div v-if="food.weight">
+        <span>{{ food.weight.toFixed(0) }} grams</span>
+        <span>{{ countedCalories }} kcal</span>
+      </div>
+      <span v-else>{{ food.caloriesPer100g }} kcal / 100g</span>
+    </div>
+    <div>
+      <button type="button" @click="isEditing = true">Edit</button>
+      <button type="button" @click="clearSelectedFood">Remove</button>
+    </div>
+  </div>
+  <div v-show="isEditing">
+    <food-edit :food="food" @save-edited-food="saveEditedFood"></food-edit>
   </div>
 </template>
 
@@ -26,33 +28,34 @@ export default {
       type: Object,
       required: true,
     },
-    countedCalories: {
-      type: Object,
-      required: true,
-    },
-    editId: {
-      type: Number,
-      required: true,
-    },
-    editedFood: {
-      type: Object,
-      required: true,
-    },
   },
   components: {
     FoodEdit,
   },
-  methods: {
-    removeFood() {
-      this.$emit('remove', this.food.id);
-    },
-    editFood() {
-      this.$emit('edit', this.food.id);
-    },
-    saveEditedFood() {
-      this.$emit('save-edited-food', this.food.id);
+  data() {
+    return {
+      isEditing: false,
+    };
+  },
+  computed: {
+    countedCalories() {
+      if (this.food.caloriesPer100g && this.food.weight) {
+        return (
+          (this.food.caloriesPer100g.toFixed(0) / 100) *
+          this.food.weight.toFixed(0)
+        );
+      }
     },
   },
-  emits: ['remove', 'edit', 'save-edited-food'],
+  methods: {
+    saveEditedFood(food) {
+      this.isEditing = false;
+      this.$emit('save-edited-food', food);
+    },
+    clearSelectedFood() {
+      this.$emit('remove-food', this.food.id);
+    },
+  },
+  emits: ['remove-food', 'save-edited-food'],
 };
 </script>

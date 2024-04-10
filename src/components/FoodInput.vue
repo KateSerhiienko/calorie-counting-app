@@ -1,33 +1,24 @@
 <template>
   <div>
-    <button @click="toggleMode('database')">Data</button>
-    <button @click="toggleMode('manual')">Enter</button>
+    <button @click="switchInputMode('database')">Data</button>
+    <button @click="switchInputMode('manual')">Enter</button>
   </div>
 
   <div>
-    <p>Mealtime</p>
-    <select v-model="mealtime">
-      <option v-for="mealtimeName in mealtimeMap" :key="mealtimeName">
-        {{ mealtimeName }}
-      </option>
-    </select>
+    <div>
+      <p>Mealtime</p>
+      <select v-model="mealtime">
+        <option v-for="mealtimeName in mealtimeMap" :key="mealtimeName">
+          {{ mealtimeName }}
+        </option>
+      </select>
+    </div>
 
     <div v-show="inputMode === 'database'">
-      <br />
-      <input type="text" v-model="searchQuery" placeholder="Search food..." />
-      <ul v-show="searchQuery != ''">
-        <li
-          v-for="food in filteredAndSortedDatabase"
-          :key="food.id"
-          @click="addFromDatabase(food)"
-        >
-          {{ food.name }} {{ food.caloriesPer100g }} kcal
-        </li>
-      </ul>
-      <div v-show="foodName">
-        {{ foodName }} {{ caloriesPer100g }}
-        <button type="button">Edit</button>
-      </div>
+      <food-input-database
+        ref="foodInputDatabase"
+        @select-food-from-database="selectFoodFromDatabase"
+      />
     </div>
 
     <div v-show="inputMode === 'manual'">
@@ -37,74 +28,52 @@
       <input type="number" v-model="caloriesPer100g" min="0" />
     </div>
 
-    <p>Amount of food eaten in grams</p>
-    <input type="number" v-model="foodWeight" min="1" />
-    <br />
-    <br />
-    <button type="button" @click="addFood">Add</button>
+    <div>
+      <p>Amount of food eaten in grams</p>
+      <input type="number" v-model="foodWeight" min="1" />
+    </div>
+
+    <div>
+      <br />
+      <button type="button" @click="addFood">Add</button>
+    </div>
   </div>
 </template>
 
 <script>
 import { v4 as uuidv4 } from 'uuid';
+import FoodInputDatabase from './FoodInputDatabase.vue';
 
 export default {
   name: 'FoodInput',
   props: {
     mealtimeMap: Array,
   },
+  components: {
+    FoodInputDatabase,
+  },
   data() {
     return {
       inputMode: 'database',
-      database: [
-        { id: 1111, name: 'Banana', caloriesPer100g: 300 },
-        { id: 2222, name: 'Apple', caloriesPer100g: 200 },
-        { id: 3333, name: 'Apricot', caloriesPer100g: 300 },
-      ],
-      searchQuery: '',
       mealtime: 'unnamed',
       foodName: '',
       caloriesPer100g: 0,
       foodWeight: 1,
     };
   },
-  computed: {
-    filteredAndSortedDatabase() {
-      return this.database
-        .filter((food) => {
-          return food.name
-            .toLowerCase()
-            .includes(this.searchQuery.toLowerCase());
-        })
-        .sort((a, b) => {
-          return a.name.localeCompare(b.name);
-        });
-    },
-  },
   methods: {
-    toggleMode(mode) {
+    switchInputMode(mode) {
       this.inputMode = mode;
-      this.clearInputFields();
+      this.resetInputFields();
     },
-    addFromDatabase(food) {
-      this.searchQuery = food.name;
+    selectFoodFromDatabase(food) {
       this.foodName = food.name;
       this.caloriesPer100g = food.caloriesPer100g;
-      this.searchQuery = '';
     },
     addFood() {
-      if (!this.isValidInput()) {
+      if (!this.validateInput()) {
         console.log('Error: Invalid input.');
         return;
-      }
-
-      if (this.inputMode === 'manual') {
-        const existingFood = this.database.find(
-          (food) => food.name.toLowerCase() === this.foodName.toLowerCase()
-        );
-        if (existingFood) {
-          this.caloriesPer100g = existingFood.caloriesPer100g;
-        }
       }
 
       const foodToAdd = {
@@ -114,25 +83,21 @@ export default {
         weight: this.foodWeight,
         caloriesPer100g: this.caloriesPer100g,
       };
-      this.$emit('food-added', foodToAdd);
+      this.$emit('add-food', foodToAdd);
 
-      this.clearInputFields();
+      this.resetInputFields();
     },
-    clearInputFields() {
+    resetInputFields() {
       this.foodName = '';
       this.caloriesPer100g = 0;
       this.foodWeight = 1;
-      this.searchQuery = '';
+      this.$refs.foodInputDatabase.removeFood();
+      this.$refs.foodInputDatabase.removeTerm();
     },
-    isValidInput() {
-      if (this.inputMode === 'database' && !this.searchQuery) {
-        console.log('Error: Search query is empty.');
-        return false;
-      }
-
+    validateInput() {
       if (
         this.foodName.trim() === '' ||
-        this.caloriesPer100g <= 0 ||
+        this.caloriesPer100g < 0 ||
         this.foodWeight <= 0
       ) {
         console.log('Error: Invalid food information.');
@@ -142,6 +107,6 @@ export default {
       return true;
     },
   },
-  emits: ['food-added'],
+  emits: ['add-food'],
 };
 </script>
