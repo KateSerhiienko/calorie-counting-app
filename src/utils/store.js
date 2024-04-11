@@ -35,13 +35,17 @@ const store = createStore({
       },]
   },
   mutations: {
-    updateFoodsList(state, newList) {
-      state.foodsList = newList;
+    addFood(state, newFood) {
+      state.foodsList.push(newFood);
     },
-  },
-  actions: {
-    setFoodsList({ commit }, newList) {
-      commit('updateFoodsList', newList);
+    deleteFood(state, id) {
+      state.foodsList = state.foodsList.filter(food => food.id !== id);
+    },
+    updateFood(state, updatedFood) {
+      const index = state.foodsList.findIndex(food => food.id === updatedFood.id);
+      if (index !== -1) {
+        state.foodsList.splice(index, 1, updatedFood);
+      }
     },
   },
   getters: {

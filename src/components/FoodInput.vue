@@ -85,10 +85,7 @@ export default {
         caloriesPer100g: this.caloriesPer100g,
       };
 
-      this.$store.dispatch('setFoodsList', [
-        ...this.$store.getters.foodsList,
-        foodToAdd,
-      ]);
+      this.$store.commit('addFood', foodToAdd);
 
       this.resetInputFields();
     },
@@ -96,8 +93,8 @@ export default {
       this.foodName = '';
       this.caloriesPer100g = 0;
       this.foodWeight = 1;
-      // this.$refs.foodInputDatabase.removeFood();
-      // this.$refs.foodInputDatabase.removeTerm();
+
+      this.$refs.foodInputDatabase.removeFood();
     },
     validateInput() {
       if (
@@ -108,7 +105,6 @@ export default {
         console.log('Error: Invalid food information.');
         return false;
       }
-
       return true;
     },
   },

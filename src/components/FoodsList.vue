@@ -38,18 +38,12 @@ export default {
       return this.foodsList.filter((food) => food.mealtime === mealtime);
     },
     saveEditedFood(food) {
-      const index = this.foodsList.findIndex((item) => item.id === food.id);
-      if (index !== -1) {
-        this.foodsList[index] = food;
-        // todo - alert "food edited"
-      }
+      this.$store.commit('updateFood', food);
+      // todo - alert "food saved"
     },
     removeFood(id) {
-      const index = this.foodsList.findIndex((food) => food.id === id);
-      if (index !== -1) {
-        this.foodsList.splice(index, 1);
-        // todo - alert "food removed"
-      }
+      this.$store.commit('deleteFood', id);
+      // todo - alert "food removed"
     },
   },
 };

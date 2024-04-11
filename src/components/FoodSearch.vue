@@ -53,9 +53,9 @@ export default {
             `https://api.edamam.com/api/food-database/v2/parser?app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&${optionSearch}=${processedSearchTerm}`
           )
           .then((response) => {
-            console.log(response);
             const data = response.data;
             const uniqueFoods = new Map();
+
             data.hints.forEach((item) => {
               const foodId = item.food.foodId;
               if (!uniqueFoods.has(foodId)) {

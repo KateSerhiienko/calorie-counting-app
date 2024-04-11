@@ -4,7 +4,9 @@
       <span>{{ food.name }}</span>
       <div v-if="food.weight">
         <span>{{ food.weight.toFixed(0) }} grams</span>
-        <span>{{ countedCalories.toFixed(0) }} kcal</span>
+        <span v-if="food.caloriesPer100g"
+          >{{ countedCalories.toFixed(0) }} kcal</span
+        >
       </div>
       <span v-else>{{ food.caloriesPer100g.toFixed(0) }} kcal / 100g</span>
     </div>
@@ -39,11 +41,11 @@ export default {
   },
   computed: {
     countedCalories() {
-      if (this.food.caloriesPer100g && this.food.weight) {
-        return (
-          (this.food.caloriesPer100g.toFixed(0) / 100) *
-          this.food.weight.toFixed(0)
-        );
+      if (
+        this.food.caloriesPer100g !== undefined &&
+        this.food.weight !== undefined
+      ) {
+        return (this.food.caloriesPer100g / 100) * this.food.weight;
       }
     },
   },
