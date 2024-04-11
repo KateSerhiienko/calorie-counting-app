@@ -1,17 +1,25 @@
 <template>
   <h3>Calorie Counting</h3>
-  <food-input></food-input>
-  <foods-list></foods-list>
+  <calorie-counting-form v-if="countingMode" />
+  <div v-else>
+    <calorie-counting-total />
+    <button @click="countingMode = !countingMode">
+      count the calories again
+    </button>
+  </div>
 </template>
 
 <script>
-import FoodInput from '../FoodInput.vue';
-import FoodsList from '../FoodsList.vue';
+import CalorieCountingForm from '../CalorieCountingForm.vue';
+import CalorieCountingTotal from '../CalorieCountingTotal.vue';
+
 export default {
   name: 'CalorieCountingPage',
-  components: {
-    FoodInput,
-    FoodsList,
+  components: { CalorieCountingForm, CalorieCountingTotal },
+  data() {
+    return {
+      countingMode: true,
+    };
   },
 };
 </script>
