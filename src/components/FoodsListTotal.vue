@@ -7,15 +7,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'FoodsListTotal',
-  props: {
-    foodsList: {
-      type: Object,
-      required: true,
-    },
-  },
   computed: {
+    ...mapGetters(['foodsList']),
     totalWeight() {
       return this.foodsList.reduce((total, food) => total + food.weight, 0);
     },

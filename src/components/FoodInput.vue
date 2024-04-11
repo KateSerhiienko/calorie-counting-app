@@ -84,7 +84,11 @@ export default {
         weight: this.foodWeight,
         caloriesPer100g: this.caloriesPer100g,
       };
-      this.$emit('add-food', foodToAdd);
+
+      this.$store.dispatch('setFoodsList', [
+        ...this.$store.getters.foodsList,
+        foodToAdd,
+      ]);
 
       this.resetInputFields();
     },
@@ -92,8 +96,8 @@ export default {
       this.foodName = '';
       this.caloriesPer100g = 0;
       this.foodWeight = 1;
-      this.$refs.foodInputDatabase.removeFood();
-      this.$refs.foodInputDatabase.removeTerm();
+      // this.$refs.foodInputDatabase.removeFood();
+      // this.$refs.foodInputDatabase.removeTerm();
     },
     validateInput() {
       if (
@@ -108,6 +112,5 @@ export default {
       return true;
     },
   },
-  emits: ['add-food'],
 };
 </script>

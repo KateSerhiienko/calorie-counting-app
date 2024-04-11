@@ -16,7 +16,7 @@
       </ol>
     </div>
   </div>
-  <foods-list-total :foodsList="foodsList"></foods-list-total>
+  <foods-list-total></foods-list-total>
 </template>
 
 <script>
@@ -26,18 +26,12 @@ import FoodsListTotal from './FoodsListTotal.vue';
 
 export default {
   name: 'FoodsList',
-  props: {
-    foodsList: {
-      type: Array,
-      required: true,
-    },
-  },
   components: {
     FoodItem,
     FoodsListTotal,
   },
   computed: {
-    ...mapGetters(['mealtimeMap']),
+    ...mapGetters(['mealtimeMap', 'foodsList']),
   },
   methods: {
     filteredFoods(mealtime) {
