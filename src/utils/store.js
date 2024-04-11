@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
+    totalCalories: null,
     mealtimeMap: [
       'breakfast',
       'brunch',
@@ -32,9 +33,16 @@ const store = createStore({
         name: 'food-3',
         weight: 30,
         caloriesPer100g: 300,
-      },]
+      },
+    ]
   },
   mutations: {
+    setTotalCalories(state, totalCalories) {
+      state.totalCalories = totalCalories;
+    },
+    clearTotalCalories(state) {
+      state.totalCalories = null;
+    },
     addFood(state, newFood) {
       state.foodsList.push(newFood);
     },
@@ -51,6 +59,7 @@ const store = createStore({
   getters: {
     mealtimeMap: (state) => state.mealtimeMap,
     foodsList: (state) => state.foodsList,
+    getTotalCalories: (state) => state.totalCalories
   }
 });
 

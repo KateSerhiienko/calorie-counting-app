@@ -127,7 +127,7 @@ export default {
 
       totalDailyEnergyExpenditure = baseMetabolicRate * activityMultiplier;
 
-      console.log(totalDailyEnergyExpenditure, sex);
+      this.$store.commit('setTotalCalories', totalDailyEnergyExpenditure);
     },
   },
 };
