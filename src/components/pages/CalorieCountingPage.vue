@@ -1,7 +1,7 @@
 <template>
   <h3>Calorie Counting</h3>
-  <food-input :mealtimeMap="mealtimeMap" @add-food="addFood"></food-input>
-  <foods-list :foods-list="foodsList" :mealtime-map="mealtimeMap"></foods-list>
+  <food-input @add-food="addFood"></food-input>
+  <foods-list :foods-list="foodsList"></foods-list>
 </template>
 
 <script>
@@ -15,15 +15,6 @@ export default {
   },
   data() {
     return {
-      mealtimeMap: [
-        'breakfast',
-        'brunch',
-        'lunch',
-        'snack',
-        'dinner',
-        'supper',
-        'unnamed',
-      ],
       foodsList: [
         {
           id: 111,

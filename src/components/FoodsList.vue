@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import FoodItem from './FoodItem.vue';
 import FoodsListTotal from './FoodsListTotal.vue';
 
@@ -30,14 +31,13 @@ export default {
       type: Array,
       required: true,
     },
-    mealtimeMap: {
-      type: Object,
-      required: true,
-    },
   },
   components: {
     FoodItem,
     FoodsListTotal,
+  },
+  computed: {
+    ...mapGetters(['mealtimeMap']),
   },
   methods: {
     filteredFoods(mealtime) {

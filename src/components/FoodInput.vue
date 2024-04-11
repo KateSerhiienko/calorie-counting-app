@@ -42,13 +42,11 @@
 
 <script>
 import { v4 as uuidv4 } from 'uuid';
+import { mapGetters } from 'vuex';
 import FoodInputDatabase from './FoodInputDatabase.vue';
 
 export default {
   name: 'FoodInput',
-  props: {
-    mealtimeMap: Array,
-  },
   components: {
     FoodInputDatabase,
   },
@@ -60,6 +58,9 @@ export default {
       caloriesPer100g: 0,
       foodWeight: 1,
     };
+  },
+  computed: {
+    ...mapGetters(['mealtimeMap']),
   },
   methods: {
     switchInputMode(mode) {
