@@ -1,5 +1,5 @@
 <template>
-  <div v-for="(mealtime, index) in mealtimeMap" :key="index">
+  <div v-for="(mealtime, index) in getMealtimeMap" :key="index">
     <div v-if="filteredFoods(mealtime).length > 0">
       <h2>{{ mealtime }}</h2>
       <ol>
@@ -31,11 +31,11 @@ export default {
     FoodsListTotal,
   },
   computed: {
-    ...mapGetters(['mealtimeMap', 'foodsList']),
+    ...mapGetters(['getMealtimeMap', 'getFoodsList']),
   },
   methods: {
     filteredFoods(mealtime) {
-      return this.foodsList.filter((food) => food.mealtime === mealtime);
+      return this.getFoodsList.filter((food) => food.mealtime === mealtime);
     },
     saveEditedFood(food) {
       this.$store.commit('updateFood', food);

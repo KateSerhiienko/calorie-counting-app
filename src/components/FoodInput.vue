@@ -8,7 +8,7 @@
     <div>
       <p>Mealtime</p>
       <select v-model="mealtime">
-        <option v-for="mealtimeName in mealtimeMap" :key="mealtimeName">
+        <option v-for="mealtimeName in getMealtimeMap" :key="mealtimeName">
           {{ mealtimeName }}
         </option>
       </select>
@@ -60,7 +60,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['mealtimeMap']),
+    ...mapGetters(['getMealtimeMap']),
   },
   methods: {
     switchInputMode(mode) {

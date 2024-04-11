@@ -2,7 +2,35 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
-    totalCalories: null,
+    countingMode: true,
+    calorieAndUserData: null,
+    activityLevels: [
+      {
+        label: 'Sedentary',
+        value: '1.2',
+        explanation: 'Sedentary lifestyle (little or no physical activity)',
+      },
+      {
+        label: 'Lightly Active',
+        value: '1.375',
+        explanation: 'Light activity (exercise 1-3 times a week)',
+      },
+      {
+        label: 'Moderately Active',
+        value: '1.55',
+        explanation: 'Moderate activity (exercise 3-5 times a week)',
+      },
+      {
+        label: 'Very Active',
+        value: '1.725',
+        explanation: 'High activity (exercise 6-7 times a week)',
+      },
+      {
+        label: 'Extremely Active',
+        value: '1.9',
+        explanation: 'Very high activity (heavy exercise or physical work every day)',
+      },
+    ],
     mealtimeMap: [
       'breakfast',
       'brunch',
@@ -37,11 +65,17 @@ const store = createStore({
     ]
   },
   mutations: {
-    setTotalCalories(state, totalCalories) {
-      state.totalCalories = totalCalories;
+    setCountingMode(state, newValue) {
+      state.countingMode = newValue;
     },
-    clearTotalCalories(state) {
-      state.totalCalories = null;
+    setCalorieAndUserData(state, payload) {
+      state.calorieAndUserData = {
+        ...payload.userData,
+        totalDailyEnergyExpenditure: payload.totalDailyEnergyExpenditure
+      };
+    },
+    clearCalorieAndUserData(state) {
+      state.calorieAndUserData = null;
     },
     addFood(state, newFood) {
       state.foodsList.push(newFood);
@@ -57,9 +91,11 @@ const store = createStore({
     },
   },
   getters: {
-    mealtimeMap: (state) => state.mealtimeMap,
-    foodsList: (state) => state.foodsList,
-    getTotalCalories: (state) => state.totalCalories
+    getCountingMode: (state) => state.countingMode,
+    getActivityLevels: (state) => state.activityLevels,
+    getCalorieAndUserData: (state) => state.calorieAndUserData,
+    getMealtimeMap: (state) => state.mealtimeMap,
+    getFoodsList: (state) => state.foodsList,
   }
 });
 
