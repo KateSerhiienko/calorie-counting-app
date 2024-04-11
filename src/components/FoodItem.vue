@@ -4,9 +4,9 @@
       <span>{{ food.name }}</span>
       <div v-if="food.weight">
         <span>{{ food.weight.toFixed(0) }} grams</span>
-        <span>{{ countedCalories }} kcal</span>
+        <span>{{ countedCalories.toFixed(0) }} kcal</span>
       </div>
-      <span v-else>{{ food.caloriesPer100g }} kcal / 100g</span>
+      <span v-else>{{ food.caloriesPer100g.toFixed(0) }} kcal / 100g</span>
     </div>
     <div>
       <button type="button" @click="isEditing = true">Edit</button>
