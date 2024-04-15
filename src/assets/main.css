@@ -1,6 +1,41 @@
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* fonts */
+
+@font-face {
+  font-family: Righteous;
+  src: url(./fonts/Righteous-Regular.ttf);
   font-weight: normal;
+}
+
+@font-face {
+  font-family: Ubuntu;
+  src: url(./fonts/Ubuntu-Regular.ttf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Ubuntu;
+  src: url(./fonts/Ubuntu-Bold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Amiko;
+  src: url(./fonts/Amiko-Regular.ttf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Amiko;
+  src: url(./fonts/Amiko-Bold.ttf);
+  font-weight: bold;
+}
+
+/* reset styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: Amiko;
 }

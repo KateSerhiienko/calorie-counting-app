@@ -111,9 +111,3 @@ export default {
   emits: ['form-submitted'],
 };
 </script>
-
-<style scoped>
-form {
-  max-width: 450px;
-}
-</style>

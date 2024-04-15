@@ -11,17 +11,3 @@ export default {
   name: 'Sidebar',
 };
 </script>
-
-<style scoped>
-div {
-  margin-top: 20px;
-  width: 180px;
-  display: inline-block;
-  vertical-align: top;
-}
-div a {
-  display: block;
-  margin-bottom: 10px;
-  text-decoration: none;
-}
-</style>
