@@ -2,6 +2,20 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
+    nav: [
+      {
+        to: "/",
+        title: "Greetin",
+      },
+      {
+        to: "/calorie_counting",
+        title: "Calorie counting",
+      },
+      {
+        to: "/calorie_recording",
+        title: "Calorie recording",
+      }
+    ],
     countingMode: true,
     calorieAndUserData: null,
     activityLevels: [
@@ -91,6 +105,7 @@ const store = createStore({
     },
   },
   getters: {
+    getNav: (state) => state.nav,
     getCountingMode: (state) => state.countingMode,
     getActivityLevels: (state) => state.activityLevels,
     getCalorieAndUserData: (state) => state.calorieAndUserData,

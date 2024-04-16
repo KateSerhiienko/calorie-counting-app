@@ -1,11 +1,14 @@
 <template>
-  <div class="main-wrapper">
+  <div class="global-wrapper">
     <div class="app-wrapper">
+      
       <aside>
         <sidebar />
       </aside>
       <main>
-        <router-view />
+       <div class="main-bg">
+          <router-view />
+       </div>
       </main>
       <footer>
         <footerbar />
@@ -34,8 +37,7 @@ export default {
 </script>
 
 <style scoped>
- 
-.main-wrapper {
+.global-wrapper {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -56,6 +58,7 @@ export default {
   background: linear-gradient(0deg, rgba(97,139,125,1) 0%, rgba(114,157,143,1) 100%); 
   border-radius: 40px;
   box-shadow: -10px 10px 15px rgba(0, 0, 0, .2);
+  overflow: hidden;
 }
 
 aside, main, footer {
@@ -69,7 +72,17 @@ aside {
 main {
   grid-area: main;
   background: #F1F1F1;
+  color: #205A47;
   box-shadow: -10px 10px 15px rgba(0, 0, 0, .2);
+  padding-left: 0;
+}
+
+.main-bg {
+  width: 100%;
+  height: 100%;
+  background: #F1F1F1;
+  transform: translate(0px, 0);
+  padding-left: 10px;
 }
 
 footer {
