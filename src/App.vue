@@ -1,7 +1,7 @@
 <template>
   <div class="global-wrapper">
     <div class="app-wrapper">
-      
+
       <aside>
         <sidebar />
       </aside>
@@ -55,7 +55,7 @@ export default {
   grid-template-rows: 610px auto;
   grid-template-areas: "aside main" "aside footer";
   background: rgb(97,139,125);
-  background: linear-gradient(0deg, rgba(97,139,125,1) 0%, rgba(114,157,143,1) 100%); 
+  background: linear-gradient(0deg, rgba(97,139,125,1) 0%, rgba(114,157,143,1) 100%);
   border-radius: 40px;
   box-shadow: -10px 10px 15px rgba(0, 0, 0, .2);
   overflow: hidden;
@@ -88,7 +88,7 @@ main {
 footer {
   grid-area: footer;
   background: rgb(97,139,125);
-  background: linear-gradient(90deg, rgba(97,139,125,1) 0%, rgba(187,148,140,1) 100%); 
+  background: linear-gradient(90deg, rgba(97,139,125,1) 0%, rgba(187,148,140,1) 100%);
   box-shadow: -10px 10px 15px rgba(0, 0, 0, .2);
 }
 </style>

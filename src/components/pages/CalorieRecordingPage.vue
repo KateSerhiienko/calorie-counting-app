@@ -7,6 +7,7 @@
 <script>
 import FoodInput from '../FoodInput.vue';
 import FoodsList from '../FoodsList.vue';
+
 export default {
   name: 'CalorieRecordingPage',
   components: {

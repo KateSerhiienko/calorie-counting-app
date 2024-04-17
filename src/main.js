@@ -1,13 +1,12 @@
-import './assets/main.css'
+import './assets/styles/main.css';
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import axios from 'axios'
+import { createApp } from 'vue';
+import axios from 'axios';
+import { mapGetters } from 'vuex';
+import App from './App.vue';
 
 import router from './utils/router.js';
 import store from './utils/store.js';
-
-import { mapGetters } from 'vuex';
 
 const app = createApp(App);
 

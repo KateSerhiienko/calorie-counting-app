@@ -42,8 +42,8 @@ export default {
   computed: {
     countedCalories() {
       if (
-        this.food.caloriesPer100g !== undefined &&
-        this.food.weight !== undefined
+        this.food.caloriesPer100g !== undefined
+        && this.food.weight !== undefined
       ) {
         return (this.food.caloriesPer100g / 100) * this.food.weight;
       }

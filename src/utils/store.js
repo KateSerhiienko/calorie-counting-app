@@ -4,17 +4,17 @@ const store = createStore({
   state: {
     nav: [
       {
-        to: "/",
-        title: "Greetin",
+        to: '/',
+        title: 'Greetin',
       },
       {
-        to: "/calorie_counting",
-        title: "Calorie counting",
+        to: '/calorie_counting',
+        title: 'Calorie counting',
       },
       {
-        to: "/calorie_recording",
-        title: "Calorie recording",
-      }
+        to: '/calorie_recording',
+        title: 'Calorie recording',
+      },
     ],
     countingMode: true,
     calorieAndUserData: null,
@@ -76,7 +76,7 @@ const store = createStore({
         weight: 30,
         caloriesPer100g: 300,
       },
-    ]
+    ],
   },
   mutations: {
     setCountingMode(state, newValue) {
@@ -85,7 +85,7 @@ const store = createStore({
     setCalorieAndUserData(state, payload) {
       state.calorieAndUserData = {
         ...payload.userData,
-        totalDailyEnergyExpenditure: payload.totalDailyEnergyExpenditure
+        totalDailyEnergyExpenditure: payload.totalDailyEnergyExpenditure,
       };
     },
     clearCalorieAndUserData(state) {
@@ -95,10 +95,10 @@ const store = createStore({
       state.foodsList.push(newFood);
     },
     deleteFood(state, id) {
-      state.foodsList = state.foodsList.filter(food => food.id !== id);
+      state.foodsList = state.foodsList.filter((food) => food.id !== id);
     },
     updateFood(state, updatedFood) {
-      const index = state.foodsList.findIndex(food => food.id === updatedFood.id);
+      const index = state.foodsList.findIndex((food) => food.id === updatedFood.id);
       if (index !== -1) {
         state.foodsList.splice(index, 1, updatedFood);
       }
@@ -111,7 +111,7 @@ const store = createStore({
     getCalorieAndUserData: (state) => state.calorieAndUserData,
     getMealtimeMap: (state) => state.mealtimeMap,
     getFoodsList: (state) => state.foodsList,
-  }
+  },
 });
 
 export default store;

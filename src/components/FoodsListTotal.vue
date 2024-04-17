@@ -27,7 +27,7 @@ export default {
     totalCountedCalories() {
       return this.getFoodsList.reduce(
         (total, food) => total + (food.caloriesPer100g / 100) * food.weight,
-        0
+        0,
       );
     },
   },

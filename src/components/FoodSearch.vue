@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   name: 'FoodSearch',
   data() {
@@ -44,21 +45,21 @@ export default {
       const YOUR_APP_ID = '046ed667';
       const YOUR_APP_KEY = '8b15766259bbcafcf98ada070c50c7c6';
 
-      let processedSearchTerm = this.searchTerm;
+      const processedSearchTerm = this.searchTerm;
 
-      let optionSearch = this.searchMode === 'byName' ? 'ingr' : 'brand';
+      const optionSearch = this.searchMode === 'byName' ? 'ingr' : 'brand';
 
       if (this.searchTerm.trim().length >= 3) {
         axios
           .get(
-            `https://api.edamam.com/api/food-database/v2/parser?app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&${optionSearch}=${processedSearchTerm}`
+            `https://api.edamam.com/api/food-database/v2/parser?app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&${optionSearch}=${processedSearchTerm}`,
           )
           .then((response) => {
-            const data = response.data;
+            const { data } = response;
             const uniqueFoods = new Map();
 
             data.hints.forEach((item) => {
-              const foodId = item.food.foodId;
+              const { foodId } = item.food;
               if (!uniqueFoods.has(foodId)) {
                 uniqueFoods.set(foodId, {
                   id: foodId,

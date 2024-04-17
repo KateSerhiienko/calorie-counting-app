@@ -9,19 +9,19 @@ const router = createRouter({
     {
       path: '/',
       name: 'greeting',
-      component: GreetingPage
+      component: GreetingPage,
     },
     {
       path: '/calorie_counting',
       name: 'calorie_counting',
-      component: CalorieCountingPage
+      component: CalorieCountingPage,
     },
     {
       path: '/calorie_recording',
       name: 'calorie_recording',
-      component: CalorieRecordingPage
+      component: CalorieRecordingPage,
     },
-  ]
+  ],
 });
 
 export default router;

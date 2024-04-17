@@ -33,20 +33,20 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import svgJSON from '../assets/svg/svg.json'
+import svgJSON from '../assets/svg/svg.json';
 
 export default {
   name: 'Sidebar',
-  data(){
+  data() {
     return {
-      disabled: false
-    }
+      disabled: false,
+    };
   },
   computed: {
     ...mapGetters(['getNav']),
     svg() {
       return svgJSON;
-    }
+    },
   },
 };
 </script>

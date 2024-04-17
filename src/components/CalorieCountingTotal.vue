@@ -35,7 +35,7 @@ export default {
   methods: {
     getActivityLabel(value) {
       const activity = this.getActivityLevels.find(
-        (level) => level.value === value
+        (level) => level.value === value,
       );
       return activity ? activity.label : '';
     },

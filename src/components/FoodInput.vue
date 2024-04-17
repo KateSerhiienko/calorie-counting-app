@@ -98,9 +98,9 @@ export default {
     },
     validateInput() {
       if (
-        this.foodName.trim() === '' ||
-        this.caloriesPer100g < 0 ||
-        this.foodWeight <= 0
+        this.foodName.trim() === ''
+        || this.caloriesPer100g < 0
+        || this.foodWeight <= 0
       ) {
         console.log('Error: Invalid food information.');
         return false;

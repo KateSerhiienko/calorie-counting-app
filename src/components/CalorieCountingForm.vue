@@ -88,19 +88,21 @@ export default {
   },
   methods: {
     submitForm() {
-      const { weight, height, age, sex, selectedActivity } = this.formData;
+      const {
+        weight, height, age, sex, selectedActivity,
+      } = this.formData;
 
-      const baseMetabolicRate =
-        sex === 'male'
-          ? 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age
-          : 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+      const baseMetabolicRate = sex === 'male'
+        ? 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age
+        : 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
 
       const activityMultiplier = parseFloat(selectedActivity);
-      const totalDailyEnergyExpenditure =
-        baseMetabolicRate * activityMultiplier;
+      const totalDailyEnergyExpenditure = baseMetabolicRate * activityMultiplier;
 
       const payload = {
-        userData: { sex, weight, height, age, selectedActivity },
+        userData: {
+          sex, weight, height, age, selectedActivity,
+        },
         totalDailyEnergyExpenditure,
       };
 
