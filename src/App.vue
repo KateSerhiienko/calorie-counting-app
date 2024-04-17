@@ -1,14 +1,13 @@
 <template>
   <div class="global-wrapper">
     <div class="app-wrapper">
-
       <aside>
         <sidebar />
       </aside>
       <main>
-       <div class="main-bg">
+        <div class="main-bg">
           <router-view />
-       </div>
+        </div>
       </main>
       <footer>
         <footerbar />
@@ -36,15 +35,19 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .global-wrapper {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(152,197,182);
-  background: linear-gradient(45deg, rgba(152,197,182,1) 0%, rgba(192,237,209,1) 100%);
+  background: $primary-color-light;
+  background: linear-gradient(
+    45deg,
+    $primary-color-light 0%,
+    lighten($primary-color-light, 10%) 100%
+  );
 }
 
 .app-wrapper {
@@ -53,15 +56,22 @@ export default {
   display: grid;
   grid-template-columns: 235px auto;
   grid-template-rows: 610px auto;
-  grid-template-areas: "aside main" "aside footer";
-  background: rgb(97,139,125);
-  background: linear-gradient(0deg, rgba(97,139,125,1) 0%, rgba(114,157,143,1) 100%);
+  grid-template-areas: 'aside main' 'aside footer';
+  background: $primary-color;
+  background: linear-gradient(
+    0deg,
+    $primary-color 0%,
+    lighten($primary-color, 5%) 100%
+  );
   border-radius: 40px;
-  box-shadow: -10px 10px 15px rgba(0, 0, 0, .2);
+  box-shadow: -10px 10px 15px rgba($background-color-dark, 0.2);
   overflow: hidden;
+  font-family: Amiko;
 }
 
-aside, main, footer {
+aside,
+main,
+footer {
   padding: 10px;
 }
 
@@ -71,24 +81,28 @@ aside {
 
 main {
   grid-area: main;
-  background: #F1F1F1;
-  color: #205A47;
-  box-shadow: -10px 10px 15px rgba(0, 0, 0, .2);
+  background: $background-color;
+  color: $primary-color-dark;
+  box-shadow: -10px 10px 15px rgba($background-color-dark, 0.2);
   padding-left: 0;
 }
 
 .main-bg {
   width: 100%;
   height: 100%;
-  background: #F1F1F1;
+  background: $background-color;
   transform: translate(0px, 0);
   padding-left: 10px;
 }
 
 footer {
   grid-area: footer;
-  background: rgb(97,139,125);
-  background: linear-gradient(90deg, rgba(97,139,125,1) 0%, rgba(187,148,140,1) 100%);
-  box-shadow: -10px 10px 15px rgba(0, 0, 0, .2);
+  background: $primary-color;
+  background: linear-gradient(
+    90deg,
+    $primary-color 0%,
+    $secondary-color-dark 100%
+  );
+  box-shadow: -10px 10px 15px rgba($background-color-dark, 0.2);
 }
 </style>

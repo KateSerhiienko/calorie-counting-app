@@ -1,30 +1,32 @@
-$primary-color: #618B7D;
-$primary-color-light: #98C5B6;
-$primary-color-dark: #205A47;
+// colors
+$primary-color: #618b7d;
+$primary-color-light: #98c5b6;
+$primary-color-dark: #205a47;
 
-$secondary-color: #FAB5A6;
-$secondary-color-light: #FDC8BD;
-$secondary-color-dark: #BB948C;
+$secondary-color: #fab5a6;
+$secondary-color-light: #fdc8bd;
+$secondary-color-dark: #bb948c;
 
-$accent-color: #94B77F;
-$accent-color-light: #BCDBA9;
-$accent-color-dark: #75896A;
+$accent-color: #94b77f;
+$accent-color-light: #bcdba9;
+$accent-color-dark: #75896a;
 
-$background-color: #F3F4F6;
-$background-color-light: #F1F1F1;
+$background-color: #f1f1f1;
+$background-color-light: #f3f4f6;
 $background-color-dark: #000000;
 
 $reserve-color: #627588;
-$reserve-color-light: #9BAFC3;
-$reserve-color-dark: #515B66;
-$reserve-color-1: #FAD2A6;
-$reserve-color-2: #9CC0CE;
-$reserve-color-3: #C0EDD1;
+$reserve-color-light: #9bafc3;
+$reserve-color-dark: #515b66;
+$reserve-color-1: #fad2a6;
+$reserve-color-2: #9cc0ce;
+$reserve-color-3: #c0edd1;
 
 $gradient-color-1: #839486;
-$gradient-color-2: #989A8C;
-$gradient-color-3: #AFA092;
-$gradient-color-4: #C6A698;
-$gradient-color-5: #E1AE9F;
+$gradient-color-2: #989a8c;
+$gradient-color-3: #afa092;
+$gradient-color-4: #c6a698;
+$gradient-color-5: #e1ae9f;
 
-
+// rest
+$transition: 0.3s ease-in-out;
