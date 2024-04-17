@@ -47,6 +47,7 @@ export default {
       ) {
         return (this.food.caloriesPer100g / 100) * this.food.weight;
       }
+      return 0;
     },
   },
   methods: {

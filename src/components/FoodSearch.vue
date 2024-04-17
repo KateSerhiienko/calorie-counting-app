@@ -13,7 +13,11 @@
     Write at least 3 characters
   </p>
   <ul v-show="searchTerm != ''">
-    <li v-for="food in database" :key="food.id" @click="saveEditedFood(food)">
+    <li
+      v-for="food in database"
+      :key="food.id"
+      @click="saveEditedFood(food)"
+    >
       {{ food.name }} {{ food.caloriesPer100g.toFixed(0) }} kcal
     </li>
   </ul>
@@ -71,7 +75,8 @@ export default {
             this.database = Array.from(uniqueFoods.values());
           })
           .catch((error) => {
-            console.error('Error fetching data:', error);
+            // eslint-disable-next-line
+              console.error('Error fetching data:', error);
           });
       }
     },

@@ -8,7 +8,10 @@
     <div>
       <p>Mealtime</p>
       <select v-model="mealtime">
-        <option v-for="mealtimeName in getMealtimeMap" :key="mealtimeName">
+        <option
+          v-for="mealtimeName in getMealtimeMap"
+          :key="mealtimeName"
+        >
           {{ mealtimeName }}
         </option>
       </select>
@@ -23,19 +26,35 @@
 
     <div v-show="inputMode === 'manual'">
       <p>Name of the food</p>
-      <input type="text" v-model="foodName" />
+      <input
+        type="text"
+        v-model="foodName"
+      />
       <p>Calorie content per 100g</p>
-      <input type="number" v-model="caloriesPer100g" min="0" />
+      <input
+        type="number"
+        v-model="caloriesPer100g"
+        min="0"
+      />
     </div>
 
     <div>
       <p>Amount of food eaten in grams</p>
-      <input type="number" v-model="foodWeight" min="1" />
+      <input
+        type="number"
+        v-model="foodWeight"
+        min="1"
+      />
     </div>
 
     <div>
       <br />
-      <button type="button" @click="addFood">Add</button>
+      <button
+        type="button"
+        @click="addFood"
+      >
+        Add
+      </button>
     </div>
   </div>
 </template>
@@ -73,7 +92,6 @@ export default {
     },
     addFood() {
       if (!this.validateInput()) {
-        console.log('Error: Invalid input.');
         return;
       }
 
@@ -99,10 +117,9 @@ export default {
     validateInput() {
       if (
         this.foodName.trim() === ''
-        || this.caloriesPer100g < 0
-        || this.foodWeight <= 0
+          || this.caloriesPer100g < 0
+          || this.foodWeight <= 0
       ) {
-        console.log('Error: Invalid food information.');
         return false;
       }
       return true;

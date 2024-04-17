@@ -5,8 +5,8 @@ import axios from 'axios';
 import { mapGetters } from 'vuex';
 import App from './App.vue';
 
-import router from './utils/router.js';
-import store from './utils/store.js';
+import router from './utils/router';
+import store from './utils/store';
 
 const app = createApp(App);
 

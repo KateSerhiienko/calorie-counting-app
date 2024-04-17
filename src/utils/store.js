@@ -80,28 +80,39 @@ const store = createStore({
   },
   mutations: {
     setCountingMode(state, newValue) {
-      state.countingMode = newValue;
+      return { ...state, countingMode: newValue };
     },
     setCalorieAndUserData(state, payload) {
-      state.calorieAndUserData = {
-        ...payload.userData,
-        totalDailyEnergyExpenditure: payload.totalDailyEnergyExpenditure,
+      return {
+        ...state,
+        calorieAndUserData: {
+          ...payload.userData,
+          totalDailyEnergyExpenditure: payload.totalDailyEnergyExpenditure,
+        },
       };
     },
     clearCalorieAndUserData(state) {
-      state.calorieAndUserData = null;
+      return { ...state, calorieAndUserData: null };
     },
     addFood(state, newFood) {
-      state.foodsList.push(newFood);
+      return { ...state, foodsList: [...state.foodsList, newFood] };
     },
     deleteFood(state, id) {
-      state.foodsList = state.foodsList.filter((food) => food.id !== id);
+      return { ...state, foodsList: state.foodsList.filter((food) => food.id !== id) };
     },
     updateFood(state, updatedFood) {
       const index = state.foodsList.findIndex((food) => food.id === updatedFood.id);
       if (index !== -1) {
-        state.foodsList.splice(index, 1, updatedFood);
+        return {
+          ...state,
+          foodsList: [
+            ...state.foodsList.slice(0, index),
+            updatedFood,
+            ...state.foodsList.slice(index + 1),
+          ],
+        };
       }
+      return state;
     },
   },
   getters: {
