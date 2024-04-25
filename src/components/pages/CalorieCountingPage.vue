@@ -1,5 +1,5 @@
 <template>
-  <h3>Calorie Counting</h3>
+  <header class="glb-header">Total Daily Energy Expenditure (TDEE)</header>
   <calorie-counting-form
     v-if="countingMode"
     @form-submitted="setCountingMode(false)"
@@ -11,24 +11,24 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
-import CalorieCountingForm from '../CalorieCountingForm.vue';
-import CalorieCountingTotal from '../CalorieCountingTotal.vue';
+  import { mapGetters, mapMutations } from 'vuex';
+  import CalorieCountingForm from '../CalorieCountingForm.vue';
+  import CalorieCountingTotal from '../CalorieCountingTotal.vue';
 
-export default {
-  name: 'CalorieCountingPage',
-  components: { CalorieCountingForm, CalorieCountingTotal },
-  computed: {
-    ...mapGetters(['getCountingMode', 'getCalorieAndUserData']),
-    countingMode() {
-      return this.getCountingMode;
+  export default {
+    name: 'CalorieCountingPage',
+    components: { CalorieCountingForm, CalorieCountingTotal },
+    computed: {
+      ...mapGetters(['getCountingMode', 'getCalorieAndUserData']),
+      countingMode() {
+        return this.getCountingMode;
+      },
+      calorieAndUserData() {
+        return this.getCalorieAndUserData;
+      },
     },
-    calorieAndUserData() {
-      return this.getCalorieAndUserData;
+    methods: {
+      ...mapMutations(['setCountingMode']),
     },
-  },
-  methods: {
-    ...mapMutations(['setCountingMode']),
-  },
-};
+  };
 </script>

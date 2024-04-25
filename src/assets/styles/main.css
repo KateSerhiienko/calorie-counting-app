@@ -1,3 +1,7 @@
+/* imports */
+
+@import './global.scss';
+
 /* fonts */
 
 @font-face {

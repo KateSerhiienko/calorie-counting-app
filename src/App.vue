@@ -17,16 +17,16 @@
 </template>
 
 <script>
-import SideSection from './components/SideSection.vue';
-import FooterSection from './components/FooterSection.vue';
+  import SideSection from './components/SideSection.vue';
+  import FooterSection from './components/FooterSection.vue';
 
-export default {
-  name: 'App',
-  components: {
-    SideSection,
-    FooterSection,
-  },
-};
+  export default {
+    name: 'App',
+    components: {
+      SideSection,
+      FooterSection,
+    },
+  };
 </script>
 
 <style
@@ -51,8 +51,8 @@ export default {
     width: 1024px;
     height: 700px;
     display: grid;
-    grid-template-columns: 235px auto;
-    grid-template-rows: 610px auto;
+    grid-template-columns: 20% auto;
+    grid-template-rows: 88% auto;
     grid-template-areas: 'aside main' 'aside footer';
     background: $primary-color;
     background: linear-gradient(
@@ -60,7 +60,7 @@ export default {
       $primary-color 0%,
       lighten($primary-color, 5%) 100%
     );
-    border-radius: 40px;
+    border-radius: $border-radius;
     box-shadow: -10px 10px 15px rgba($background-color-dark, 0.2);
     overflow: hidden;
     font-family: Amiko;
@@ -69,7 +69,7 @@ export default {
   aside,
   main,
   footer {
-    padding: 10px;
+    padding: 20px;
   }
 
   aside {
@@ -89,7 +89,7 @@ export default {
     height: 100%;
     background: $background-color;
     transform: translate(0px, 0);
-    padding-left: 10px;
+    padding-left: 20px;
   }
 
   footer {

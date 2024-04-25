@@ -54,21 +54,17 @@
     align-items: center;
     justify-content: space-between;
     color: $background-color;
-    padding: 5px 0;
-  }
-
-  .info {
   }
 
   .info-item-header {
-    font-size: 14px;
-    margin-bottom: 7px;
+    font-size: 12px;
+    margin-bottom: 4px;
     font-weight: bold;
     opacity: 0.75;
   }
 
   .info-item {
-    font-size: 12px;
+    font-size: 10px;
     opacity: 0.75;
   }
 

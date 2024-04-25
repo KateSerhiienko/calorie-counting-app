@@ -1,0 +1,14 @@
+.glb-header {
+  width: 100%;
+  height: 160px;
+  padding: 60px 0 0 60px;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: Ubuntu;
+  color: $background-color-light;
+  background-image: url('./../imgs/header-bg.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  border-radius: $border-radius;
+}

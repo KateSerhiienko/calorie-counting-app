@@ -22,7 +22,7 @@
                 <path :d="svg[`nav-item-${index + 1}`].path" />
               </svg>
             </div>
-            <div class="nav-item-link">{{ navItem.title }}</div>
+            <div class="nav-item-title">{{ navItem.title }}</div>
           </div>
         </router-link>
       </li>
@@ -69,24 +69,23 @@
     border-radius: 40px 0 0 40px;
   }
 
-  .nav-item-link,
-  .nav-item-icon {
-    transition: $transition;
-  }
-
-  .nav-item:not(.active):hover .nav-item-link,
+  .nav-item:not(.active):hover .nav-item-title,
   .nav-item:not(.active):hover .nav-item-icon {
     color: $background-color;
-    fill: $background-color;
+    stroke: $background-color;
   }
 
   .active {
     font-weight: bold;
     pointer-events: none;
-  }
 
-  .active .nav-item-bg {
-    transform: translate(-15px, 0);
+    .nav-item-bg {
+      transform: translate(-15px, 0);
+    }
+
+    .nav-item-icon {
+      stroke-width: 3;
+    }
   }
 
   .nav-item-bg {
@@ -100,7 +99,13 @@
     transition: $transition;
   }
 
-  .nav-item-link {
+  .nav-item-title,
+  .nav-item-icon {
+    transition: $transition;
+  }
+
+  .nav-item-title {
+    font-size: 12px;
     z-index: 1;
   }
 
@@ -109,11 +114,15 @@
   }
 
   .nav-item-icon {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     margin-right: 10px;
-    fill: $primary-color-dark;
     z-index: 1;
+    fill: transparent;
+    stroke: $primary-color-dark;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 </style>
 
