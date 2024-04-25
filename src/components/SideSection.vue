@@ -94,7 +94,7 @@
     height: 60px;
     border-radius: 40px 0 0 40px;
     transform: translate(210px, 0);
-    box-shadow: -10px 10px 15px rgba($background-color-dark, 0.2);
+    box-shadow: $box-shadow;
     background: $background-color;
     transition: $transition;
   }

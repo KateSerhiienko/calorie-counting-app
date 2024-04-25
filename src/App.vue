@@ -61,7 +61,7 @@
       lighten($primary-color, 5%) 100%
     );
     border-radius: $border-radius;
-    box-shadow: -10px 10px 15px rgba($background-color-dark, 0.2);
+    box-shadow: $box-shadow;
     overflow: hidden;
     font-family: Amiko;
   }
@@ -80,7 +80,7 @@
     grid-area: main;
     background: $background-color;
     color: $primary-color-dark;
-    box-shadow: -10px 10px 15px rgba($background-color-dark, 0.2);
+    box-shadow: $box-shadow;
     padding-left: 0;
   }
 
@@ -100,6 +100,6 @@
       $primary-color 0%,
       $secondary-color-dark 100%
     );
-    box-shadow: -10px 10px 15px rgba($background-color-dark, 0.2);
+    box-shadow: $box-shadow;
   }
 </style>

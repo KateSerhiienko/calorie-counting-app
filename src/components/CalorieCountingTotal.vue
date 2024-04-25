@@ -7,38 +7,48 @@
     </p>
     <p>User Data:</p>
     <ul>
-      <li>Sex: {{ calorieAndUserData.sex }}</li>
-      <li>Weight: {{ calorieAndUserData.weight }}</li>
-      <li>Height: {{ calorieAndUserData.height }}</li>
-      <li>Age: {{ calorieAndUserData.age }}</li>
+      <li>Sex: {{ calorieAndUserData.userData.sex }}</li>
+      <li>Weight: {{ calorieAndUserData.userData.weight }}</li>
+      <li>Height: {{ calorieAndUserData.userData.height }}</li>
+      <li>Age: {{ calorieAndUserData.userData.age }}</li>
       <li>
         Activity Level:
-        <span v-if="calorieAndUserData.selectedActivity">
-          {{ getActivityLabel(calorieAndUserData.selectedActivity) }}
+        <span>
+          {{ getActivityLabel(calorieAndUserData.userData.selectedActivity) }}
         </span>
       </li>
     </ul>
+    <button
+      type="button"
+      @click="countAgain"
+    >
+      Count the calories again
+    </button>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+  import { mapGetters } from 'vuex';
 
-export default {
-  name: 'CalorieCountingTotal',
-  computed: {
-    ...mapGetters(['getCalorieAndUserData', 'getActivityLevels']),
-    calorieAndUserData() {
-      return this.getCalorieAndUserData;
+  export default {
+    name: 'CalorieCountingTotal',
+    computed: {
+      ...mapGetters(['getCalorieAndUserData', 'getActivityLevels']),
+      calorieAndUserData() {
+        return this.getCalorieAndUserData;
+      },
     },
-  },
-  methods: {
-    getActivityLabel(value) {
-      const activity = this.getActivityLevels.find(
-        (level) => level.value === value,
-      );
-      return activity ? activity.label : '';
+    methods: {
+      getActivityLabel(value) {
+        const activity = this.getActivityLevels.find(
+          (level) => level.value === value
+        );
+        return activity ? activity.label : '';
+      },
+      countAgain() {
+        this.$emit('count-again');
+      },
     },
-  },
-};
+    emits: ['count-again'],
+  };
 </script>

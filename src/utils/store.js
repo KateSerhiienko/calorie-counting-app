@@ -35,7 +35,16 @@ const store = createStore({
       },
     ],
     countingMode: true,
-    calorieAndUserData: null,
+    calorieAndUserData: {
+      "userData": {
+        "sex": "female",
+        "weight": 64,
+        "height": 167,
+        "age": 28,
+        "selectedActivity": "1.55"
+      },
+      "totalDailyEnergyExpenditure": 1973
+    },
     activityLevels: [
       {
         label: 'Sedentary',
@@ -98,15 +107,12 @@ const store = createStore({
   },
   mutations: {
     setCountingMode(state, newValue) {
-      return { ...state, countingMode: newValue };
+      state.countingMode = newValue;
     },
     setCalorieAndUserData(state, payload) {
-      return {
-        ...state,
-        calorieAndUserData: {
-          ...payload.userData,
-          totalDailyEnergyExpenditure: payload.totalDailyEnergyExpenditure,
-        },
+      state.calorieAndUserData = {
+        ...payload.userData,
+        totalDailyEnergyExpenditure: payload.totalDailyEnergyExpenditure,
       };
     },
     clearCalorieAndUserData(state) {
