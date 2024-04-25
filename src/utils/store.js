@@ -16,6 +16,24 @@ const store = createStore({
         title: 'Calorie recording',
       },
     ],
+    media: [
+      {
+        href: 'mailto:kate.serhiienko@gmail.com',
+        title: 'E-mail',
+      },
+      {
+        href: 'https://github.com/KateSerhiienko',
+        title: 'GitHub',
+      },
+      {
+        href: 'https://www.linkedin.com/in/kateserhiienko',
+        title: 'LinkedIn',
+      },
+      {
+        href: 'https://www.artstation.com/katerynaserhiienko3',
+        title: 'ArtStation',
+      },
+    ],
     countingMode: true,
     calorieAndUserData: null,
     activityLevels: [
@@ -117,6 +135,7 @@ const store = createStore({
   },
   getters: {
     getNav: (state) => state.nav,
+    getMedia: (state) => state.media,
     getCountingMode: (state) => state.countingMode,
     getActivityLevels: (state) => state.activityLevels,
     getCalorieAndUserData: (state) => state.calorieAndUserData,
