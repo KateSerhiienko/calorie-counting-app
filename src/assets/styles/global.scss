@@ -31,12 +31,12 @@
 
   input {
     appearance: none;
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    margin-right: 6px;
+    margin-right: 10px;
     outline: max(2px) solid $primary-color-light;
-    outline-offset: max(1px);
+    outline-offset: max(2px);
     transition: $transition;
 
     &:checked {
@@ -65,6 +65,7 @@
   color: $primary-color;
   outline: none;
   font-weight: bold;
+  font-size: 14px;
 
   &:focus {
     border-color: $primary-color;
@@ -74,5 +75,6 @@
     font-size: 11px;
     color: $primary-color-light;
     font-weight: normal;
+    font-family: Amiko;
   }
 }

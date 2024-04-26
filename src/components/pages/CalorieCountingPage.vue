@@ -66,6 +66,7 @@
     align-items: center;
     transform: translate(107%, 0);
     transition: $transition;
+    z-index: 1;
 
     &-title {
       margin-top: 60px;

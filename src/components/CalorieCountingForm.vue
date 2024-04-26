@@ -27,49 +27,55 @@
       </div>
     </div>
     <div class="parametrs">
-      <div>
+      <div class="weight">
         <input
           type="number"
           id="weight"
-          placeholder="weight | kg"
+          placeholder="weight"
           v-model="formData.weight"
           required
           class="glb-input"
           min="0"
+          max="1000"
         />
       </div>
-      <div>
+      <div class="height">
         <input
           type="number"
           id="height"
-          placeholder="height | kg"
+          placeholder="height"
           v-model="formData.height"
           required
           class="glb-input"
           min="0"
+          max="1000"
         />
       </div>
-      <div>
+      <div class="age">
         <input
           type="number"
           id="age"
-          placeholder="age | years"
+          placeholder="age"
           v-model="formData.age"
           required
           class="glb-input"
           min="0"
+          max="1000"
         />
       </div>
     </div>
     <div class="activity">
-      <p>Activity Level</p>
+      <h4>Activity Level</h4>
       <div
         v-for="activity in getActivityLevels"
         :key="activity.value"
       >
-        <div v-if="formData.selectedActivity === activity.value">
-          <span>{{ activity.label }}: </span>
-          <span>{{ activity.explanation }}</span>
+        <div
+          class="activity-explanation"
+          v-show="formData.selectedActivity === activity.value"
+        >
+          <span class="activity-titile">{{ activity.label }}: </span>
+          <span class="activity-text">{{ activity.explanation }}</span>
         </div>
       </div>
       <div>
@@ -183,13 +189,59 @@
     display: flex;
 
     div {
-      margin-right: 20px;
+      margin-right: 30px;
     }
   }
 
   .parametrs {
     display: flex;
     justify-content: space-between;
+
+    .weight {
+      &::after {
+        content: 'kg';
+        position: absolute;
+        transform: translate(-41px, 13px);
+        color: $primary-color-light;
+        font-size: 11px;
+      }
+    }
+
+    .height {
+      &::after {
+        content: 'cm';
+        position: absolute;
+        transform: translate(-43px, 13px);
+        color: $primary-color-light;
+        font-size: 11px;
+      }
+    }
+
+    .age {
+      &::after {
+        content: 'years';
+        position: absolute;
+        transform: translate(-57px, 13px);
+        color: $primary-color-light;
+        font-size: 11px;
+      }
+    }
+  }
+
+  .activity {
+    &-explanation {
+      height: 40px;
+      line-height: 1;
+    }
+
+    &-titile {
+      font-weight: bold;
+      color: $primary-color;
+    }
+
+    &-text {
+      color: $primary-color;
+    }
   }
 
   .button {
