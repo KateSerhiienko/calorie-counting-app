@@ -45,29 +45,29 @@ const store = createStore({
     },
     activityLevels: [
       {
-        label: 'Sedentary',
+        label: 'Sedentary lifestyle',
         value: '1.2',
-        explanation: 'Sedentary lifestyle (little or no physical activity)',
+        explanation: 'little or no physical activity',
       },
       {
-        label: 'Lightly Active',
+        label: 'Lightly active',
         value: '1.375',
-        explanation: 'Light activity (exercise 1-3 times a week)',
+        explanation: 'exercise 1-3 times a week',
       },
       {
-        label: 'Moderately Active',
+        label: 'Moderately active',
         value: '1.55',
-        explanation: 'Moderate activity (exercise 3-5 times a week)',
+        explanation: 'exercise 3-5 times a week',
       },
       {
-        label: 'Very Active',
+        label: 'Very active',
         value: '1.725',
-        explanation: 'High activity (exercise 6-7 times a week)',
+        explanation: 'exercise 6-7 times a week',
       },
       {
-        label: 'Extremely Active',
+        label: 'Extremely active',
         value: '1.9',
-        explanation: 'Very high activity (heavy exercise or physical work every day)',
+        explanation: 'heavy exercise or physical work every day',
       },
     ],
     mealtimeMap: [

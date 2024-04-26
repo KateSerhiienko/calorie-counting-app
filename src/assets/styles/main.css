@@ -34,7 +34,7 @@
   font-weight: bold;
 }
 
-/* reset styles */
+/* reset */
 
 * {
   margin: 0;
@@ -48,4 +48,25 @@ a {
 
 ul {
   list-style: none;
+}
+
+button {
+  border: none;
+}
+
+/* new */
+
+h1 {
+  font-size: 26px;
+  font-family: Ubuntu;
+}
+
+h2 {
+  font-size: 24px;
+  font-family: Ubuntu;
+}
+
+h3 {
+  font-size: 20px;
+  font-family: Ubuntu;
 }

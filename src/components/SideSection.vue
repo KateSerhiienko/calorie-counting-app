@@ -55,8 +55,8 @@
   lang="scss"
 >
   .logo {
-    margin-top: 40px;
-    margin-bottom: 60px;
+    margin-top: 20px;
+    margin-bottom: 70px;
     fill: $background-color-light;
   }
 
@@ -65,7 +65,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    padding: 15px 0 15px 15px;
+    padding: 15px 0 15px 5px;
     border-radius: 40px 0 0 40px;
   }
 
@@ -105,7 +105,8 @@
   }
 
   .nav-item-title {
-    font-size: 12px;
+    font-size: 16px;
+    line-height: 0.9;
     z-index: 1;
   }
 

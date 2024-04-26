@@ -1,5 +1,4 @@
 <template>
-  <h4>Calorie Counting Total</h4>
   <div>
     <p>
       Total Calories:
@@ -20,6 +19,7 @@
     </ul>
     <button
       type="button"
+      class="glb-button"
       @click="setCountingMode(true)"
     >
       Count the calories again

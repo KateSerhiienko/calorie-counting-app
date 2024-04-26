@@ -1,81 +1,101 @@
 <template>
-  <form @submit.prevent="submitForm">
-    <div>
-      <label>Sex at birth:</label>
+  <form
+    @submit.prevent="submitForm"
+    class="form"
+  >
+    <h3>Body Parametrs</h3>
+    <div class="sex">
+      <div class="glb-radio">
+        <input
+          type="radio"
+          id="female"
+          v-model="formData.sex"
+          value="female"
+          required
+        />
+        <label for="female"> female </label>
+      </div>
+      <div class="glb-radio">
+        <input
+          type="radio"
+          id="male"
+          v-model="formData.sex"
+          value="male"
+          required
+        />
+        <label for="male"> male </label>
+      </div>
+    </div>
+    <div class="parametrs">
       <div>
-        <label for="female">
-          <input
-            type="radio"
-            id="female"
-            v-model="formData.sex"
-            value="female"
-            required
-          />
-          Female
-        </label>
+        <input
+          type="number"
+          id="weight"
+          placeholder="weight | kg"
+          v-model="formData.weight"
+          required
+          class="glb-input"
+          min="0"
+        />
       </div>
       <div>
-        <label for="male">
-          <input
-            type="radio"
-            id="male"
-            v-model="formData.sex"
-            value="male"
-            required
-          />
-          Male
-        </label>
+        <input
+          type="number"
+          id="height"
+          placeholder="height | kg"
+          v-model="formData.height"
+          required
+          class="glb-input"
+          min="0"
+        />
+      </div>
+      <div>
+        <input
+          type="number"
+          id="age"
+          placeholder="age | years"
+          v-model="formData.age"
+          required
+          class="glb-input"
+          min="0"
+        />
       </div>
     </div>
-    <div>
-      <label for="weight">Weight in kg:</label>
-      <input
-        type="number"
-        id="weight"
-        v-model="formData.weight"
-        required
-      />
-    </div>
-    <div>
-      <label for="height">Height in cm:</label>
-      <input
-        type="number"
-        id="height"
-        v-model="formData.height"
-        required
-      />
-    </div>
-    <div>
-      <label for="age">Age in years:</label>
-      <input
-        type="number"
-        id="age"
-        v-model="formData.age"
-        required
-      />
-    </div>
-    <div>
-      <label for="activity">Choose your activity level:</label>
-      <input
-        type="range"
-        id="activity"
-        v-model="formData.selectedActivity"
-        min="1.2"
-        max="1.9"
-        step="0.175"
-      />
+    <div class="activity">
+      <p>Activity Level</p>
       <div
         v-for="activity in getActivityLevels"
         :key="activity.value"
       >
         <div v-if="formData.selectedActivity === activity.value">
-          <span>{{ activity.label }}</span>
-          <p>{{ activity.explanation }}</p>
+          <span>{{ activity.label }}: </span>
+          <span>{{ activity.explanation }}</span>
         </div>
+      </div>
+      <div>
+        <input
+          type="range"
+          id="activity"
+          v-model="formData.selectedActivity"
+          min="1.2"
+          max="1.9"
+          step="0.175"
+        />
+        <ul
+          v-for="activity in getActivityLevels"
+          :key="activity.value"
+        >
+          <li>{{ activity.label.split(' ')[0] }}</li>
+        </ul>
       </div>
     </div>
 
-    <button type="submit">Calculate equilibrium calorie content</button>
+    <button
+      class="glb-button button"
+      type="submit"
+    >
+      calculate
+    </button>
   </form>
 </template>
 
@@ -147,3 +167,32 @@
     },
   };
 </script>
+
+<style
+  scoped
+  lang="scss"
+>
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .sex {
+    display: flex;
+
+    div {
+      margin-right: 20px;
+    }
+  }
+
+  .parametrs {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .button {
+    align-self: end;
+  }
+</style>

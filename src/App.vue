@@ -52,7 +52,7 @@
     height: 700px;
     display: grid;
     grid-template-columns: 20% auto;
-    grid-template-rows: 88% auto;
+    grid-template-rows: 84% auto;
     grid-template-areas: 'aside main' 'aside footer';
     background: $primary-color;
     background: linear-gradient(
@@ -69,7 +69,7 @@
   aside,
   main,
   footer {
-    padding: 20px;
+    padding: 30px 24px;
   }
 
   aside {
@@ -89,7 +89,7 @@
     height: 100%;
     background: $background-color;
     transform: translate(0px, 0);
-    padding-left: 20px;
+    padding-left: 30px;
   }
 
   footer {
