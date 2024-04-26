@@ -96,7 +96,14 @@
       };
     },
     computed: {
-      ...mapGetters(['getActivityLevels']),
+      ...mapGetters(['getActivityLevels', 'getCountingMode']),
+    },
+    watch: {
+      getCountingMode(newValue) {
+        if (newValue) {
+          this.clearForm();
+        }
+      },
     },
     methods: {
       submitForm() {
@@ -107,25 +114,36 @@
             ? 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age
             : 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
 
-        const activityMultiplier = parseFloat(selectedActivity);
         const totalDailyEnergyExpenditure =
-          baseMetabolicRate * activityMultiplier;
+          baseMetabolicRate * selectedActivity;
 
-        const payload = {
+        const selectedActivityLabel = this.getActivityLevels.find(
+          (level) => level.value === selectedActivity
+        ).label;
+
+        const formCalorieAndUserData = {
           userData: {
             sex,
             weight,
             height,
             age,
-            selectedActivity,
+            activity: selectedActivityLabel,
           },
           totalDailyEnergyExpenditure,
         };
 
-        this.$store.commit('setCalorieAndUserData', payload);
-        this.$emit('form-submitted');
+        this.$store.commit('setCalorieAndUserData', formCalorieAndUserData);
+        this.$store.commit('setCountingMode', false);
+      },
+      clearForm() {
+        this.formData = {
+          sex: '',
+          weight: '',
+          height: '',
+          age: '',
+          selectedActivity: '1.55',
+        };
       },
     },
-    emits: ['form-submitted'],
   };
 </script>

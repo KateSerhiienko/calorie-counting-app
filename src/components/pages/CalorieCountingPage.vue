@@ -12,22 +12,22 @@
     <div class="content">
       <div
         class="content-item content-item-right"
-        v-show="countingMode"
+        v-show="getCountingMode"
       >
-        <calorie-counting-form @form-submitted="setCountingMode(false)" />
+        <calorie-counting-form />
       </div>
       <div
         class="content-item content-item-left"
-        v-show="!countingMode"
+        v-show="!getCountingMode"
       >
-        <calorie-counting-total @count-again="setCountingMode(true)" />
+        <calorie-counting-total />
       </div>
     </div>
   </main>
 </template>
 
 <script>
-  import { mapGetters, mapMutations } from 'vuex';
+  import { mapGetters } from 'vuex';
   import CalorieCountingForm from '../CalorieCountingForm.vue';
   import CalorieCountingTotal from '../CalorieCountingTotal.vue';
 
@@ -35,16 +35,7 @@
     name: 'CalorieCountingPage',
     components: { CalorieCountingForm, CalorieCountingTotal },
     computed: {
-      ...mapGetters(['getCountingMode', 'getCalorieAndUserData']),
-      countingMode() {
-        return this.getCountingMode;
-      },
-      calorieAndUserData() {
-        return this.getCalorieAndUserData;
-      },
-    },
-    methods: {
-      ...mapMutations(['setCountingMode']),
+      ...mapGetters(['getCountingMode']),
     },
   };
 </script>

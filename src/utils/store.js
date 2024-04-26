@@ -36,14 +36,12 @@ const store = createStore({
     ],
     countingMode: true,
     calorieAndUserData: {
-      "userData": {
-        "sex": "female",
-        "weight": 64,
-        "height": 167,
-        "age": 28,
-        "selectedActivity": "1.55"
-      },
-      "totalDailyEnergyExpenditure": 1973
+      "sex": "male",
+      "weight": 0,
+      "height": 0,
+      "age": 0,
+      "activity": "1.55",
+      "totalDailyEnergyExpenditure": 0
     },
     activityLevels: [
       {
@@ -109,10 +107,10 @@ const store = createStore({
     setCountingMode(state, newValue) {
       state.countingMode = newValue;
     },
-    setCalorieAndUserData(state, payload) {
+    setCalorieAndUserData(state, formCalorieAndUserData) {
       state.calorieAndUserData = {
-        ...payload.userData,
-        totalDailyEnergyExpenditure: payload.totalDailyEnergyExpenditure,
+        ...formCalorieAndUserData.userData,
+        totalDailyEnergyExpenditure: formCalorieAndUserData.totalDailyEnergyExpenditure,
       };
     },
     clearCalorieAndUserData(state) {
