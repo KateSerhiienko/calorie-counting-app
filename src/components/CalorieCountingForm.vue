@@ -201,6 +201,10 @@
     display: flex;
     justify-content: space-between;
 
+    input {
+      width: 94px;
+    }
+
     .weight {
       &::after {
         content: 'kg';

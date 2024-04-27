@@ -101,5 +101,6 @@
       $secondary-color-dark 100%
     );
     box-shadow: $box-shadow;
+    z-index: 1;
   }
 </style>

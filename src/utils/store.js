@@ -114,27 +114,19 @@ const store = createStore({
       };
     },
     clearCalorieAndUserData(state) {
-      return { ...state, calorieAndUserData: null };
+      state.calorieAndUserData = null;
     },
     addFood(state, newFood) {
-      return { ...state, foodsList: [...state.foodsList, newFood] };
+      state.foodsList.push(newFood);
     },
     deleteFood(state, id) {
-      return { ...state, foodsList: state.foodsList.filter((food) => food.id !== id) };
+      state.foodsList = state.foodsList.filter(food => food.id !== id);
     },
     updateFood(state, updatedFood) {
-      const index = state.foodsList.findIndex((food) => food.id === updatedFood.id);
+      const index = state.foodsList.findIndex(food => food.id === updatedFood.id);
       if (index !== -1) {
-        return {
-          ...state,
-          foodsList: [
-            ...state.foodsList.slice(0, index),
-            updatedFood,
-            ...state.foodsList.slice(index + 1),
-          ],
-        };
+        state.foodsList.splice(index, 1, updatedFood);
       }
-      return state;
     },
   },
   getters: {
