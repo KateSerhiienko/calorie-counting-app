@@ -4,96 +4,98 @@
     class="form"
   >
     <h3>Body Parametrs</h3>
-    <div class="sex">
-      <div class="glb-radio">
-        <input
-          type="radio"
-          id="female"
-          v-model="formData.sex"
-          value="female"
-          required
-        />
-        <label for="female"> female </label>
-      </div>
-      <div class="glb-radio">
-        <input
-          type="radio"
-          id="male"
-          v-model="formData.sex"
-          value="male"
-          required
-        />
-        <label for="male"> male </label>
-      </div>
-    </div>
     <div class="parametrs">
-      <div class="weight">
-        <input
-          type="number"
-          id="weight"
-          placeholder="weight"
-          v-model="formData.weight"
-          required
-          class="glb-input"
-          min="0"
-          max="1000"
-        />
+      <div class="parametrs-sex">
+        <div class="glb-radio">
+          <input
+            type="radio"
+            id="female"
+            v-model="formData.sex"
+            value="female"
+            required
+          />
+          <label for="female"> female </label>
+        </div>
+        <div class="glb-radio">
+          <input
+            type="radio"
+            id="male"
+            v-model="formData.sex"
+            value="male"
+            required
+          />
+          <label for="male"> male </label>
+        </div>
       </div>
-      <div class="height">
-        <input
-          type="number"
-          id="height"
-          placeholder="height"
-          v-model="formData.height"
-          required
-          class="glb-input"
-          min="0"
-          max="1000"
-        />
-      </div>
-      <div class="age">
-        <input
-          type="number"
-          id="age"
-          placeholder="age"
-          v-model="formData.age"
-          required
-          class="glb-input"
-          min="0"
-          max="1000"
-        />
+      <div class="parametrs-common">
+        <div class="weight">
+          <input
+            type="number"
+            id="weight"
+            placeholder="weight"
+            v-model="formData.weight"
+            required
+            class="glb-input"
+            min="0"
+            max="1000"
+          />
+        </div>
+        <div class="height">
+          <input
+            type="number"
+            id="height"
+            placeholder="height"
+            v-model="formData.height"
+            required
+            class="glb-input"
+            min="0"
+            max="1000"
+          />
+        </div>
+        <div class="age">
+          <input
+            type="number"
+            id="age"
+            placeholder="age"
+            v-model="formData.age"
+            required
+            class="glb-input"
+            min="0"
+            max="1000"
+          />
+        </div>
       </div>
     </div>
     <div class="activity">
-      <h4>Activity Level</h4>
+      <h4 class="activity-header">Activity Level</h4>
       <div
         v-for="activity in getActivityLevels"
         :key="activity.value"
       >
         <div
           class="activity-explanation"
-          v-show="formData.selectedActivity === activity.value"
+          :class="{ show: formData.selectedActivity === activity.value }"
         >
           <span class="activity-titile">{{ activity.label }}: </span>
           <span class="activity-text">{{ activity.explanation }}</span>
         </div>
       </div>
-      <div>
-        <input
-          type="range"
-          id="activity"
-          v-model="formData.selectedActivity"
-          min="1.2"
-          max="1.9"
-          step="0.175"
-        />
-        <ul
+      <ul class="activity-inputs">
+        <li
           v-for="activity in getActivityLevels"
           :key="activity.value"
+          class="glb-radio activity-inputs-item"
         >
-          <li>{{ activity.label.split(' ')[0] }}</li>
-        </ul>
-      </div>
+          <input
+            type="radio"
+            :id="activity.label.toLowerCase().split(' ')[0]"
+            v-model="formData.selectedActivity"
+            :value="activity.value"
+            required
+          />
+          <label>{{ activity.label.split(' ')[0] }}</label>
+        </li>
+      </ul>
     </div>
 
     <button
@@ -113,7 +115,7 @@
     data() {
       return {
         formData: {
-          sex: '',
+          sex: 'female',
           weight: '',
           height: '',
           age: '',
@@ -163,7 +165,7 @@
       },
       clearForm() {
         this.formData = {
-          sex: '',
+          sex: 'female',
           weight: '',
           height: '',
           age: '',
@@ -185,15 +187,20 @@
     height: 100%;
   }
 
-  .sex {
+  .parametrs {
+  }
+
+  .parametrs-sex {
     display: flex;
+    /* justify-content: center; */
+    margin-bottom: 10px;
 
     div {
       margin-right: 30px;
     }
   }
 
-  .parametrs {
+  .parametrs-common {
     display: flex;
     justify-content: space-between;
 
@@ -228,19 +235,57 @@
     }
   }
 
-  .activity {
-    &-explanation {
-      height: 40px;
-      line-height: 1;
-    }
+  .activity-header {
+    margin-bottom: 10px;
+  }
 
-    &-titile {
+  .activity-explanation {
+    line-height: 1;
+    margin-bottom: 14px;
+    opacity: 0;
+    transition: $transition;
+    position: absolute;
+    width: 310px;
+
+    .activity-titile {
       font-weight: bold;
       color: $primary-color;
     }
 
-    &-text {
+    .activity-text {
       color: $primary-color;
+    }
+  }
+
+  .show {
+    opacity: 1;
+  }
+
+  .activity-inputs {
+    display: flex;
+    margin-top: 58px;
+
+    .activity-inputs-item {
+      width: 60px;
+      flex-direction: column;
+      align-items: center;
+
+      &:not(:last-child)::after {
+        content: '';
+        width: 40px;
+        height: 2px;
+        background: #98c5b6;
+        transform: translate(25px, -31px);
+      }
+    }
+
+    input {
+      margin-bottom: 10px;
+      z-index: 1;
+    }
+
+    label {
+      font-size: 11px;
     }
   }
 
