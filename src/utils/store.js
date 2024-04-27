@@ -36,7 +36,7 @@ const store = createStore({
     ],
     countingMode: true,
     calorieAndUserData: {
-      "sex": "male",
+      "sex": "female",
       "weight": 0,
       "height": 0,
       "age": 0,

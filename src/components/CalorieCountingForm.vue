@@ -187,9 +187,6 @@
     height: 100%;
   }
 
-  .parametrs {
-  }
-
   .parametrs-sex {
     display: flex;
     /* justify-content: center; */
@@ -281,7 +278,6 @@
 
     input {
       margin-bottom: 10px;
-      z-index: 1;
     }
 
     label {

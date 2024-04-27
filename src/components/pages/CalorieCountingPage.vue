@@ -67,6 +67,7 @@
     transform: translate(107%, 0);
     transition: $transition;
     z-index: 1;
+    /* display: none; */
 
     &-title {
       margin-top: 60px;
