@@ -15,7 +15,9 @@
           </h4>
           <i
             class="arrow"
-            :class="closedSections[index] ? 'arrow-down' : 'arrow-up'"
+            :class="
+              getClosedSectionsFoodsList[index] ? 'arrow-down' : 'arrow-up'
+            "
           ></i>
         </div>
         <ul
