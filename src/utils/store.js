@@ -71,13 +71,13 @@ const store = createStore({
       },
     ],
     mealtimeMap: [
+      'unnamed',
       'breakfast',
       'brunch',
       'lunch',
       'snack',
       'dinner',
       'supper',
-      'unnamed',
     ],
     foodsList: [
       {
@@ -102,6 +102,7 @@ const store = createStore({
         caloriesPer100g: 300,
       },
     ],
+    closedSectionsFoodsList: {},
   },
   mutations: {
     setCountingMode(state, newValue) {
@@ -128,6 +129,9 @@ const store = createStore({
         state.foodsList.splice(index, 1, updatedFood);
       }
     },
+    toggleClosedSectionFoodsList(state, index) {
+      state.closedSectionsFoodsList[index] = !state.closedSectionsFoodsList[index];
+    },
   },
   getters: {
     getNav: (state) => state.nav,
@@ -137,6 +141,7 @@ const store = createStore({
     getCalorieAndUserData: (state) => state.calorieAndUserData,
     getMealtimeMap: (state) => state.mealtimeMap,
     getFoodsList: (state) => state.foodsList,
+    getClosedSectionsFoodsList: (state) => state.closedSectionsFoodsList,
   },
 });
 

@@ -185,10 +185,11 @@
     position: relative;
     z-index: 2;
     transition: $transition;
+    max-width: 315px;
   }
 
   .mealtime {
-    padding: 10px 20px 10px;
+    padding: 8px 20px 8px;
   }
 
   .search,
@@ -224,14 +225,14 @@
       font-size: 14px;
       font-weight: bold;
       color: $primary-color;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
     }
 
     .textarea {
       width: 100%;
       height: 90px;
       padding: 20px 10px;
-      margin-bottom: 5px;
+      margin-bottom: 14px;
       resize: none;
     }
 
