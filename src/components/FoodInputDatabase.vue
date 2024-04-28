@@ -3,15 +3,12 @@
     <food-search @save-edited-food="saveEditedFood" />
   </div>
 
-  <div v-if="Object.keys(selectedFood).length > 0">
-    <hr />
-    <h3>{{ selectedFood.name }}</h3>
+  <div v-else>
     <food-item
       :food="selectedFood"
       @save-edited-food="saveEditedFood"
       @remove-food="removeFood"
     ></food-item>
-    <hr />
   </div>
 </template>
 

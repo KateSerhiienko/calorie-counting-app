@@ -30,18 +30,29 @@
         />
       </div>
 
-      <div v-show="inputMode === 'manual'">
-        <p>Name of the food</p>
-        <input
-          type="text"
-          v-model="foodName"
-        />
-        <p>Calorie content per 100g</p>
-        <input
-          type="number"
-          v-model="caloriesPer100g"
-          min="0"
-        />
+      <div
+        class="manual"
+        v-show="inputMode === 'manual'"
+      >
+        <div>
+          <p class="manual-title">Name of the food:</p>
+          <textarea
+            class="glb-input textarea"
+            v-model="foodName"
+          />
+        </div>
+        <div>
+          <p class="manual-title">Calorie content per 100g:</p>
+          <div class="manual-value">
+            <input
+              class="glb-input manual-input"
+              type="number"
+              v-model="caloriesPer100g"
+              min="0"
+            />
+            <span>kcal</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -61,6 +72,7 @@
     <div class="button-wrapper">
       <button
         class="glb-button"
+        :class="{ 'button-disabled': !foodName }"
         type="button"
         @click="addFood"
       >
@@ -207,16 +219,40 @@
     height: 220px;
   }
 
+  .manual {
+    .manual-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: $primary-color;
+      margin-bottom: 10px;
+    }
+
+    .textarea {
+      width: 100%;
+      height: 90px;
+      padding: 20px 10px;
+      margin-bottom: 5px;
+      resize: none;
+    }
+
+    .manual-input {
+      width: 86%;
+    }
+
+    .manual-value {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+  }
+
   .weight {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     color: $primary-color;
     font-size: 14px;
-
-    &-title {
-      font-weight: bold;
-    }
+    font-weight: bold;
 
     input {
       width: 70px;
@@ -226,7 +262,6 @@
 
   .mode {
     position: absolute;
-    /* transform: rotate(-90deg) translate(220px, -106px); */
     transform: rotate(-90deg) translate(220px, -98px);
     z-index: 1;
 
@@ -249,11 +284,11 @@
         );
       }
     }
-  }
 
-  button.active {
-    transform: translate(0, -6px);
-    box-shadow: $box-shadow;
+    button.active {
+      transform: translate(0, -6px);
+      box-shadow: $box-shadow;
+    }
   }
 
   .wrapper.manual-mode {
