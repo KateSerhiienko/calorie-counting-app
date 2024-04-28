@@ -47,13 +47,15 @@
 
     <div class="weight">
       <span class="weight-title">Amount of food:</span>
-      <input
-        class="glb-input"
-        type="number"
-        v-model="foodWeight"
-        min="1"
-      />
-      <span class="weight-text">gramm</span>
+      <div>
+        <input
+          class="glb-input"
+          type="number"
+          v-model="foodWeight"
+          min="1"
+        />
+        <span class="weight-text">gramm</span>
+      </div>
     </div>
 
     <div class="button-wrapper">
@@ -179,11 +181,11 @@
 
   .search,
   .weight {
-    padding: 10px 20px 0px;
+    padding: 8px 20px 0px;
   }
 
   .button-wrapper {
-    padding: 5px 20px 10px;
+    padding: 0 20px 10px;
   }
 
   .mealtime {
@@ -210,6 +212,7 @@
     align-items: baseline;
     justify-content: space-between;
     color: $primary-color;
+    font-size: 14px;
 
     &-title {
       font-weight: bold;
@@ -217,10 +220,7 @@
 
     input {
       width: 70px;
-    }
-
-    &-text {
-      font-size: 12px;
+      margin-right: 10px;
     }
   }
 

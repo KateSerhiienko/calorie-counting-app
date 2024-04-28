@@ -43,13 +43,19 @@
       There don't appear to be any matches in our database.<br />Try changing
       your search parameters or adding/removing search characters
     </p>
-    <ul v-show="searchTerm != ''">
+    <ul
+      class="search-list"
+      v-show="searchTerm != ''"
+    >
       <li
+        class="search-list-item"
         v-for="food in database"
         :key="food.id"
         @click="saveEditedFood(food)"
+        :title="food.name"
       >
-        {{ food.name }} {{ food.caloriesPer100g.toFixed(0) }} kcal
+        <span class="search-list-item-title">{{ food.name }}</span>
+        <span>{{ food.caloriesPer100g.toFixed(0) }} kcal</span>
       </li>
     </ul>
   </div>
@@ -142,6 +148,64 @@
 
   .input {
     width: 100%;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .search-list {
+    height: 140px;
+    overflow-y: auto;
+    padding: 0 10px;
+  }
+
+  .search-list-item {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1.7;
+    width: 100%;
+    cursor: pointer;
+    transition: $transition;
+    padding: 1px 2px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    &:nth-child(even) {
+      background-color: $background-color;
+      color: $primary-color;
+
+      &::after {
+        background: linear-gradient(
+          90deg,
+          transparent 89%,
+          $background-color 98%
+        );
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 73%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 89%,
+        $background-color-light 98%
+      );
+    }
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+
+  .search-list-item-title {
+    max-width: 74%;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .warning {
