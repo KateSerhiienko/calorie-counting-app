@@ -1,5 +1,4 @@
 <template>
-  <br />
   <div v-if="Object.keys(selectedFood).length === 0">
     <food-search @save-edited-food="saveEditedFood" />
   </div>
@@ -17,32 +16,32 @@
 </template>
 
 <script>
-import FoodItem from './FoodItem.vue';
-import FoodSearch from './FoodSearch.vue';
+  import FoodItem from './FoodItem.vue';
+  import FoodSearch from './FoodSearch.vue';
 
-export default {
-  name: 'FoodInputDatabase',
-  components: {
-    FoodItem,
-    FoodSearch,
-  },
-  data() {
-    return {
-      selectedFood: {},
-    };
-  },
-  methods: {
-    saveEditedFood(food) {
-      this.selectedFood = { ...food };
-      this.$emit('select-food-from-database', this.selectedFood);
+  export default {
+    name: 'FoodInputDatabase',
+    components: {
+      FoodItem,
+      FoodSearch,
     },
-    removeFood() {
-      this.selectedFood = {};
+    data() {
+      return {
+        selectedFood: {},
+      };
     },
-    removeTerm() {
-      this.searchTerm = '';
+    methods: {
+      saveEditedFood(food) {
+        this.selectedFood = { ...food };
+        this.$emit('select-food-from-database', this.selectedFood);
+      },
+      removeFood() {
+        this.selectedFood = {};
+      },
+      removeTerm() {
+        this.searchTerm = '';
+      },
     },
-  },
-  emits: ['select-food-from-database'],
-};
+    emits: ['select-food-from-database'],
+  };
 </script>

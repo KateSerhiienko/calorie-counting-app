@@ -5,7 +5,7 @@ const store = createStore({
     nav: [
       {
         to: '/',
-        title: 'Greetin',
+        title: 'Greeting',
       },
       {
         to: '/calorie_counting',

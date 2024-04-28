@@ -179,11 +179,11 @@
 
   .search,
   .weight {
-    padding: 5px 20px 0px;
+    padding: 10px 20px 0px;
   }
 
   .button-wrapper {
-    padding: 0px 20px 10px;
+    padding: 5px 20px 10px;
   }
 
   .mealtime {
