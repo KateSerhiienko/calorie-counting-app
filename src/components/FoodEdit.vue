@@ -39,6 +39,10 @@
       </button>
     </div>
   </div>
+  <div
+    class="edit-background"
+    :class="{ visible: Object.keys(editedFood).length > 0 }"
+  ></div>
 </template>
 
 <script>
@@ -75,6 +79,7 @@
     align-items: center;
     margin-top: 10px;
     position: relative;
+    z-index: 4;
   }
 
   .edit-wrapper-bottom {
@@ -102,5 +107,31 @@
   .input {
     width: 62px;
     margin-right: 4px;
+  }
+
+  .edit-background {
+    width: 100vw;
+    height: 100vh;
+    background: $background-color-light;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    &.visible {
+      opacity: 0.8;
+      transition: $transition;
+      animation: fadeIn $transition;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0.8;
+      }
+    }
   }
 </style>

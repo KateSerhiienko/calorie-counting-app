@@ -28,6 +28,7 @@
             v-for="(food, foodIndex) in filteredFoods(mealtime)"
             :key="foodIndex"
             class="food-item"
+            :class="{ visible: !getClosedSectionsFoodsList[index] }"
           >
             <food-item
               :food="food"
@@ -151,18 +152,23 @@
     opacity: 0;
     max-height: 0;
     transition: $transition;
-  }
 
-  .visible {
-    opacity: 1;
-    max-height: 100%;
+    &.visible {
+      opacity: 1;
+      max-height: 100%;
+    }
   }
 
   .food-item {
     padding: 2px 0;
     margin: 0 20px;
+    display: none;
     &:not(:last-child) {
       border-bottom: 1px solid $background-color;
+    }
+
+    &.visible {
+      display: block;
     }
   }
 </style>
