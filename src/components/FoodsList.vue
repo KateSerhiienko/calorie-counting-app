@@ -27,6 +27,7 @@
           <li
             v-for="(food, foodIndex) in filteredFoods(mealtime)"
             :key="foodIndex"
+            class="food-item"
           >
             <food-item
               :food="food"
@@ -155,5 +156,13 @@
   .visible {
     opacity: 1;
     max-height: 100%;
+  }
+
+  .food-item {
+    padding: 2px 0;
+    margin: 0 20px;
+    &:not(:last-child) {
+      border-bottom: 1px solid $background-color;
+    }
   }
 </style>
