@@ -1,5 +1,8 @@
 <template>
-  <div class="food-wrapper">
+  <div
+    class="food-wrapper"
+    :class="{ short: !food.weight }"
+  >
     <div class="food-content">
       <div class="food-text">
         <span
@@ -11,7 +14,7 @@
           class="food-value"
           v-if="food.weight"
         >
-          <span class="food-weight">{{ food.weight.toFixed(0) }} g</span>
+          <span class="food-weight">{{ food.weight.toFixed(0) }}g</span>
           <span class="food-counted-calories">
             {{ countedCalories.toFixed(0) }} kcal
           </span>
@@ -21,11 +24,11 @@
           v-else
         >
           <span class="food-calories">
-            {{ food.caloriesPer100g.toFixed(0) }} kcal / 100g
+            {{ food.caloriesPer100g.toFixed(0) }} kcal per 100g
           </span>
         </div>
       </div>
-      <div class="buttons-wraper">
+      <div class="buttons-wrapper">
         <div
           class="button-wrapper"
           title="edit food"
@@ -119,10 +122,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
   }
 
   .food-text {
-    width: 100%;
+    width: 85%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -130,6 +134,24 @@
   }
 
   .food-title {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -1px;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 84%,
+        $background-color-light 100%
+      );
+    }
   }
 
   .food-value {
@@ -139,17 +161,14 @@
   }
 
   .food-weight {
-    width: 50px;
+    width: 44px;
   }
 
   .food-counted-calories {
-    width: 70px;
+    width: 65px;
   }
 
-  .food-calories {
-  }
-
-  .buttons-wraper {
+  .buttons-wrapper {
     display: flex;
     align-items: center;
     margin-left: 6px;
@@ -167,6 +186,44 @@
     &:hover {
       stroke: $primary-color;
       stroke-width: 1.4;
+    }
+  }
+
+  .short {
+    .food-content {
+      flex-direction: column;
+    }
+
+    .food-text {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .food-title {
+      overflow: auto;
+      white-space: wrap;
+      word-wrap: break-word;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
+
+      &::after {
+        content: none;
+      }
+    }
+
+    .food-value {
+      align-self: flex-start;
+    }
+
+    .food-calories {
+      min-width: 60px;
+    }
+
+    .buttons-wrapper {
+      align-self: end;
+      margin-top: -18px;
+      margin-bottom: 18px;
     }
   }
 </style>

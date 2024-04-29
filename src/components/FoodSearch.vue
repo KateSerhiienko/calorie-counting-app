@@ -162,7 +162,7 @@
 
   .search-list-item {
     display: inline-block;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.7;
     width: 100%;
     cursor: pointer;
@@ -172,29 +172,30 @@
     justify-content: space-between;
     position: relative;
 
-    &:nth-child(even) {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 78%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 84%,
+        $background-color-light 100%
+      );
+    }
+
+    &:nth-child(odd) {
       background-color: $background-color;
       color: $primary-color;
 
       &::after {
         background: linear-gradient(
           90deg,
-          transparent 89%,
-          $background-color 98%
+          transparent 84%,
+          $background-color 100%
         );
       }
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      width: 73%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent 89%,
-        $background-color-light 98%
-      );
     }
 
     &:hover {
@@ -203,7 +204,7 @@
   }
 
   .search-list-item-title {
-    max-width: 74%;
+    max-width: 78%;
     white-space: nowrap;
     overflow: hidden;
   }

@@ -101,6 +101,13 @@ const store = createStore({
         weight: 30,
         caloriesPer100g: 300,
       },
+      {
+        id: 444,
+        mealtime: 'lunch',
+        name: 'food-444444444444444444444444444444444444444444444444',
+        weight: 140,
+        caloriesPer100g: 440,
+      },
     ],
     closedSectionsFoodsList: {},
   },
