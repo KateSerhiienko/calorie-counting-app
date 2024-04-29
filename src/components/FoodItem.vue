@@ -115,9 +115,6 @@
   scoped
   lang="scss"
 >
-  .food-wrapper {
-  }
-
   .food-content {
     display: flex;
     justify-content: space-between;
@@ -223,7 +220,6 @@
     .buttons-wrapper {
       align-self: end;
       margin-top: -18px;
-      margin-bottom: 18px;
     }
   }
 </style>
