@@ -105,25 +105,25 @@
     top: 0;
     left: 0;
     overflow: visible;
+    filter: drop-shadow($box-shadow);
   }
 
   circle {
     fill: transparent;
     stroke: $background-color-light;
-    stroke-width: 6px;
+    stroke-width: 8px;
     transform-origin: center;
     transform: rotate(-90deg);
     transition: stroke-dasharray $transition;
-
     &.front {
       stroke: $primary-color-dark;
     }
   }
 
   .chart-text {
-    fill: #ffffff;
-    font-size: 5px;
-    font-family: Arial, sans-serif;
-    // ... другие стили ...
+    fill: $primary-color-dark;
+    font-weight: bold;
+    font-size: 8px;
+    font-family: Ubuntu;
   }
 </style>

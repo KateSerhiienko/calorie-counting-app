@@ -39,9 +39,15 @@
       </div>
     </div>
   </div>
-  <div v-else>
-    <span>{{ totalCountedWeight.toFixed(0) }} grams</span>
-    <span>{{ totalCountedCalories.toFixed(0) }} kcal</span>
+  <div
+    v-else
+    class="total-wrapper total-wrapper-small"
+  >
+    <p class="total-title">Total:</p>
+    <div class="total-values">
+      <p>{{ totalCountedCalories.toFixed(0) }} kcal</p>
+      <p>{{ totalCountedWeight.toFixed(0) }} grams</p>
+    </div>
   </div>
 </template>
 
@@ -153,6 +159,28 @@
     width: 100px;
     height: 100px;
     position: relative;
-    filter: drop-shadow(inset $box-shadow);
+  }
+
+  .total-wrapper-small {
+    padding: 50px 0 0 30px;
+    height: auto;
+    font-size: 26px;
+    align-items: flex-start;
+  }
+
+  .total-title {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .total-values {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: right;
+
+    & p:nth-child(1) {
+      color: $reserve-color-1;
+      font-size: 30px;
+    }
   }
 </style>

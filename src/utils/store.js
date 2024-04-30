@@ -41,7 +41,7 @@ const store = createStore({
       "height": 0,
       "age": 0,
       "activity": "1.55",
-      "totalDailyEnergyExpenditure": 3000
+      "totalDailyEnergyExpenditure": 0
     },
     activityLevels: [
       {
