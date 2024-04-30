@@ -36,7 +36,7 @@
       <span class="total-calories">{{
         getCaloriesAndUserData.totalDailyEnergyExpenditure.toFixed(0)
       }}</span>
-      <span class="total-text">per<br />day</span>
+      <span class="total-unit">per<br />day</span>
     </p>
     <button
       type="button"
@@ -118,7 +118,6 @@
   }
 
   .total {
-    font-family: Ubuntu;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
@@ -138,7 +137,7 @@
     align-self: center;
   }
 
-  .total-text {
+  .total-unit {
     color: $primary-color-dark;
     align-self: end;
   }

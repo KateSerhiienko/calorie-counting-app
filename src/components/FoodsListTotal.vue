@@ -1,12 +1,15 @@
 <template>
-  <div v-if="getCaloriesAndUserData.totalDailyEnergyExpenditure">
-    <!-- <div>
-      <span>Total:</span>
-      <span>
+  <div
+    v-if="getCaloriesAndUserData.totalDailyEnergyExpenditure"
+    class="total-wrapper"
+  >
+    <div class="total-left">
+      <span class="total-left-title">Total:</span>
+      <span class="total-left-value">
         {{ getCaloriesAndUserData.totalDailyEnergyExpenditure.toFixed(0) }}
       </span>
-      <span>kcal</span>
-    </div> -->
+      <span class="total-left-unit">kcal</span>
+    </div>
     <div class="chart-wrapper">
       <circle-chart
         :data-dasharray="[
@@ -15,21 +18,26 @@
         ]"
         :radius="'18px'"
       ></circle-chart>
-      <!-- <span :class="{ exceed: isCaloriesExceed }">{{
-        caloriesUsedPercentage.toFixed(0)
-      }}</span> -->
     </div>
-    <!-- <div>
-      <div>
-        <span>{{ totalCountedCalories.toFixed(0) }}</span>
-        <span>kcal used</span>
+    <div class="total-right">
+      <div class="total-right-item">
+        <span class="total-right-value">{{
+          totalCountedCalories.toFixed(0)
+        }}</span>
+        <span class="total-right-unit">kcal used</span>
       </div>
-      <div :class="{ exceed: isCaloriesExceed }">
-        <span>{{ Math.abs(caloriesDifference.toFixed(0)) }}</span>
-        <span v-if="!isCaloriesExceed">kcal left</span>
-        <span v-else>kcal exceed</span>
+      <div
+        class="total-right-item"
+        :class="{ exceed: isCaloriesExceed }"
+      >
+        <span class="total-right-value">{{
+          Math.abs(caloriesDifference.toFixed(0))
+        }}</span>
+        <span class="total-right-unit"
+          >kcal {{ !isCaloriesExceed ? 'left' : 'over' }}</span
+        >
       </div>
-    </div> -->
+    </div>
   </div>
   <div v-else>
     <span>{{ totalCountedWeight.toFixed(0) }} grams</span>
@@ -60,13 +68,6 @@
           0
         );
       },
-      caloriesUsedPercentage() {
-        return (
-          (this.totalCountedCalories /
-            this.getCaloriesAndUserData.totalDailyEnergyExpenditure) *
-          100
-        );
-      },
       caloriesDifference() {
         return (
           this.getCaloriesAndUserData.totalDailyEnergyExpenditure -
@@ -84,9 +85,74 @@
   lang="scss"
   scoped
 >
+  .total-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 44%;
+    height: 100%;
+    text-transform: none;
+    font-weight: normal;
+    padding-bottom: 24px;
+  }
+
+  .total-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1;
+    margin-right: 6px;
+  }
+
+  .total-left-title {
+    font-size: 18px;
+    align-self: start;
+  }
+
+  .total-left-value {
+    font-size: 40px;
+    color: $reserve-color-1;
+    align-self: center;
+    font-weight: bold;
+  }
+
+  .total-left-unit {
+    align-self: end;
+  }
+
+  .total-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .total-right-item {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    text-align: right;
+
+    &:nth-child(1) {
+      color: $primary-color-dark;
+    }
+  }
+
+  .total-right-value {
+    font-size: 30px;
+    font-weight: bold;
+    width: 100%;
+  }
+
+  .total-right-unit {
+    font-size: 12px;
+    line-height: 0.9;
+    width: 40px;
+  }
+
   .chart-wrapper {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     position: relative;
+    filter: drop-shadow(inset $box-shadow);
   }
 </style>

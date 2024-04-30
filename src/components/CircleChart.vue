@@ -13,6 +13,7 @@
       ref="mainChart"
       class="front"
       :stroke-dasharray="dasharray"
+      :stroke-linecap="'round'"
       :r="radius"
       cx="50%"
       cy="50%"
@@ -109,10 +110,10 @@
   circle {
     fill: transparent;
     stroke: $background-color-light;
-    stroke-width: 0.6px;
+    stroke-width: 6px;
     transform-origin: center;
     transform: rotate(-90deg);
-    transition: stroke-dasharray 1s ease;
+    transition: stroke-dasharray $transition;
 
     &.front {
       stroke: $primary-color-dark;
