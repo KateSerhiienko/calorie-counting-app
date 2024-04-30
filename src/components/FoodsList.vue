@@ -39,6 +39,14 @@
         </ul>
       </div>
     </div>
+
+    <p
+      v-show="Object.keys(getFoodsList).length === 0"
+      class="empty-list"
+    >
+      The food list is still empty. You can fill it out using the form on the
+      left.
+    </p>
   </div>
 </template>
 
@@ -170,5 +178,14 @@
     &.visible {
       display: block;
     }
+  }
+
+  .empty-list {
+    height: 100%;
+    padding: 0 20px;
+    color: $primary-color;
+    display: flex;
+    align-items: center;
+    text-align: center;
   }
 </style>
