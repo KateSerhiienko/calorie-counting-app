@@ -149,7 +149,7 @@
           (level) => level.value === selectedActivity
         ).label;
 
-        const formCalorieAndUserData = {
+        const formcaloriesAndUserData = {
           userData: {
             sex,
             weight,
@@ -160,7 +160,7 @@
           totalDailyEnergyExpenditure,
         };
 
-        this.$store.commit('setCalorieAndUserData', formCalorieAndUserData);
+        this.$store.commit('setCaloriesAndUserData', formcaloriesAndUserData);
         this.$store.commit('setCountingMode', false);
       },
       clearForm() {

@@ -35,13 +35,13 @@ const store = createStore({
       },
     ],
     countingMode: true,
-    calorieAndUserData: {
+    caloriesAndUserData: {
       "sex": "female",
       "weight": 0,
       "height": 0,
       "age": 0,
       "activity": "1.55",
-      "totalDailyEnergyExpenditure": 0
+      "totalDailyEnergyExpenditure": 3000
     },
     activityLevels: [
       {
@@ -105,7 +105,7 @@ const store = createStore({
         id: 444,
         mealtime: 'lunch',
         name: 'food-444444444444444444444444444444444444444444444444',
-        weight: 140,
+        weight: 1400,
         caloriesPer100g: 440,
       },
     ],
@@ -115,14 +115,14 @@ const store = createStore({
     setCountingMode(state, newValue) {
       state.countingMode = newValue;
     },
-    setCalorieAndUserData(state, formCalorieAndUserData) {
-      state.calorieAndUserData = {
-        ...formCalorieAndUserData.userData,
-        totalDailyEnergyExpenditure: formCalorieAndUserData.totalDailyEnergyExpenditure,
+    setCaloriesAndUserData(state, formCaloriesAndUserData) {
+      state.caloriesAndUserData = {
+        ...formCaloriesAndUserData.userData,
+        totalDailyEnergyExpenditure: formCaloriesAndUserData.totalDailyEnergyExpenditure,
       };
     },
-    clearCalorieAndUserData(state) {
-      state.calorieAndUserData = null;
+    clearcaloriesAndUserData(state) {
+      state.caloriesAndUserData = null;
     },
     addFood(state, newFood) {
       state.foodsList.push(newFood);
@@ -145,7 +145,7 @@ const store = createStore({
     getMedia: (state) => state.media,
     getCountingMode: (state) => state.countingMode,
     getActivityLevels: (state) => state.activityLevels,
-    getCalorieAndUserData: (state) => state.calorieAndUserData,
+    getCaloriesAndUserData: (state) => state.caloriesAndUserData,
     getMealtimeMap: (state) => state.mealtimeMap,
     getFoodsList: (state) => state.foodsList,
     getClosedSectionsFoodsList: (state) => state.closedSectionsFoodsList,
