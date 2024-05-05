@@ -1,28 +1,5 @@
 <template>
   <div class="wrapper">
-    <div class="modes">
-      <span class="modes-title">Search by</span>
-      <div class="glb-radio">
-        <input
-          type="radio"
-          id="byProduct"
-          v-model="searchMode"
-          value="byProduct"
-          required
-        />
-        <label for="byProduct">product</label>
-      </div>
-      <div class="glb-radio">
-        <input
-          type="radio"
-          id="byBrand"
-          v-model="searchMode"
-          value="byBrand"
-          required
-        />
-        <label for="byBrand">brand</label>
-      </div>
-    </div>
     <input
       class="glb-input input"
       type="text"
@@ -68,7 +45,6 @@
     name: 'FoodSearch',
     data() {
       return {
-        searchMode: 'byProduct',
         database: [],
         searchTerm: '',
       };
@@ -87,33 +63,20 @@
       fetchFoodData() {
         this.database = [];
 
-        const YOUR_APP_ID = '046ed667';
-        const YOUR_APP_KEY = '8b15766259bbcafcf98ada070c50c7c6';
-
         const processedSearchTerm = this.searchTerm;
-
-        const optionSearch = this.searchMode === 'byProduct' ? 'ingr' : 'brand';
 
         if (this.searchTerm.trim().length >= 3) {
           axios
             .get(
-              `https://api.edamam.com/api/food-database/v2/parser?app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&${optionSearch}=${processedSearchTerm}`
+              `https://node-server-v342.onrender.com/api/products?title=${processedSearchTerm}`
             )
             .then((response) => {
               const { data } = response;
-              const uniqueFoods = new Map();
-
-              data.hints.forEach((item) => {
-                const { foodId } = item.food;
-                if (!uniqueFoods.has(foodId)) {
-                  uniqueFoods.set(foodId, {
-                    id: foodId,
-                    name: item.food.label,
-                    caloriesPer100g: item.food.nutrients.ENERC_KCAL,
-                  });
-                }
-              });
-              this.database = Array.from(uniqueFoods.values());
+              this.database = data.map((item) => ({
+                id: item._id,
+                name: item.name,
+                caloriesPer100g: item.caloriesPer100g,
+              }));
             })
             .catch((error) => {
               // eslint-disable-next-line
