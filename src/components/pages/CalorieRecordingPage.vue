@@ -30,28 +30,4 @@
 <style
   scoped
   lang="scss"
->
-  .wrapper {
-    position: relative;
-    height: 100%;
-  }
-
-  .header {
-    padding: 20px;
-  }
-
-  .food-input {
-    margin-top: -40px;
-    margin-left: 5%;
-    width: 40%;
-    height: 70%;
-  }
-
-  .food-list {
-    width: 50%;
-    height: 600px;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-</style>
+></style>

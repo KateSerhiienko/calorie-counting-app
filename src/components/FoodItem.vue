@@ -34,12 +34,12 @@
           title="edit food"
           @click="isEditing = true"
         >
-          <svg
+          <!-- <svg
             class="button-edit"
             :viewBox="svg['edit'].viewBox"
           >
             <path :d="svg['edit'].path" />
-          </svg>
+          </svg> -->
         </div>
         <div
           class="button-wrapper"
@@ -114,112 +114,4 @@
 <style
   scoped
   lang="scss"
->
-  .food-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-
-  .food-text {
-    width: 85%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-  }
-
-  .food-title {
-    overflow: hidden;
-    white-space: nowrap;
-    width: 100%;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: -1px;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent 84%,
-        $background-color-light 100%
-      );
-    }
-  }
-
-  .food-value {
-    display: flex;
-    text-align: right;
-    font-size: 12px;
-  }
-
-  .food-weight {
-    width: 44px;
-  }
-
-  .food-counted-calories {
-    width: 65px;
-  }
-
-  .buttons-wrapper {
-    display: flex;
-    align-items: center;
-    margin-left: 6px;
-  }
-
-  .button-wrapper {
-    width: 15px;
-    cursor: pointer;
-    stroke: $primary-color-light;
-    fill: transparent;
-    stroke-width: 1;
-    transition: $transition;
-    margin-left: 6px;
-
-    &:hover {
-      stroke: $primary-color;
-      stroke-width: 1.4;
-    }
-  }
-
-  .short {
-    .food-content {
-      flex-direction: column;
-    }
-
-    .food-text {
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .food-title {
-      overflow: auto;
-      white-space: wrap;
-      word-wrap: break-word;
-      font-weight: bold;
-      font-size: 16px;
-      margin-bottom: 10px;
-
-      &::after {
-        content: none;
-      }
-    }
-
-    .food-value {
-      align-self: flex-start;
-    }
-
-    .food-calories {
-      min-width: 60px;
-    }
-
-    .buttons-wrapper {
-      align-self: end;
-      margin-top: -18px;
-    }
-  }
-</style>
+></style>

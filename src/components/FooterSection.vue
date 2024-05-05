@@ -16,9 +16,9 @@
           :title="mediaItem.title"
           target="_blank"
         >
-          <svg :viewBox="svg[`media-item-${index + 1}`].viewBox">
+          <!-- <svg :viewBox="svg[`media-item-${index + 1}`].viewBox">
             <path :d="svg[`media-item-${index + 1}`].path" />
-          </svg>
+          </svg> -->
         </a>
       </li>
     </ul>
@@ -48,45 +48,4 @@
 <style
   scoped
   lang="scss"
->
-  .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: $background-color;
-  }
-
-  .info-item-header {
-    font-size: 12px;
-    margin-bottom: 4px;
-    font-weight: bold;
-    opacity: 0.75;
-  }
-
-  .info-item {
-    font-size: 10px;
-    opacity: 0.75;
-  }
-
-  .media {
-    display: flex;
-  }
-
-  .media-item {
-    display: block;
-    width: 50px;
-    height: 50px;
-    border: 2px solid $background-color;
-    border-radius: 100%;
-    fill: $background-color;
-    opacity: 0.6;
-    margin-left: 15px;
-    transition: $transition;
-
-    &:hover {
-      opacity: 1;
-      fill: $background-color-light;
-      color: $background-color-light;
-    }
-  }
-</style>
+></style>

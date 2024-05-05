@@ -70,7 +70,7 @@
     },
     methods: {
       updateDasharray() {
-        const percent = this.precisePercent; // Используем точное значение для вычислений
+        const percent = this.precisePercent;
         this.setLengthDasharray(percent, this.circumference);
       },
       setLengthDasharray(percent, circumference) {
@@ -105,25 +105,23 @@
     top: 0;
     left: 0;
     overflow: visible;
-    filter: drop-shadow($box-shadow);
   }
 
   circle {
     fill: transparent;
-    stroke: $background-color-light;
+    stroke: white;
     stroke-width: 8px;
     transform-origin: center;
     transform: rotate(-90deg);
-    transition: stroke-dasharray $transition;
+    transition: stroke-dasharray 0.3s ease-in;
     &.front {
-      stroke: $primary-color-dark;
+      stroke: green;
     }
   }
 
   .chart-text {
-    fill: $primary-color-dark;
+    fill: green;
     font-weight: bold;
     font-size: 8px;
-    font-family: Ubuntu;
   }
 </style>

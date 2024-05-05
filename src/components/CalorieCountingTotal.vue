@@ -24,12 +24,12 @@
           <span> {{ getCaloriesAndUserData.activity }}</span>
         </li>
       </ul>
-      <svg
+      <!-- <svg
         class="user-image"
         :viewBox="svg['user-avatar'].viewBox"
       >
         <path :d="svg['user-avatar'].path" />
-      </svg>
+      </svg> -->
     </div>
     <p class="total">
       <span class="total-title">Total<br />Calories:</span>
@@ -69,80 +69,4 @@
 <style
   scoped
   lang="scss"
->
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-
-  .user {
-    position: relative;
-    border-radius: $border-radius;
-    background: rgb(2, 0, 36);
-    background: linear-gradient(
-      90deg,
-      $primary-color-light 43%,
-      $primary-color 43%
-    );
-    padding: 18px;
-    /* box-shadow: $box-shadow; */
-  }
-
-  .user-data {
-    li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    span {
-      display: inline-block;
-      line-height: 1.5;
-
-      &:nth-child(even) {
-        width: 146px;
-        color: $background-color-light;
-      }
-    }
-  }
-
-  .user-image {
-    width: 80px;
-    fill: $background-color-light;
-    position: absolute;
-    right: 18px;
-    top: 18px;
-    /* filter: drop-shadow($box-shadow); */
-  }
-
-  .total {
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    line-height: 1;
-    height: 50px;
-  }
-
-  .total-title {
-    font-size: 20px;
-    color: $primary-color-dark;
-    align-self: start;
-  }
-
-  .total-calories {
-    font-size: 70px;
-    color: $reserve-color-1;
-    align-self: center;
-  }
-
-  .total-unit {
-    color: $primary-color-dark;
-    align-self: end;
-  }
-
-  .button {
-    align-self: end;
-  }
-</style>
+></style>
