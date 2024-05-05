@@ -11,13 +11,13 @@
       <span class="total-left-unit">kcal</span>
     </div>
     <div class="chart-wrapper">
-      <circle-chart
+      <!-- <circle-chart
         :data-dasharray="[
           totalCountedCalories,
           getCaloriesAndUserData.totalDailyEnergyExpenditure,
         ]"
         :radius="'18px'"
-      ></circle-chart>
+      ></circle-chart> -->
     </div>
     <div class="total-right">
       <div class="total-right-item">

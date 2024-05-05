@@ -46,12 +46,12 @@
           title="remove food"
           @click="clearSelectedFood"
         >
-          <svg
+          <!-- <svg
             class="button-remove"
             :viewBox="svg['remove'].viewBox"
           >
             <path :d="svg['remove'].path" />
-          </svg>
+          </svg> -->
         </div>
       </div>
     </div>

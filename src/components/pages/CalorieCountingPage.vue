@@ -11,7 +11,7 @@
       <img
         class="panel-img"
         src="./../../assets/imgs/cc-img.png"
-        alt=">Calculation Harris-Benedict equation"
+        alt="Calculation Harris-Benedict equation"
       />
     </div>
     <div class="content">

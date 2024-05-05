@@ -1,12 +1,10 @@
 <template>
-  <div
+  <form
     class="wrapper"
     :class="{ 'manual-mode': inputMode === 'manual' }"
+    @submit.prevent="addFood"
   >
-    <div
-      class="mealtime"
-      :class="{ 'manual-mode': inputMode === 'manual' }"
-    >
+    <div class="mealtime">
       <h4>Mealtime</h4>
       <select
         v-model="mealtime"
@@ -39,7 +37,7 @@
           <textarea
             class="glb-input textarea"
             v-model="foodName"
-          />
+          ></textarea>
         </div>
         <div>
           <p class="manual-title">Calorie content per 100g:</p>
@@ -73,13 +71,12 @@
       <button
         class="glb-button"
         :class="{ 'button-disabled': !foodName }"
-        type="button"
-        @click="addFood"
+        type="submit"
       >
         add
       </button>
     </div>
-  </div>
+  </form>
 
   <div class="mode">
     <button

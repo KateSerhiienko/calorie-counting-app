@@ -39,13 +39,13 @@
         required: true,
       },
       radius: {
-        type: String,
-        required: false,
+        type: Number,
+        required: true,
       },
     },
     data() {
       return {
-        dasharray: '0 0',
+        dasharray: '',
         dashoffset: '100',
         radiusBaseVal: 0,
         circumference: 0,
@@ -95,33 +95,6 @@
 </script>
 
 <style
-  lang="scss"
   scoped
->
-  .chart {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: visible;
-  }
-
-  circle {
-    fill: transparent;
-    stroke: white;
-    stroke-width: 8px;
-    transform-origin: center;
-    transform: rotate(-90deg);
-    transition: stroke-dasharray 0.3s ease-in;
-    &.front {
-      stroke: green;
-    }
-  }
-
-  .chart-text {
-    fill: green;
-    font-weight: bold;
-    font-size: 8px;
-  }
-</style>
+  lang="scss"
+></style>
