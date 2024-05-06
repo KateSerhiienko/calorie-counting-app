@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import FoodPopup from '../components/popups/FoodPopup.vue';
+import AddFoodPopup from '../components/popups/AddFoodPopup.vue';
 import DashboardPage from '../components/pages/DashboardPage.vue';
 import ProfilePage from '../components/pages/ProfilePage.vue';
 import DeveloperPopup from '../components/popups/DeveloperPopup.vue';
@@ -8,23 +8,23 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/food',
-      name: 'food',
-      component: FoodPopup,
+      path: '/add_food',
+      name: 'Add food',
+      component: AddFoodPopup,
     },
     {
       path: '/',
-      name: 'dashboard',
+      name: 'Dashboard',
       component: DashboardPage,
     },
     {
       path: '/profile',
-      name: 'profile',
+      name: 'Profile',
       component: ProfilePage,
     },
     {
       path: '/developer',
-      name: 'developer',
+      name: 'Developer',
       component: DeveloperPopup,
     },
   ],

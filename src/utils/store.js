@@ -4,16 +4,20 @@ const store = createStore({
   state: {
     nav: [
       {
+        to: '/add_food',
+        title: 'Add food',
+      },
+      {
         to: '/',
-        title: 'Greeting',
+        title: 'Dashboard',
       },
       {
-        to: '/calorie_counting',
-        title: 'Calorie counting',
+        to: '/profile',
+        title: 'Profile',
       },
       {
-        to: '/calorie_recording',
-        title: 'Calorie recording',
+        to: '/developer',
+        title: 'Developer',
       },
     ],
     media: [

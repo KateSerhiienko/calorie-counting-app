@@ -1,25 +1,7 @@
-<!-- <template>
-  <div class="global-wrapper">
-    <div class="app-wrapper">
-      <aside>
-        <side-section />
-      </aside>
-      <main>
-        <div class="main-bg">
-          <router-view />
-        </div>
-      </main>
-      <footer>
-        <footer-section />
-      </footer>
-    </div>
-  </div>
-</template> -->
-
 <template>
   <div class="app-wrapper">
     <header>
-      <h1>Today</h1>
+      <h1>{{ $route.name }}</h1>
       <div>
         <nav-component :view="'burger'" />
       </div>
@@ -34,7 +16,7 @@
 </template>
 
 <script>
-  import NavComponent from './components/NavComponent.vue';
+  import NavComponent from './components/common/NavComponent.vue';
   import FooterSection from './components/FooterSection.vue';
 
   export default {
@@ -51,21 +33,27 @@
   lang="scss"
 >
   .app-wrapper {
+    width: 100%;
     max-width: 959px;
     min-width: 375px;
-    width: 100%;
-    padding: 40px 20px 0;
 
     header {
       position: sticky;
       top: 0;
       display: flex;
       justify-content: space-between;
+      padding: 40px 20px 0;
+    }
+
+    main {
+      padding: 0 20px 0;
     }
 
     nav {
+      width: 100%;
       position: fixed;
       bottom: 0;
+      padding: 0 20px 20px;
     }
   }
 </style>
