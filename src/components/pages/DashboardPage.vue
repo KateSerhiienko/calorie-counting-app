@@ -18,7 +18,7 @@
   import FoodsListTotal from '../FoodsListTotal.vue';
 
   export default {
-    name: 'CalorieRecordingPage',
+    name: 'DashboardPage',
     components: {
       FoodInput,
       FoodsList,

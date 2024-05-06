@@ -1,10 +1,8 @@
 <template>
-  <div class="wrapper">
-    <div class="logo">
-      <!-- <svg :viewBox="svg['logo'].viewBox">
-        <path :d="svg['logo'].path" />
-      </svg> -->
-    </div>
+  <div
+    class="nav-wrapper"
+    :class="view"
+  >
     <ul class="nav">
       <li
         v-for="(navItem, index) in getNav"
@@ -16,11 +14,10 @@
             :class="{ active: $route.path == navItem.to }"
             @click="animateNavItem"
           >
-            <div class="nav-item-bg"></div>
             <div class="nav-item-icon">
-              <!-- <svg :viewBox="svg[`nav-item-${index + 1}`].viewBox">
+              <svg :viewBox="svg[`nav-item-${index + 1}`].viewBox">
                 <path :d="svg[`nav-item-${index + 1}`].path" />
-              </svg> -->
+              </svg>
             </div>
             <div class="nav-item-title">{{ navItem.title }}</div>
           </div>
@@ -35,7 +32,13 @@
   import svgJSON from '../assets/svg/svg.json';
 
   export default {
-    name: 'SideSection',
+    name: 'NavComponent',
+    props: {
+      view: {
+        type: String,
+        default: 'bottom',
+      },
+    },
     data() {
       return {
         disabled: false,
@@ -53,4 +56,13 @@
 <style
   scoped
   lang="scss"
-></style>
+>
+  .nav-wrapper {
+  }
+
+  .nav-wrapper.bottom {
+  }
+
+  .nav-wrapper.burger {
+  }
+</style>
