@@ -6,21 +6,31 @@
   >
     <div class="mealtime">
       <h4>Mealtime</h4>
-      <select
-        v-model="mealtime"
-        class="glb-input select"
-        :class="{ 'manual-mode': inputMode === 'manual' }"
+      <ul
+        v-for="mealtime in getMealtimeMap"
+        :key="mealtime"
       >
-        <option
-          v-for="mealtimeName in getMealtimeMap"
-          :key="mealtimeName"
-        >
-          {{ mealtimeName }}
-        </option>
-      </select>
+        <li @click="selectMealtime(mealtime)">
+          {{ mealtime }}
+        </li>
+      </ul>
     </div>
 
     <div class="search">
+      <header>
+        <select
+          v-model="mealtime"
+          class="glb-input select"
+          :class="{ 'manual-mode': inputMode === 'manual' }"
+        >
+          <option
+            v-for="mealtime in getMealtimeMap"
+            :key="mealtime"
+          >
+            {{ mealtime }}
+          </option>
+        </select>
+      </header>
       <div v-show="inputMode === 'database'">
         <food-input-database
           ref="foodInputDatabase"
@@ -109,7 +119,7 @@
     data() {
       return {
         inputMode: 'database',
-        mealtime: 'unnamed',
+        mealtime: '',
         foodName: '',
         caloriesPer100g: 0,
         foodWeight: 1,
@@ -126,6 +136,9 @@
       selectFoodFromDatabase(food) {
         this.foodName = food.name;
         this.caloriesPer100g = food.caloriesPer100g;
+      },
+      selectMealtime(mealtime) {
+        this.mealtime = mealtime;
       },
       addFood() {
         if (!this.validateInput()) {

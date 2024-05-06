@@ -71,13 +71,10 @@ const store = createStore({
       },
     ],
     mealtimeMap: [
-      'unnamed',
       'breakfast',
-      'brunch',
       'lunch',
-      'snack',
       'dinner',
-      'supper',
+      'snack',
     ],
     foodsList: [
       // {
