@@ -1,10 +1,7 @@
 <template>
   <div class="app-wrapper">
     <header>
-      <h1>{{ $route.name }}</h1>
-      <div>
-        <nav-component :view="'burger'" />
-      </div>
+      <header-component />
     </header>
     <main>
       <router-view />
@@ -16,14 +13,14 @@
 </template>
 
 <script>
+  import HeaderComponent from './components/common/HeaderComponent.vue';
   import NavComponent from './components/common/NavComponent.vue';
-  import FooterSection from './components/FooterSection.vue';
 
   export default {
     name: 'App',
     components: {
+      HeaderComponent,
       NavComponent,
-      FooterSection,
     },
   };
 </script>

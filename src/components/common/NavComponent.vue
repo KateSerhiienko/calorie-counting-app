@@ -3,22 +3,7 @@
     class="nav-wrapper"
     :class="view"
   >
-    <svg
-      v-if="view === 'burger'"
-      :viewBox="svg['nav-burger'].viewBox"
-      @click="showNav"
-    >
-      <path :d="svg['nav-burger'].path" />
-    </svg>
-
     <ul>
-      <svg
-        v-if="view === 'burger'"
-        :viewBox="svg['close-popup'].viewBox"
-        @click="hideNav"
-      >
-        <path :d="svg['close-popup'].path" />
-      </svg>
       <li
         v-for="(nav, index) in getNav"
         :key="nav.title"
@@ -26,7 +11,7 @@
           active: $route.path === nav.to,
           plus: nav.to === '/add_food',
         }"
-        @click="hideNav"
+        @click="navItemClick"
       >
         <div v-if="view !== 'bottom' || index !== getNav.length - 1">
           <router-link :to="nav.to">
@@ -65,17 +50,11 @@
       },
     },
     methods: {
-      showNav() {
-        if (this.view === 'burger') {
-          this.$el.querySelector('ul').style.display = 'block';
-        }
-      },
-      hideNav() {
-        if (this.view === 'burger') {
-          this.$el.querySelector('ul').style.display = 'none';
-        }
+      navItemClick() {
+        this.$emit('nav-item-click');
       },
     },
+    emits: ['nav-item-click'],
   };
 </script>
 
@@ -89,6 +68,7 @@
     }
 
     .active {
+      pointer-events: none;
     }
   }
 
@@ -112,8 +92,5 @@
   }
 
   .nav-wrapper.burger {
-    ul {
-      display: none;
-    }
   }
 </style>
