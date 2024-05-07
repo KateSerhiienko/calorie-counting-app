@@ -27,26 +27,24 @@
         v-for="food in filteredFoods(mealtime)"
         :key="food.id"
         class="food-item"
-        @click="showActions"
       >
-        <h3>{{ food.name }}</h3>
-        <p>{{ food.weight }} g</p>
-        <p>
-          {{ ((food.caloriesPer100g / 100) * food.weight).toFixed() }}
-          kcal
-        </p>
-        <div class="actions">
-          <svg
-            :viewBox="svg['close-popup'].viewBox"
-            @click="hideActions"
-          >
-            <path :d="svg['close-popup'].path" />
-          </svg>
+        <div @click="openPopup(food.id)">
+          <h3>{{ food.name }}</h3>
+          <p>{{ food.weight }} g</p>
+          <p>
+            {{ ((food.caloriesPer100g / 100) * food.weight).toFixed() }}
+            kcal
+          </p>
+        </div>
+        <popup-component
+          @close="openedPopupId = 0"
+          :visible="openedPopupId === food.id"
+        >
           <p @click="removeFood(food.id)">Remove food</p>
           <router-link :to="'/edit_food/' + food.id">
             <p>Edit food</p>
           </router-link>
-        </div>
+        </popup-component>
       </li>
     </ul>
   </div>
@@ -55,12 +53,15 @@
 <script>
   import { mapGetters } from 'vuex';
   import svgJSON from '../../assets/svg/svg.json';
+  import PopupComponent from './PopupComponent.vue';
 
   export default {
     name: 'FoodsListComponent',
+    components: { PopupComponent },
     data() {
       return {
         closedSections: {},
+        openedPopupId: 0,
       };
     },
     computed: {
@@ -93,17 +94,14 @@
           this.$store.commit('toggleClosedSectionFoodsList', index);
         }
       },
-      showActions() {
-        event.currentTarget.querySelector('.actions').style.display = 'block';
-      },
-      hideActions() {
-        event.currentTarget.querySelector('.actions').style.display = 'none';
-      },
       editFood(id) {
         console.log(id);
       },
       removeFood(id) {
         this.$store.commit('deleteFood', id);
+      },
+      openPopup(id) {
+        this.openedPopupId = id;
       },
     },
   };
@@ -132,14 +130,6 @@
       &.visible {
         display: block;
       }
-    }
-
-    .actions {
-      display: none;
-    }
-
-    svg {
-      width: 32px;
     }
   }
 </style>
