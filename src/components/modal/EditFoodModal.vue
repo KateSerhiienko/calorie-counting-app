@@ -2,7 +2,7 @@
 
 <script>
   export default {
-    name: 'EditFoodComponent',
+    name: 'EditFoodModal',
     props: ['id'],
     mounted() {
       console.log('Food id:', this.id);

@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AddFoodPopup from '../components/popups/AddFoodPopup.vue';
+import AddFoodModal from '../components/modal/AddFoodModal.vue';
 import DashboardPage from '../components/pages/DashboardPage.vue';
 import ProfilePage from '../components/pages/ProfilePage.vue';
-import DeveloperPopup from '../components/popups/DeveloperPopup.vue';
-import EditProfilePopup from '../components/popups/EditProfilePopup.vue';
-import EditFoodPopup from '../components/popups/EditFoodPopup.vue';
+import DeveloperModal from '../components/modal/DeveloperModal.vue';
+import EditProfileModal from '../components/modal/EditProfileModal.vue';
+import EditFoodModal from '../components/modal/EditFoodModal.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,7 +12,7 @@ const router = createRouter({
     {
       path: '/add_food',
       name: 'Add Food',
-      component: AddFoodPopup,
+      component: AddFoodModal,
     },
     {
       path: '/',
@@ -27,17 +27,17 @@ const router = createRouter({
     {
       path: '/developer',
       name: 'Developer',
-      component: DeveloperPopup,
+      component: DeveloperModal,
     },
     {
       path: '/edit_profile',
       name: 'Edit Profile',
-      component: EditProfilePopup,
+      component: EditProfileModal,
     },
     {
       path: '/edit_food/:id',
       name: 'Edit Food',
-      component: EditFoodPopup,
+      component: EditFoodModal,
       props: true
     },
   ],
