@@ -5,34 +5,58 @@
   >
     <ul>
       <li
-        v-for="(nav, index) in getNav"
-        :key="nav.title"
-        :class="{
-          active: $route.path === nav.to,
-          plus: nav.to === '/add_food',
-        }"
-        @click="navItemClick"
+        class="add-food"
+        @click="openModal('add-food')"
       >
-        <div v-if="view !== 'bottom' || index !== getNav.length - 1">
-          <router-link :to="nav.to">
-            <svg :viewBox="svg[`nav-item-${index + 1}`].viewBox">
-              <path :d="svg[`nav-item-${index + 1}`].path" />
-            </svg>
-            <p
-              v-if="view !== 'bottom'"
-              class="nav-item-title"
-            >
-              {{ nav.title }}
-            </p>
-          </router-link>
-        </div>
+        <svg :viewBox="svg[`nav-item-1`].viewBox">
+          <path :d="svg[`nav-item-1`].path" />
+        </svg>
+        <p>Add food</p>
+      </li>
+
+      <li
+        class="dashboard"
+        :class="{
+          active: $route.path === '/',
+        }"
+      >
+        <router-link :to="'/'">
+          <svg :viewBox="svg[`nav-item-2`].viewBox">
+            <path :d="svg[`nav-item-2`].path" />
+          </svg>
+          <p>Dashboard</p>
+        </router-link>
+      </li>
+
+      <li
+        class="profile"
+        :class="{
+          active: $route.path === '/profile',
+        }"
+      >
+        <router-link :to="'/profile'">
+          <svg :viewBox="svg[`nav-item-3`].viewBox">
+            <path :d="svg[`nav-item-3`].path" />
+          </svg>
+          <p>Profile</p>
+        </router-link>
+      </li>
+
+      <li
+        class="developer"
+        @click="openModal('developer')"
+      >
+        <svg :viewBox="svg[`nav-item-4`].viewBox">
+          <path :d="svg[`nav-item-4`].path" />
+        </svg>
+        <p>Developer</p>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  // import { mapGetters } from 'vuex';
   import svgJSON from '../../assets/svg/svg.json';
 
   export default {
@@ -44,17 +68,16 @@
       },
     },
     computed: {
-      ...mapGetters(['getNav']),
+      // ...mapGetters(['getModalOpened']),
       svg() {
         return svgJSON;
       },
     },
     methods: {
-      navItemClick() {
-        this.$emit('nav-item-click');
+      openModal(modal) {
+        this.$store.commit('setModalOpened', modal);
       },
     },
-    emits: ['nav-item-click'],
   };
 </script>
 
@@ -76,21 +99,31 @@
     ul {
       display: flex;
       justify-content: center;
+    }
 
-      .plus {
-        order: 2;
-      }
+    .add-food {
+      order: 1;
+    }
 
-      li:nth-child(2) {
-        order: 1;
-      }
+    .profile {
+      order: 2;
+    }
 
-      li:nth-child(3) {
-        order: 3;
-      }
+    .developer {
+      display: none;
+    }
+
+    p {
+      display: none;
     }
   }
 
   .nav-wrapper.burger {
+  }
+
+  .for-modal {
+    width: 100px;
+    height: 100px;
+    background: red;
   }
 </style>

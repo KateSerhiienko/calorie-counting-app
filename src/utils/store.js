@@ -2,24 +2,6 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
-    nav: [
-      {
-        to: '/add_food',
-        title: 'Add food',
-      },
-      {
-        to: '/',
-        title: 'Dashboard',
-      },
-      {
-        to: '/profile',
-        title: 'Profile',
-      },
-      {
-        to: '/developer',
-        title: 'Developer',
-      },
-    ],
     media: [
       {
         href: 'mailto:kate.serhiienko@gmail.com',
@@ -111,6 +93,7 @@ const store = createStore({
       },
     ],
     closedSectionsFoodsList: {},
+    modalOpened: '',
   },
   mutations: {
     setCountingMode(state, newValue) {
@@ -140,9 +123,11 @@ const store = createStore({
     toggleClosedSectionFoodsList(state, index) {
       state.closedSectionsFoodsList[index] = !state.closedSectionsFoodsList[index];
     },
+    setModalOpened(state, newValue) {
+      state.modalOpened = newValue;
+    },
   },
   getters: {
-    getNav: (state) => state.nav,
     getMedia: (state) => state.media,
     getCountingMode: (state) => state.countingMode,
     getActivityLevels: (state) => state.activityLevels,
@@ -150,6 +135,7 @@ const store = createStore({
     getMealtimeList: (state) => state.mealtimeList,
     getFoodsList: (state) => state.foodsList,
     getClosedSectionsFoodsList: (state) => state.closedSectionsFoodsList,
+    getModalOpened: (state) => state.modalOpened,
   },
 });
 

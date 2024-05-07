@@ -1,4 +1,4 @@
-<template></template>
+<template><p>EditProfileModal</p></template>
 
 <script>
   export default {

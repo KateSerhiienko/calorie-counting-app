@@ -1,4 +1,4 @@
-<template></template>
+<template><p>EditFoodModal</p></template>
 
 <script>
   export default {

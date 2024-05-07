@@ -1,7 +1,9 @@
 <template>
   <div class="app-wrapper">
     <header>
-      <header-component />
+      <header-component :title="$route.name">
+        <nav-component :view="'burger'" />
+      </header-component>
     </header>
     <main>
       <router-view />
@@ -9,18 +11,21 @@
     <nav>
       <nav-component :view="'bottom'" />
     </nav>
+    <wrapper-modal />
   </div>
 </template>
 
 <script>
   import HeaderComponent from './components/common/HeaderComponent.vue';
   import NavComponent from './components/common/NavComponent.vue';
+  import WrapperModal from './components/modal/WrapperModal.vue';
 
   export default {
     name: 'App',
     components: {
       HeaderComponent,
       NavComponent,
+      WrapperModal,
     },
   };
 </script>

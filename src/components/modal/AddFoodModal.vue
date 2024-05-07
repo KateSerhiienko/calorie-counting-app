@@ -1,4 +1,6 @@
-<template>Mealtime</template>
+<template>
+  <div class="modal">AddFoodModal</div>
+</template>
 
 <script>
   export default {
