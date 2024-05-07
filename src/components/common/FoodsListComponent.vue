@@ -1,6 +1,6 @@
 <template>
   <div
-    v-for="(mealtime, index) in getMealtimeMap"
+    v-for="(mealtime, index) in getMealtimeList"
     :key="index"
     class="foods-list-component"
   >
@@ -8,11 +8,11 @@
       <h2>
         {{ mealtime }}
       </h2>
-      <p>{{ caloriesSumByMealtime[mealtime].toFixed() }} kcal</p>
       <div v-show="filteredFoods(mealtime).length > 0">
+        <p>{{ caloriesSumByMealtime[mealtime].toFixed() }} kcal</p>
         <svg
           class="arrow"
-          :class="getClosedSectionsFoodsList[index] ? 'up' : ''"
+          :class="getClosedSectionsFoodsList[index] ? '' : 'up'"
           :viewBox="svg['arrow'].viewBox"
         >
           <path :d="svg['arrow'].path" />
@@ -66,7 +66,7 @@
     },
     computed: {
       ...mapGetters([
-        'getMealtimeMap',
+        'getMealtimeList',
         'getFoodsList',
         'getClosedSectionsFoodsList',
       ]),
@@ -75,7 +75,7 @@
       },
       caloriesSumByMealtime() {
         const caloriesSum = {};
-        this.getMealtimeMap.forEach((mealtime) => {
+        this.getMealtimeList.forEach((mealtime) => {
           const foods = this.filteredFoods(mealtime);
           const sum = foods.reduce((total, food) => {
             return total + (food.caloriesPer100g / 100) * food.weight;

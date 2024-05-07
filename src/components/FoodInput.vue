@@ -7,7 +7,7 @@
     <div class="mealtime">
       <h4>Mealtime</h4>
       <ul
-        v-for="mealtime in getMealtimeMap"
+        v-for="mealtime in getMealtimeList"
         :key="mealtime"
       >
         <li @click="selectMealtime(mealtime)">
@@ -24,7 +24,7 @@
           :class="{ 'manual-mode': inputMode === 'manual' }"
         >
           <option
-            v-for="mealtime in getMealtimeMap"
+            v-for="mealtime in getMealtimeList"
             :key="mealtime"
           >
             {{ mealtime }}
@@ -126,7 +126,7 @@
       };
     },
     computed: {
-      ...mapGetters(['getMealtimeMap']),
+      ...mapGetters(['getMealtimeList']),
     },
     methods: {
       switchInputMode(mode) {

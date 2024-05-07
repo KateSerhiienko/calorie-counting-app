@@ -74,7 +74,7 @@ const store = createStore({
         explanation: 'heavy exercise or physical work every day',
       },
     ],
-    mealtimeMap: [
+    mealtimeList: [
       'breakfast',
       'lunch',
       'dinner',
@@ -104,10 +104,10 @@ const store = createStore({
       },
       {
         id: 444,
-        mealtime: 'lunch',
+        mealtime: 'snack',
         name: 'food-444444444444444444444444444',
         weight: 40,
-        caloriesPer100g: 440,
+        caloriesPer100g: 0,
       },
     ],
     closedSectionsFoodsList: {},
@@ -147,7 +147,7 @@ const store = createStore({
     getCountingMode: (state) => state.countingMode,
     getActivityLevels: (state) => state.activityLevels,
     getCaloriesAndUserData: (state) => state.caloriesAndUserData,
-    getMealtimeMap: (state) => state.mealtimeMap,
+    getMealtimeList: (state) => state.mealtimeList,
     getFoodsList: (state) => state.foodsList,
     getClosedSectionsFoodsList: (state) => state.closedSectionsFoodsList,
   },
