@@ -36,6 +36,7 @@
     width: 100%;
     max-width: 959px;
     min-width: 375px;
+    font-family: Arial, Helvetica, sans-serif;
 
     header {
       position: sticky;

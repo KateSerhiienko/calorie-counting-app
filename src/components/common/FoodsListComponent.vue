@@ -1,64 +1,63 @@
 <template>
-  <div class="wrapper">
-    <div
-      v-for="(mealtime, index) in getMealtimeMap"
-      :key="index"
-    >
-      <div v-if="filteredFoods(mealtime).length > 0">
-        <div
-          class="mealtime-header"
-          :class="`mealtime-${index}`"
-          @click="toggleSection(index)"
+  <div
+    v-for="(mealtime, index) in getMealtimeMap"
+    :key="index"
+    class="foods-list-component"
+  >
+    <div @click="toggleSection(index, mealtime)">
+      <h2>
+        {{ mealtime }}
+      </h2>
+      <p>{{ caloriesSumByMealtime[mealtime].toFixed() }} kcal</p>
+      <div v-show="filteredFoods(mealtime).length > 0">
+        <svg
+          class="arrow"
+          :class="getClosedSectionsFoodsList[index] ? 'up' : ''"
+          :viewBox="svg['arrow'].viewBox"
         >
-          <h4 class="mealtime-title">
-            {{ mealtime }}
-          </h4>
-          <i
-            class="arrow"
-            :class="
-              getClosedSectionsFoodsList[index] ? 'arrow-down' : 'arrow-up'
-            "
-          ></i>
-        </div>
-        <ul
-          :class="{ visible: !getClosedSectionsFoodsList[index] }"
-          class="food-list"
-        >
-          <li
-            v-for="(food, foodIndex) in filteredFoods(mealtime)"
-            :key="foodIndex"
-            class="food-item"
-            :class="{ visible: !getClosedSectionsFoodsList[index] }"
-          >
-            <food-item
-              :food="food"
-              @save-edited-food="saveEditedFood"
-              @remove-food="removeFood"
-            ></food-item>
-          </li>
-        </ul>
+          <path :d="svg['arrow'].path" />
+        </svg>
       </div>
     </div>
-
-    <p
-      v-show="Object.keys(getFoodsList).length === 0"
-      class="empty-list"
+    <ul
+      class="food-list"
+      :class="{ visible: !getClosedSectionsFoodsList[index] }"
     >
-      The food list is still empty. You can fill it out using the form on the
-      left.
-    </p>
+      <li
+        v-for="food in filteredFoods(mealtime)"
+        :key="food.id"
+        class="food-item"
+        @click="showActions"
+      >
+        <h3>{{ food.name }}</h3>
+        <p>{{ food.weight }} g</p>
+        <p>
+          {{ ((food.caloriesPer100g / 100) * food.weight).toFixed() }}
+          kcal
+        </p>
+        <div class="actions">
+          <svg
+            :viewBox="svg['close-popup'].viewBox"
+            @click="hideActions"
+          >
+            <path :d="svg['close-popup'].path" />
+          </svg>
+          <p @click="removeFood(food.id)">Remove food</p>
+          <router-link :to="'/edit_food/' + food.id">
+            <p>Edit food</p>
+          </router-link>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
-  import FoodItem from '../FoodItem.vue';
+  import svgJSON from '../../assets/svg/svg.json';
 
   export default {
     name: 'FoodsListComponent',
-    components: {
-      FoodItem,
-    },
     data() {
       return {
         closedSections: {},
@@ -70,21 +69,41 @@
         'getFoodsList',
         'getClosedSectionsFoodsList',
       ]),
+      svg() {
+        return svgJSON;
+      },
+      caloriesSumByMealtime() {
+        const caloriesSum = {};
+        this.getMealtimeMap.forEach((mealtime) => {
+          const foods = this.filteredFoods(mealtime);
+          const sum = foods.reduce((total, food) => {
+            return total + (food.caloriesPer100g / 100) * food.weight;
+          }, 0);
+          caloriesSum[mealtime] = sum;
+        });
+        return caloriesSum;
+      },
     },
     methods: {
       filteredFoods(mealtime) {
         return this.getFoodsList.filter((food) => food.mealtime === mealtime);
       },
-      toggleSection(index) {
-        this.$store.commit('toggleClosedSectionFoodsList', index);
+      toggleSection(index, mealtime) {
+        if (this.filteredFoods(mealtime).length > 0) {
+          this.$store.commit('toggleClosedSectionFoodsList', index);
+        }
       },
-      saveEditedFood(food) {
-        this.$store.commit('updateFood', food);
-        // todo - alert "food saved"
+      showActions() {
+        event.currentTarget.querySelector('.actions').style.display = 'block';
+      },
+      hideActions() {
+        event.currentTarget.querySelector('.actions').style.display = 'none';
+      },
+      editFood(id) {
+        console.log(id);
       },
       removeFood(id) {
         this.$store.commit('deleteFood', id);
-        // todo - alert "food removed"
       },
     },
   };
@@ -93,4 +112,34 @@
 <style
   scoped
   lang="scss"
-></style>
+>
+  .foods-list-component {
+    h2 {
+      text-transform: capitalize;
+    }
+
+    .arrow {
+      height: 20px;
+
+      &.up {
+        transform: rotate(180deg);
+      }
+    }
+
+    ul {
+      display: none;
+
+      &.visible {
+        display: block;
+      }
+    }
+
+    .actions {
+      display: none;
+    }
+
+    svg {
+      width: 32px;
+    }
+  }
+</style>

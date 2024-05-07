@@ -2,38 +2,6 @@
 
 @import './global.scss';
 
-/* fonts */
-
-@font-face {
-  font-family: Righteous;
-  src: url(../fonts/Righteous-Regular.ttf);
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: Ubuntu;
-  src: url(../fonts/Ubuntu-Regular.ttf);
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: Ubuntu;
-  src: url(../fonts/Ubuntu-Bold.ttf);
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: Amiko;
-  src: url(../fonts/Amiko-Regular.ttf);
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: Amiko;
-  src: url(../fonts/Amiko-Bold.ttf);
-  font-weight: bold;
-}
-
 /* reset */
 
 * {
@@ -52,26 +20,4 @@ ul {
 
 button {
   border: none;
-}
-
-/* new */
-
-h1 {
-  font-size: 26px;
-  font-family: Ubuntu;
-}
-
-h2 {
-  font-size: 24px;
-  font-family: Ubuntu;
-}
-
-h3 {
-  font-size: 20px;
-  font-family: Ubuntu;
-}
-
-h4 {
-  font-size: 18px;
-  font-family: Ubuntu;
 }
