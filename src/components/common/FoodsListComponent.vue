@@ -52,10 +52,10 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import FoodItem from './FoodItem.vue';
+  import FoodItem from '../FoodItem.vue';
 
   export default {
-    name: 'FoodsList',
+    name: 'FoodsListComponent',
     components: {
       FoodItem,
     },

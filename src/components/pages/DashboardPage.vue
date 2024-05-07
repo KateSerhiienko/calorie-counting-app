@@ -1,28 +1,17 @@
 <template>
-  <div class="wrapper">
-    <header class="glb-header header">
-      <foods-list-total />
-    </header>
-    <div class="food-input">
-      <food-input />
-    </div>
-    <div class="food-list">
-      <foods-list />
-    </div>
-  </div>
+  <statistic-component />
+  <foods-list-component />
 </template>
 
 <script>
-  import FoodInput from '../FoodInput.vue';
-  import FoodsList from '../FoodsList.vue';
-  import FoodsListTotal from '../FoodsListTotal.vue';
+  import FoodsListComponent from '../common/FoodsListComponent.vue';
+  import StatisticComponent from '../common/StatisticComponent.vue';
 
   export default {
     name: 'DashboardPage',
     components: {
-      FoodInput,
-      FoodsList,
-      FoodsListTotal,
+      FoodsListComponent,
+      StatisticComponent,
     },
   };
 </script>

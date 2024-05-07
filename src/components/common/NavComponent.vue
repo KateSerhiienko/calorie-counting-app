@@ -6,7 +6,7 @@
     <svg
       v-if="view === 'burger'"
       :viewBox="svg['nav-burger'].viewBox"
-      @click="toggleNav"
+      @click="showNav"
     >
       <path :d="svg['nav-burger'].path" />
     </svg>
@@ -65,13 +65,12 @@
       },
     },
     methods: {
-      toggleNav() {
+      showNav() {
         if (this.view === 'burger') {
           this.$el.querySelector('ul').style.display = 'block';
         }
       },
       hideNav() {
-        console.log(1);
         if (this.view === 'burger') {
           this.$el.querySelector('ul').style.display = 'none';
         }

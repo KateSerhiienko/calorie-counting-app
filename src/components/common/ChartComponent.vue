@@ -1,38 +1,31 @@
 <template>
-  <svg
-    class="chart"
-    viewBox="0 0 42 42"
-  >
-    <circle
-      :r="radius"
-      cx="50%"
-      cy="50%"
-      :stroke-dashoffset="dashoffset"
-    />
-    <circle
-      ref="mainChart"
-      class="front"
-      :stroke-dasharray="dasharray"
-      :stroke-linecap="'round'"
-      :r="radius"
-      cx="50%"
-      cy="50%"
-    />
-    <text
-      x="50%"
-      y="50%"
-      dy=".3em"
-      class="chart-text"
-      text-anchor="middle"
+  <div class="chart-wrapper">
+    <svg
+      class="chart"
+      viewBox="0 0 42 42"
     >
-      {{ displayPercent }}%
-    </text>
-  </svg>
+      <circle
+        :r="radius"
+        cx="50%"
+        cy="50%"
+        :stroke-dashoffset="dashoffset"
+      />
+      <circle
+        ref="mainChart"
+        class="front"
+        :stroke-dasharray="dasharray"
+        :stroke-linecap="'round'"
+        :r="radius"
+        cx="50%"
+        cy="50%"
+      />
+    </svg>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'CircleChart',
+    name: 'ChartComponent',
     props: {
       dataDasharray: {
         type: Array,
@@ -45,7 +38,7 @@
     },
     data() {
       return {
-        dasharray: '',
+        dasharray: '0 0',
         dashoffset: '100',
         radiusBaseVal: 0,
         circumference: 0,
@@ -55,11 +48,6 @@
       precisePercent() {
         return ((this.dataDasharray[0] * 100) / this.dataDasharray[1]).toFixed(
           1
-        );
-      },
-      displayPercent() {
-        return ((this.dataDasharray[0] * 100) / this.dataDasharray[1]).toFixed(
-          0
         );
       },
     },
@@ -97,4 +85,31 @@
 <style
   scoped
   lang="scss"
-></style>
+>
+  .chart-wrapper {
+    position: relative;
+    max-width: 128px;
+    min-height: 128px;
+  }
+
+  .chart {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: visible;
+  }
+
+  circle {
+    fill: transparent;
+    stroke: grey;
+    stroke-width: 8px;
+    transform-origin: center;
+    transform: rotate(-90deg);
+    transition: stroke-dasharray 0.3s ease-in;
+    &.front {
+      stroke: black;
+    }
+  }
+</style>
