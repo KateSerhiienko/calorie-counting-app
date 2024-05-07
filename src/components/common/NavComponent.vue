@@ -3,7 +3,22 @@
     class="nav-wrapper"
     :class="view"
   >
+    <svg
+      v-if="view === 'burger'"
+      :viewBox="svg['nav-burger'].viewBox"
+      @click="toggleNav"
+    >
+      <path :d="svg['nav-burger'].path" />
+    </svg>
+
     <ul>
+      <svg
+        v-if="view === 'burger'"
+        :viewBox="svg['close-popup'].viewBox"
+        @click="hideNav"
+      >
+        <path :d="svg['close-popup'].path" />
+      </svg>
       <li
         v-for="(nav, index) in getNav"
         :key="nav.title"
@@ -11,6 +26,7 @@
           active: $route.path === nav.to,
           plus: nav.to === '/add_food',
         }"
+        @click="hideNav"
       >
         <div v-if="view !== 'bottom' || index !== getNav.length - 1">
           <router-link :to="nav.to">
@@ -46,6 +62,19 @@
       ...mapGetters(['getNav']),
       svg() {
         return svgJSON;
+      },
+    },
+    methods: {
+      toggleNav() {
+        if (this.view === 'burger') {
+          this.$el.querySelector('ul').style.display = 'block';
+        }
+      },
+      hideNav() {
+        console.log(1);
+        if (this.view === 'burger') {
+          this.$el.querySelector('ul').style.display = 'none';
+        }
       },
     },
   };
@@ -84,5 +113,8 @@
   }
 
   .nav-wrapper.burger {
+    ul {
+      display: none;
+    }
   }
 </style>
