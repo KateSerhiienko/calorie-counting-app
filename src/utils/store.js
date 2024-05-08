@@ -94,7 +94,7 @@ const store = createStore({
     ],
     closedSectionsFoodsList: {},
     modalOpened: '',
-    mealtimeOfProduct: 'breakfast',
+    mealtimeOfFood: 'breakfast',
     // isAddFoodManually: false,
     isAddFoodManually: true,
   },
@@ -129,8 +129,8 @@ const store = createStore({
     setModalOpened(state, newValue) {
       state.modalOpened = newValue;
     },
-    setMealtimeOfProduct(state, newValue) {
-      state.mealtimeOfProduct = newValue;
+    setMealtimeOfFood(state, newValue) {
+      state.mealtimeOfFood = newValue;
     },
     toggleIsAddFoodManually(state) {
       state.isAddFoodManually = !state.isAddFoodManually;
@@ -145,7 +145,7 @@ const store = createStore({
     getFoodsList: (state) => state.foodsList,
     getClosedSectionsFoodsList: (state) => state.closedSectionsFoodsList,
     getModalOpened: (state) => state.modalOpened,
-    getMealtimeOfProduct: (state) => state.mealtimeOfProduct,
+    getMealtimeOfFood: (state) => state.mealtimeOfFood,
     getIsAddFoodManually: (state) => state.isAddFoodManually,
   },
 });

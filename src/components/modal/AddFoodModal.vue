@@ -3,6 +3,7 @@
     <div v-if="getIsAddFoodManually">
       Manually
       <form-component
+        :mealtime="getMealtimeOfFood"
         :fields-list="fieldsList"
         :count-total-kcal="true"
         :button="'Save'"
@@ -58,11 +59,7 @@
       };
     },
     computed: {
-      ...mapGetters([
-        'getMealtimeList',
-        'getMealtimeOfProduct',
-        'getIsAddFoodManually',
-      ]),
+      ...mapGetters(['getMealtimeOfFood', 'getIsAddFoodManually']),
     },
     methods: {
       ...mapMutations(['setModalOpened']),

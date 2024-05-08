@@ -1,5 +1,20 @@
 <template>
   <form @submit.prevent="handleSubmit">
+    <div v-if="mealtime">
+      <label for="mealtimes">Mealtime:</label>
+      <select
+        id="mealtime"
+        v-model="formData.mealtime"
+      >
+        <option
+          v-for="mealtime in getMealtimeList"
+          :key="mealtime"
+          :value="mealtime"
+        >
+          {{ mealtime }}
+        </option>
+      </select>
+    </div>
     <ul>
       <li
         v-for="field in fieldsList"
@@ -33,9 +48,15 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
     name: 'FormComponent',
     props: {
+      mealtime: {
+        type: String,
+        default: '',
+      },
       fieldsList: {
         type: Array,
         required: true,
@@ -51,10 +72,13 @@
     },
     data() {
       return {
-        formData: {},
+        formData: {
+          mealtime: this.mealtime,
+        },
       };
     },
     computed: {
+      ...mapGetters(['getMealtimeList']),
       totalKcal() {
         const weight =
           this.formData.weight ||
