@@ -7,19 +7,37 @@
       :title="modalTitle"
       :is-menu="modalIsMenu"
       :is-arrow="true"
-    ></header-component>
+    >
+      <div v-if="getModalOpened === 'add-food'">
+        <ul>
+          <li>
+            <svg
+              class="user-image"
+              :viewBox="svg['write'].viewBox"
+            >
+              <path :d="svg['write'].path" />
+            </svg>
+            <p v-if="true">Create custom food</p>
+            <p v-else>Add food from database</p>
+          </li>
+        </ul>
+      </div>
+    </header-component>
     <div class="modals">
-      <add-food-modal v-if="getModalOpened === 'add-food'" />
-      <developer-modal v-if="getModalOpened === 'developer'" />
-      <edit-food-modal v-if="getModalOpened === 'edit-food'" />
-      <edit-profile-modal v-if="getModalOpened === 'edit-profile'" />
+      <mealtime-modal v-if="getModalOpened === 'mealtime'" />
+      <add-food-modal v-else-if="getModalOpened === 'add-food'" />
+      <developer-modal v-else-if="getModalOpened === 'developer'" />
+      <edit-food-modal v-else-if="getModalOpened === 'edit-food'" />
+      <edit-profile-modal v-else-if="getModalOpened === 'edit-profile'" />
     </div>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
+  import svgJSON from '../../assets/svg/svg.json';
   import HeaderComponent from '../common/HeaderComponent.vue';
+  import MealtimeModal from './MealtimeModal.vue';
   import AddFoodModal from './AddFoodModal.vue';
   import DeveloperModal from './DeveloperModal.vue';
   import EditFoodModal from './EditFoodModal.vue';
@@ -29,6 +47,7 @@
     name: 'WrapperModal',
     components: {
       HeaderComponent,
+      MealtimeModal,
       AddFoodModal,
       DeveloperModal,
       EditFoodModal,
@@ -37,6 +56,10 @@
     data() {
       return {
         modals: {
+          mealtime: {
+            title: 'Mealtime',
+            isMenu: false,
+          },
           'add-food': {
             title: 'Add Food',
             isMenu: true,
@@ -58,6 +81,9 @@
     },
     computed: {
       ...mapGetters(['getModalOpened']),
+      svg() {
+        return svgJSON;
+      },
       modalTitle() {
         const modal = this.modals[this.getModalOpened];
         return modal ? modal.title : 'Modal';

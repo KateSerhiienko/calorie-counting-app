@@ -6,7 +6,7 @@
     <ul>
       <li
         class="add-food"
-        @click="openModal('add-food')"
+        @click="openModal('mealtime')"
       >
         <svg :viewBox="svg[`nav-item-1`].viewBox">
           <path :d="svg[`nav-item-1`].path" />
@@ -56,7 +56,6 @@
 </template>
 
 <script>
-  // import { mapGetters } from 'vuex';
   import svgJSON from '../../assets/svg/svg.json';
 
   export default {
@@ -68,7 +67,6 @@
       },
     },
     computed: {
-      // ...mapGetters(['getModalOpened']),
       svg() {
         return svgJSON;
       },
