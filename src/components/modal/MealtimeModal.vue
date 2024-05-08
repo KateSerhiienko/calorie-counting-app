@@ -4,7 +4,7 @@
       <li
         v-for="mealtime in getMealtimeList"
         :key="mealtime"
-        @click="setModalOpened('add-food')"
+        @click="setModalOpened('add-food'), setMealtimeOfProduct(mealtime)"
       >
         <svg :viewBox="svg[`mealtime-${mealtime}`].viewBox">
           <path :d="svg[`mealtime-${mealtime}`].path" />
@@ -28,7 +28,7 @@
       },
     },
     methods: {
-      ...mapMutations(['setModalOpened']),
+      ...mapMutations(['setModalOpened', 'setMealtimeOfProduct']),
     },
   };
 </script>

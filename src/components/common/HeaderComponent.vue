@@ -59,7 +59,7 @@
       };
     },
     computed: {
-      ...mapGetters(['getModalOpened']),
+      ...mapGetters(['getModalOpened', 'getIsAddFoodManually']),
       svg() {
         return svgJSON;
       },
@@ -69,6 +69,9 @@
         if (newVal) {
           this.isOpenedPopup = false;
         }
+      },
+      getIsAddFoodManually() {
+        this.isOpenedPopup = false;
       },
       $route() {
         if (this.isOpenedPopup) {

@@ -94,6 +94,9 @@ const store = createStore({
     ],
     closedSectionsFoodsList: {},
     modalOpened: '',
+    mealtimeOfProduct: 'breakfast',
+    // isAddFoodManually: false,
+    isAddFoodManually: true,
   },
   mutations: {
     setCountingMode(state, newValue) {
@@ -126,6 +129,12 @@ const store = createStore({
     setModalOpened(state, newValue) {
       state.modalOpened = newValue;
     },
+    setMealtimeOfProduct(state, newValue) {
+      state.mealtimeOfProduct = newValue;
+    },
+    toggleIsAddFoodManually(state) {
+      state.isAddFoodManually = !state.isAddFoodManually;
+    },
   },
   getters: {
     getMedia: (state) => state.media,
@@ -136,6 +145,8 @@ const store = createStore({
     getFoodsList: (state) => state.foodsList,
     getClosedSectionsFoodsList: (state) => state.closedSectionsFoodsList,
     getModalOpened: (state) => state.modalOpened,
+    getMealtimeOfProduct: (state) => state.mealtimeOfProduct,
+    getIsAddFoodManually: (state) => state.isAddFoodManually,
   },
 });
 

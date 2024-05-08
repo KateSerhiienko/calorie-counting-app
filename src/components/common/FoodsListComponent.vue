@@ -60,7 +60,6 @@
     components: { PopupComponent },
     data() {
       return {
-        closedSections: {},
         openedPopupId: 0,
       };
     },

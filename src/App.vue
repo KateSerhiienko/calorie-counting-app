@@ -40,6 +40,8 @@
     min-width: 375px;
     font-family: Arial, Helvetica, sans-serif;
 
+    padding-bottom: 100px;
+
     header {
       position: sticky;
       top: 0;

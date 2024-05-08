@@ -15,6 +15,7 @@
 
 <script>
   import svgJSON from '../../assets/svg/svg.json';
+
   export default {
     name: 'PopupComponent',
     props: {

@@ -10,14 +10,14 @@
     >
       <div v-if="getModalOpened === 'add-food'">
         <ul>
-          <li>
+          <li @click="toggleIsAddFoodManually()">
             <svg
               class="user-image"
               :viewBox="svg['write'].viewBox"
             >
               <path :d="svg['write'].path" />
             </svg>
-            <p v-if="true">Create custom food</p>
+            <p v-if="getIsAddFoodManually">Create custom food</p>
             <p v-else>Add food from database</p>
           </li>
         </ul>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapMutations } from 'vuex';
   import svgJSON from '../../assets/svg/svg.json';
   import HeaderComponent from '../common/HeaderComponent.vue';
   import MealtimeModal from './MealtimeModal.vue';
@@ -80,7 +80,7 @@
       };
     },
     computed: {
-      ...mapGetters(['getModalOpened']),
+      ...mapGetters(['getModalOpened', 'getIsAddFoodManually']),
       svg() {
         return svgJSON;
       },
@@ -92,6 +92,9 @@
         const modal = this.modals[this.getModalOpened];
         return modal ? modal.isMenu : false;
       },
+    },
+    methods: {
+      ...mapMutations(['toggleIsAddFoodManually']),
     },
   };
 </script>
