@@ -40,10 +40,8 @@
           @close="openedPopupId = 0"
           :visible="openedPopupId === food.id"
         >
-          <p @click="removeFood(food.id)">Remove food</p>
-          <router-link :to="'/edit_food/' + food.id">
-            <p>Edit food</p>
-          </router-link>
+          <p @click="editFood(food.id)">Edit food</p>
+          <p @click="deleteFood(food.id)">Remove food</p>
         </popup-component>
       </li>
     </ul>
@@ -51,7 +49,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapMutations } from 'vuex';
   import svgJSON from '../../assets/svg/svg.json';
   import PopupComponent from './PopupComponent.vue';
 
@@ -85,6 +83,7 @@
       },
     },
     methods: {
+      ...mapMutations(['setIdEditingFood', 'deleteFood', 'setModalOpened']),
       filteredFoods(mealtime) {
         return this.getFoodsList.filter((food) => food.mealtime === mealtime);
       },
@@ -93,14 +92,13 @@
           this.$store.commit('toggleClosedSectionFoodsList', index);
         }
       },
-      editFood(id) {
-        console.log(id);
-      },
-      removeFood(id) {
-        this.$store.commit('deleteFood', id);
-      },
       openPopup(id) {
         this.openedPopupId = id;
+      },
+      editFood(id) {
+        this.setIdEditingFood(id);
+        this.openedPopupId = '';
+        this.setModalOpened('edit-food');
       },
     },
   };

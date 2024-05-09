@@ -44,7 +44,7 @@
       return {
         manuallyFieldsList: [
           {
-            name: 'food',
+            name: 'name',
             label: 'Name of food',
             tag: 'input',
             type: 'text',
@@ -109,19 +109,12 @@
     methods: {
       ...mapMutations(['setModalOpened', 'addFood']),
       handleFormSubmit(formData) {
-        this.setModalOpened('');
-        if (this.foodToAdd.id) {
-          this.foodToAdd.isFromDatabase = true;
-        } else {
-          this.foodToAdd.id = uuidv4();
-          this.foodToAdd.isFromDatabase = false;
-        }
-
+        this.foodToAdd.id = uuidv4();
         this.foodToAdd = { ...this.foodToAdd, ...formData };
 
         this.addFood(this.foodToAdd);
 
-        console.log(this.foodToAdd);
+        this.setModalOpened('');
       },
       handleFoodSelect(food) {
         this.isSearchingFood = false;
@@ -130,7 +123,7 @@
             field.value = food[field.name];
           }
         });
-        this.foodToAdd.id = food.id;
+        this.foodToAdd.idDatabase = food.id;
       },
     },
   };

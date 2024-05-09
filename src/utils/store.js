@@ -68,14 +68,15 @@ const store = createStore({
         mealtime: 'lunch',
         name: 'food-1',
         weight: 100,
-        kcalPer100g: 100.5,
+        kcalPer100g: 100,
       },
       {
+        idDatabase: 2121,
         id: 222,
         mealtime: 'lunch',
         name: 'food-2',
         weight: 100,
-        kcalPer100g: 102.5,
+        kcalPer100g: 102,
       },
       {
         id: 333,
@@ -96,6 +97,7 @@ const store = createStore({
     modalOpened: '',
     mealtimeOfFood: 'breakfast',
     isAddFoodManually: false,
+    idEditingFood: ''
   },
   mutations: {
     setCountingMode(state, newValue) {
@@ -134,6 +136,9 @@ const store = createStore({
     toggleIsAddFoodManually(state) {
       state.isAddFoodManually = !state.isAddFoodManually;
     },
+    setIdEditingFood(state, newValue) {
+      state.idEditingFood = newValue;
+    },
   },
   getters: {
     getMedia: (state) => state.media,
@@ -146,6 +151,7 @@ const store = createStore({
     getModalOpened: (state) => state.modalOpened,
     getMealtimeOfFood: (state) => state.mealtimeOfFood,
     getIsAddFoodManually: (state) => state.isAddFoodManually,
+    getIdEditingFood: (state) => state.idEditingFood,
   },
 });
 
