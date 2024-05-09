@@ -32,7 +32,7 @@
           <h3>{{ food.name }}</h3>
           <p>{{ food.weight }} g</p>
           <p>
-            {{ ((food.caloriesPer100g / 100) * food.weight).toFixed() }}
+            {{ ((food.kcalPer100g / 100) * food.weight).toFixed() }}
             kcal
           </p>
         </div>
@@ -77,7 +77,7 @@
         this.getMealtimeList.forEach((mealtime) => {
           const foods = this.filteredFoods(mealtime);
           const sum = foods.reduce((total, food) => {
-            return total + (food.caloriesPer100g / 100) * food.weight;
+            return total + (food.kcalPer100g / 100) * food.weight;
           }, 0);
           caloriesSum[mealtime] = sum;
         });

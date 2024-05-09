@@ -6,7 +6,7 @@
         :mealtime="getMealtimeOfFood"
         :fields-list="manuallyFieldsList"
         :count-total-kcal="true"
-        :button="'Save'"
+        :button="'Add'"
         @submit-form="handleFormSubmit"
       />
     </div>
@@ -20,7 +20,7 @@
           :mealtime="getMealtimeOfFood"
           :fields-list="fromDatabaseFieldsList"
           :count-total-kcal="true"
-          :button="'Save'"
+          :button="'Add'"
           @submit-form="handleFormSubmit"
         />
       </div>
@@ -30,6 +30,7 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex';
+  import { v4 as uuidv4 } from 'uuid';
   import FormComponent from '../common/FormComponent.vue';
   import FoodSearchComponent from '../common/FoodSearchComponent.vue';
 
@@ -99,15 +100,28 @@
           },
         ],
         isSearchingFood: true,
+        foodToAdd: {},
       };
     },
     computed: {
       ...mapGetters(['getMealtimeOfFood', 'getIsAddFoodManually']),
     },
     methods: {
-      ...mapMutations(['setModalOpened']),
+      ...mapMutations(['setModalOpened', 'addFood']),
       handleFormSubmit(formData) {
         this.setModalOpened('');
+        if (this.foodToAdd.id) {
+          this.foodToAdd.isFromDatabase = true;
+        } else {
+          this.foodToAdd.id = uuidv4();
+          this.foodToAdd.isFromDatabase = false;
+        }
+
+        this.foodToAdd = { ...this.foodToAdd, ...formData };
+
+        this.addFood(this.foodToAdd);
+
+        console.log(this.foodToAdd);
       },
       handleFoodSelect(food) {
         this.isSearchingFood = false;
@@ -116,6 +130,7 @@
             field.value = food[field.name];
           }
         });
+        this.foodToAdd.id = food.id;
       },
     },
   };

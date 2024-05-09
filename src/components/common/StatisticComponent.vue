@@ -67,7 +67,7 @@
       },
       totalCountedCalories() {
         return this.getFoodsList.reduce(
-          (total, food) => total + (food.caloriesPer100g / 100) * food.weight,
+          (total, food) => total + (food.kcalPer100g / 100) * food.weight,
           0
         );
       },

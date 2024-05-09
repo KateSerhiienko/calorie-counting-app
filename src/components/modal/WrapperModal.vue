@@ -17,7 +17,7 @@
             >
               <path :d="svg['write'].path" />
             </svg>
-            <p v-if="getIsAddFoodManually">Create custom food</p>
+            <p v-if="!getIsAddFoodManually">Create custom food</p>
             <p v-else>Add food from database</p>
           </li>
         </ul>

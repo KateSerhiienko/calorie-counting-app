@@ -25,7 +25,7 @@
         <input
           class="glb-input input"
           type="number"
-          v-model="editedFood.caloriesPer100g"
+          v-model="editedFood.kcalPer100g"
           min="0"
         />
         <span>kcal<br />per 100g</span>
