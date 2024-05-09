@@ -14,7 +14,7 @@
 
 <script>
   import FoodItem from './FoodItem.vue';
-  import FoodSearch from './FoodSearch.vue';
+  import FoodSearch from './common/FoodSearchComponent.vue';
 
   export default {
     name: 'FoodInputDatabase',

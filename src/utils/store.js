@@ -95,8 +95,7 @@ const store = createStore({
     closedSectionsFoodsList: {},
     modalOpened: '',
     mealtimeOfFood: 'breakfast',
-    // isAddFoodManually: false,
-    isAddFoodManually: true,
+    isAddFoodManually: false,
   },
   mutations: {
     setCountingMode(state, newValue) {

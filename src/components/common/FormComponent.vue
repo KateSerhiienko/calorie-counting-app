@@ -38,6 +38,11 @@
           />
           <span v-if="field.units">{{ field.units }}</span>
         </div>
+        <div v-if="field.tag === 'p'">
+          <p>{{ field.label }}:</p>
+          <p>{{ field.value }}</p>
+          <span v-if="field.units">{{ field.units }}</span>
+        </div>
       </li>
     </ul>
     <div v-if="countTotalKcal">

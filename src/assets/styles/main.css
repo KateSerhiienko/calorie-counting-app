@@ -21,3 +21,8 @@ ul {
 button {
   border: none;
 }
+
+svg {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

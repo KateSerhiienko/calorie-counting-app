@@ -4,28 +4,44 @@
       Manually
       <form-component
         :mealtime="getMealtimeOfFood"
-        :fields-list="fieldsList"
+        :fields-list="manuallyFieldsList"
         :count-total-kcal="true"
         :button="'Save'"
         @submit-form="handleFormSubmit"
       />
     </div>
-    <div v-else>Database</div>
+    <div v-else>
+      Database
+      <div v-if="isSearchingFood">
+        <food-search-component @select-food="handleFoodSelect" />
+      </div>
+      <div v-else>
+        <form-component
+          :mealtime="getMealtimeOfFood"
+          :fields-list="fromDatabaseFieldsList"
+          :count-total-kcal="true"
+          :button="'Save'"
+          @submit-form="handleFormSubmit"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   import { mapGetters, mapMutations } from 'vuex';
   import FormComponent from '../common/FormComponent.vue';
+  import FoodSearchComponent from '../common/FoodSearchComponent.vue';
 
   export default {
     name: 'AddFoodModal',
     components: {
       FormComponent,
+      FoodSearchComponent,
     },
     data() {
       return {
-        fieldsList: [
+        manuallyFieldsList: [
           {
             name: 'food',
             label: 'Name of food',
@@ -56,6 +72,33 @@
             units: 'g',
           },
         ],
+        fromDatabaseFieldsList: [
+          {
+            name: 'name',
+            label: 'Name of food',
+            tag: 'p',
+            value: '',
+          },
+          {
+            name: 'kcalPer100g',
+            label: 'Сalories per 100g',
+            tag: 'p',
+            value: '',
+            units: 'kcal',
+          },
+          {
+            name: 'weight',
+            label: 'Food weight in grams',
+            tag: 'input',
+            type: 'number',
+            placeholder: 100,
+            value: 100,
+            min: 1,
+            max: 10000,
+            units: 'g',
+          },
+        ],
+        isSearchingFood: true,
       };
     },
     computed: {
@@ -65,7 +108,14 @@
       ...mapMutations(['setModalOpened']),
       handleFormSubmit(formData) {
         this.setModalOpened('');
-        console.log('Form data:', formData);
+      },
+      handleFoodSelect(food) {
+        this.isSearchingFood = false;
+        this.fromDatabaseFieldsList.forEach((field) => {
+          if (field.name && food.hasOwnProperty(field.name)) {
+            field.value = food[field.name];
+          }
+        });
       },
     },
   };
