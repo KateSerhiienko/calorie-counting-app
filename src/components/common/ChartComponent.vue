@@ -1,26 +1,25 @@
 <template>
-  <div class="chart-wrapper">
-    <svg
-      class="chart"
-      viewBox="0 0 42 42"
-    >
-      <circle
-        :r="radius"
-        cx="50%"
-        cy="50%"
-        :stroke-dashoffset="dashoffset"
-      />
-      <circle
-        ref="mainChart"
-        class="front"
-        :stroke-dasharray="dasharray"
-        :stroke-linecap="'round'"
-        :r="radius"
-        cx="50%"
-        cy="50%"
-      />
-    </svg>
-  </div>
+  <svg
+    class="chart"
+    viewBox="0 0 42 42"
+  >
+    <circle
+      :r="radius"
+      cx="50%"
+      cy="50%"
+      :stroke-dashoffset="dashoffset"
+    />
+    <circle
+      ref="mainChart"
+      class="front"
+      :class="{ overflow: isOverflow }"
+      :stroke-dasharray="dasharray"
+      :stroke-linecap="'round'"
+      :r="radius"
+      cx="50%"
+      cy="50%"
+    />
+  </svg>
 </template>
 
 <script>
@@ -49,6 +48,9 @@
         const value = this.dataDasharray.value;
         const total = this.dataDasharray.total;
         return ((value * 100) / total).toFixed(1);
+      },
+      isOverflow() {
+        return this.dataDasharray.value >= this.dataDasharray.total;
       },
     },
     mounted() {
@@ -86,30 +88,22 @@
   scoped
   lang="scss"
 >
-  .chart-wrapper {
-    position: relative;
-    max-width: 128px;
-    min-height: 128px;
-  }
-
   .chart {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
     overflow: visible;
   }
 
   circle {
     fill: transparent;
-    stroke: grey;
-    stroke-width: 8px;
+    stroke: rgba($not-active-color, 0.3);
+    stroke-width: 3px;
     transform-origin: center;
     transform: rotate(-90deg);
     transition: stroke-dasharray 0.3s ease-in;
     &.front {
-      stroke: black;
+      stroke: $primary-color;
+    }
+    &.overflow {
+      stroke: $secondary-color-pink;
     }
   }
 </style>

@@ -41,21 +41,22 @@
     min-width: $mobile-min-width;
     max-height: $mobile-max-height;
     min-height: $mobile-min-height;
+    margin: 0 auto;
     padding-top: 40px;
 
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     color: $primary-text-color;
     background-color: $primary-bg-color;
+    box-shadow: $box-shadow;
   }
 
   header {
     position: sticky;
     top: 0;
     height: 40px;
-    display: flex;
-    justify-content: space-between;
     padding: 0 20px;
+    margin-bottom: $container-padding;
   }
 
   main {

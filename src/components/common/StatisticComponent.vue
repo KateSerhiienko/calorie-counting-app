@@ -1,56 +1,64 @@
 <template>
   <div
     v-if="getUserData.totalDailyEnergyExpenditure"
-    class="total-wrapper"
+    class="glb-wrapper statistic-wrapper data"
   >
-    <chart-component
-      :data-dasharray="{
-        value: totalCountedCalories,
-        total: getUserData.totalDailyEnergyExpenditure,
-      }"
-      :radius="18"
-    ></chart-component>
-
-    <div>
-      <p>{{ getUserData.totalDailyEnergyExpenditure.toFixed(0) }}</p>
+    <div class="chart">
+      <chart-component
+        :data-dasharray="{
+          value: totalCountedCalories,
+          total: getUserData.totalDailyEnergyExpenditure,
+        }"
+        :radius="18"
+      ></chart-component>
+    </div>
+    <div class="data-item">
+      <h3>{{ getUserData.totalDailyEnergyExpenditure.toFixed(0) }}</h3>
       <p>kcal Total</p>
     </div>
-    <div>
-      <div>
-        <p>{{ totalCountedCalories.toFixed(0) }}</p>
-        <p>kcal Used</p>
-      </div>
-      <div :class="{ exceed: isCaloriesExceed }">
-        <p>{{ Math.abs(caloriesDifference.toFixed(0)) }}</p>
-        <p>kcal {{ !isCaloriesExceed ? 'Left' : 'Over' }}</p>
-      </div>
+    <div class="data-item">
+      <h2>{{ totalCountedCalories.toFixed(0) }}</h2>
+      <p>kcal Used</p>
+    </div>
+    <div
+      class="data-item"
+      :class="{ overflow: isCaloriesoverflow }"
+    >
+      <h3>{{ Math.abs(caloriesDifference.toFixed(0)) }}</h3>
+      <p>kcal {{ !isCaloriesoverflow ? 'Left' : 'Over' }}</p>
     </div>
   </div>
 
   <div
     v-else
-    class="total-wrapper no-data"
+    class="glb-wrapper statistic-wrapper no-data"
   >
-    <div>
+    <div class="placeholder">
       <p>
         For more detailed visual information, we advise you to calculate your
         daily calorie allowance:
       </p>
-      <router-link :to="'/edit_profile'">
-        <button type="button">calculate</button></router-link
+      <button
+        class="glb-btn"
+        type="button"
+        @click="setModalOpened('edit-profile')"
       >
+        Calculate
+      </button>
     </div>
-    <div>
-      <p class="total-title">Total used:</p>
-      <p>{{ totalCountedCalories.toFixed(0) }} <span>kcal</span></p>
-      <p>{{ totalCountedWeight.toFixed(0) }} <span>g</span></p>
+    <div class="total">
+      <h2 class="total-title">Total used:</h2>
+      <div>
+        <p>{{ totalCountedCalories.toFixed(0) }} <span>kcal</span></p>
+        <p>{{ totalCountedWeight.toFixed(0) }} <span>g</span></p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  import { mapGetters, mapMutations } from 'vuex';
   import ChartComponent from '../common/ChartComponent.vue';
-  import { mapGetters } from 'vuex';
 
   export default {
     name: 'StatisticComponent',
@@ -77,9 +85,12 @@
           this.totalCountedCalories
         );
       },
-      isCaloriesExceed() {
+      isCaloriesoverflow() {
         return this.caloriesDifference < 0;
       },
+    },
+    methods: {
+      ...mapMutations(['setModalOpened']),
     },
   };
 </script>
@@ -87,4 +98,87 @@
 <style
   lang="scss"
   scoped
-></style>
+>
+  .statistic-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: $container-padding;
+
+    height: calc(
+      128px + $container-padding * 2
+    ); // height .chart + .glb-wrapper top and bottom paddings
+
+    &.data {
+      .chart {
+        position: absolute;
+        width: calc(100% - $container-padding);
+        height: 128px;
+      }
+
+      .data-item {
+        text-align: center;
+        min-width: 30%;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      h3 {
+        font-size: 16px;
+      }
+
+      p {
+        @include secondary-text(10px);
+      }
+
+      .overflow {
+        color: $secondary-color-pink;
+      }
+    }
+
+    &.no-data {
+      .placeholder,
+      .total {
+        width: 44%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .placeholder {
+        p {
+          font-size: 10px;
+          margin-bottom: $container-padding;
+        }
+      }
+
+      .total {
+        h2 {
+          font-size: 20px;
+          margin-bottom: $container-padding;
+        }
+
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          width: 100%;
+        }
+
+        p {
+          font-size: 18px;
+          font-weight: bold;
+        }
+
+        span {
+          font-weight: normal;
+          @include secondary-text(10px);
+        }
+      }
+    }
+  }
+</style>

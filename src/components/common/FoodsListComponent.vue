@@ -2,7 +2,7 @@
   <div
     v-for="(mealtime, index) in getMealtimeList"
     :key="index"
-    class="foods-list-wrapper"
+    class="glb-wrapper foods-list-wrapper"
   >
     <div
       class="header"
@@ -44,7 +44,7 @@
             <h3>{{ food.name }}</h3>
             <p>{{ food.weight }} g</p>
           </div>
-          <p>
+          <p class="food-kcal">
             {{ ((food.kcalPer100g / 100) * food.weight).toFixed() }}
             kcal
           </p>
@@ -122,9 +122,7 @@
   lang="scss"
 >
   .foods-list-wrapper {
-    border-radius: $border-radius;
     margin: 6px 0;
-    padding: $container-padding;
 
     &:nth-child(2) {
       @include custom-background($secondary-color-lavender);
@@ -173,7 +171,7 @@
     .overview {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: end;
     }
 
     .arrow {
@@ -195,11 +193,11 @@
     }
 
     li {
-      margin-left: $container-padding / 2;
+      margin-left: calc($container-padding / 2);
 
       &:not(:last-child) {
-        padding-bottom: $container-padding / 2;
-        margin-bottom: $container-padding / 2;
+        padding-bottom: calc($container-padding / 2);
+        margin-bottom: calc($container-padding / 2);
         border-bottom: 1px solid rgba($secondary-bg-color, 0.5);
       }
     }
@@ -210,18 +208,24 @@
       justify-content: space-between;
 
       div {
+        width: calc(100% - 70px); // - min-width .food-kcal
+
         p {
-          font-size: 10px;
-          color: $secondary-text-color;
+          @include secondary-text(10px);
         }
       }
 
       h3 {
         font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
-      p {
+      .food-kcal {
+        min-width: 70px;
         font-size: 12px;
+        text-align: right;
       }
     }
   }

@@ -26,7 +26,7 @@ const store = createStore({
       // "height": 0,
       // "age": 0,
       // "activity": "1.55",
-      // "totalDailyEnergyExpenditure": 0
+      // "totalDailyEnergyExpenditure": 1400
     },
     activityLevels: [
       {
@@ -87,7 +87,7 @@ const store = createStore({
       {
         id: 444,
         mealtime: 'snack',
-        name: 'food-444444444444444444444444444',
+        name: 'food4444444 444444444444 444444444444444444 444444444 44444444444444444444 4444444444433333',
         weight: 40,
         kcalPer100g: 0,
       },

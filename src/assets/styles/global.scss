@@ -1,0 +1,13 @@
+.glb-btn {
+  background-color: $primary-color;
+  padding: 10px 26px ;
+  border-radius: 40px;
+  color: $secondary-bg-color;
+}
+
+.glb-wrapper {
+  background-color: $secondary-bg-color;
+  border-radius: $border-radius;
+  box-shadow:$box-shadow;
+  padding: $container-padding;
+}
