@@ -46,7 +46,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     color: $primary-text-color;
-    background: $primary-bg-color;
+    background-color: $primary-bg-color;
   }
 
   header {

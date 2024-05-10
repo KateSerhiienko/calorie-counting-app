@@ -2,14 +2,20 @@
   <div
     v-for="(mealtime, index) in getMealtimeList"
     :key="index"
-    class="foods-list-component"
+    class="foods-list-wrapper"
   >
-    <div @click="toggleClosedSectionFoodsList(index)">
+    <div
+      class="header"
+      @click="toggleClosedSectionFoodsList(index)"
+    >
       <h2>
         {{ mealtime }}
       </h2>
-      <div v-show="filteredFoods(mealtime).length > 0">
-        <p>{{ caloriesSumByMealtime[mealtime].toFixed() }} kcal</p>
+      <div
+        class="overview"
+        v-show="filteredFoods(mealtime).length > 0"
+      >
+        <p>{{ caloriesSumByMealtime[mealtime].toFixed() }} <span>kcal</span></p>
         <svg
           class="arrow"
           :class="getClosedSectionsFoodsList[index] ? '' : 'up'"
@@ -20,17 +26,24 @@
       </div>
     </div>
     <ul
-      class="food-list"
-      :class="{ visible: !getClosedSectionsFoodsList[index] }"
+      :class="{
+        visible:
+          !getClosedSectionsFoodsList[index] &&
+          filteredFoods(mealtime).length > 0,
+      }"
     >
       <li
         v-for="food in filteredFoods(mealtime)"
         :key="food.id"
-        class="food-item"
       >
-        <div @click="openPopup(food.id)">
-          <h3>{{ food.name }}</h3>
-          <p>{{ food.weight }} g</p>
+        <div
+          class="food"
+          @click="openPopup(food.id)"
+        >
+          <div>
+            <h3>{{ food.name }}</h3>
+            <p>{{ food.weight }} g</p>
+          </div>
           <p>
             {{ ((food.kcalPer100g / 100) * food.weight).toFixed() }}
             kcal
@@ -58,7 +71,7 @@
     components: { PopupComponent },
     data() {
       return {
-        openedPopupId: 0,
+        openedPopupId: -1,
       };
     },
     computed: {
@@ -97,7 +110,7 @@
       },
       editFood(id) {
         this.setIdEditingFood(id);
-        this.openedPopupId = '';
+        this.openedPopupId = -1;
         this.setModalOpened('edit-food');
       },
     },
@@ -108,13 +121,64 @@
   scoped
   lang="scss"
 >
-  .foods-list-component {
+  .foods-list-wrapper {
+    border-radius: $border-radius;
+    margin: 6px 0;
+    padding: $container-padding;
+
+    &:nth-child(2) {
+      @include custom-background($secondary-color-lavender);
+      ul {
+        border-left: 2px solid $secondary-color-lavender;
+      }
+    }
+    &:nth-child(3) {
+      @include custom-background($secondary-color-beige);
+      ul {
+        border-left: 2px solid $secondary-color-beige;
+      }
+    }
+    &:nth-child(4) {
+      @include custom-background($secondary-color-pink);
+      ul {
+        border-left: 2px solid $secondary-color-pink;
+      }
+    }
+    &:nth-child(5) {
+      @include custom-background($secondary-color-blue);
+      ul {
+        border-left: 2px solid $secondary-color-blue;
+      }
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      p {
+        font-weight: bold;
+      }
+
+      span {
+        font-size: 10px;
+      }
+    }
+
     h2 {
+      font-size: 16px;
       text-transform: capitalize;
     }
 
+    .overview {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .arrow {
-      height: 20px;
+      width: 14px;
+      margin-left: $container-padding;
 
       &.up {
         transform: rotate(180deg);
@@ -123,9 +187,41 @@
 
     ul {
       display: none;
+      margin-top: $container-padding;
 
       &.visible {
         display: block;
+      }
+    }
+
+    li {
+      margin-left: $container-padding / 2;
+
+      &:not(:last-child) {
+        padding-bottom: $container-padding / 2;
+        margin-bottom: $container-padding / 2;
+        border-bottom: 1px solid rgba($secondary-bg-color, 0.5);
+      }
+    }
+
+    .food {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      div {
+        p {
+          font-size: 10px;
+          color: $secondary-text-color;
+        }
+      }
+
+      h3 {
+        font-size: 12px;
+      }
+
+      p {
+        font-size: 12px;
       }
     }
   }

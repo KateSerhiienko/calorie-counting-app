@@ -16,3 +16,18 @@ $primary-bg-color: #f9fafb;
 $secondary-bg-color: #ffffff;
 
 $not-active-color: #b2b7bd;
+
+$border-radius: 10px;
+
+$container-padding: 12px;
+
+@mixin custom-background($color) {
+  $background: linear-gradient(
+    90deg,
+    rgba($secondary-bg-color, 0) 0%,
+    rgba($color, 0.5) 100%
+  );
+
+  background-color: $color;
+  background: $background;
+}
