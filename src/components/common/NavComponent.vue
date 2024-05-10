@@ -6,7 +6,7 @@
     <ul>
       <li
         class="add-food"
-        @click="openModal('mealtime')"
+        @click="setModalOpened('mealtime')"
       >
         <svg :viewBox="svg[`nav-item-1`].viewBox">
           <path :d="svg[`nav-item-1`].path" />
@@ -44,7 +44,7 @@
 
       <li
         class="developer"
-        @click="openModal('developer')"
+        @click="setModalOpened('developer')"
       >
         <svg :viewBox="svg[`nav-item-4`].viewBox">
           <path :d="svg[`nav-item-4`].path" />
@@ -57,6 +57,7 @@
 
 <script>
   import svgJSON from '../../assets/svg/svg.json';
+  import { mapMutations } from 'vuex';
 
   export default {
     name: 'NavComponent',
@@ -72,9 +73,7 @@
       },
     },
     methods: {
-      openModal(modal) {
-        this.$store.commit('setModalOpened', modal);
-      },
+      ...mapMutations(['setModalOpened']),
     },
   };
 </script>

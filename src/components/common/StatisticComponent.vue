@@ -1,18 +1,18 @@
 <template>
   <div
-    v-if="getCaloriesAndUserData.totalDailyEnergyExpenditure"
+    v-if="getUserData.totalDailyEnergyExpenditure"
     class="total-wrapper"
   >
     <chart-component
       :data-dasharray="[
         totalCountedCalories,
-        getCaloriesAndUserData.totalDailyEnergyExpenditure,
+        getUserData.totalDailyEnergyExpenditure,
       ]"
       :radius="'18px'"
     ></chart-component>
 
     <div>
-      <p>{{ getCaloriesAndUserData.totalDailyEnergyExpenditure.toFixed(0) }}</p>
+      <p>{{ getUserData.totalDailyEnergyExpenditure.toFixed(0) }}</p>
       <p>kcal Total</p>
     </div>
     <div>
@@ -58,7 +58,7 @@
       ChartComponent,
     },
     computed: {
-      ...mapGetters(['getFoodsList', 'getCaloriesAndUserData']),
+      ...mapGetters(['getFoodsList', 'getUserData']),
       totalCountedWeight() {
         return this.getFoodsList.reduce(
           (total, food) => total + food.weight,
@@ -73,7 +73,7 @@
       },
       caloriesDifference() {
         return (
-          this.getCaloriesAndUserData.totalDailyEnergyExpenditure -
+          this.getUserData.totalDailyEnergyExpenditure -
           this.totalCountedCalories
         );
       },

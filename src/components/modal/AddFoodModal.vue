@@ -3,7 +3,6 @@
     <div v-if="getIsAddFoodManually">
       Manually
       <form-component
-        :mealtime="getMealtimeOfFood"
         :fields-list="manuallyFieldsList"
         :count-total-kcal="true"
         :button="'Add'"
@@ -17,7 +16,6 @@
       </div>
       <div v-else>
         <form-component
-          :mealtime="getMealtimeOfFood"
           :fields-list="fromDatabaseFieldsList"
           :count-total-kcal="true"
           :button="'Add'"
@@ -42,7 +40,25 @@
     },
     data() {
       return {
-        manuallyFieldsList: [
+        isSearchingFood: true,
+        foodToAdd: {},
+      };
+    },
+    computed: {
+      ...mapGetters([
+        'getMealtimeOfFood',
+        'getIsAddFoodManually',
+        'getMealtimeList',
+      ]),
+      manuallyFieldsList() {
+        return [
+          {
+            name: 'mealtime',
+            label: 'Mealtime',
+            tag: 'select',
+            list: this.getMealtimeList,
+            value: this.getMealtimeOfFood,
+          },
           {
             name: 'name',
             label: 'Name of food',
@@ -52,7 +68,7 @@
           },
           {
             name: 'kcalPer100g',
-            label: 'Сalories per 100g',
+            label: 'Calories per 100g',
             tag: 'input',
             type: 'number',
             placeholder: 0,
@@ -72,8 +88,17 @@
             max: 10000,
             units: 'g',
           },
-        ],
-        fromDatabaseFieldsList: [
+        ];
+      },
+      fromDatabaseFieldsList() {
+        return [
+          {
+            name: 'mealtime',
+            label: 'Mealtime',
+            tag: 'select',
+            list: this.getMealtimeList,
+            value: this.getMealtimeOfFood,
+          },
           {
             name: 'name',
             label: 'Name of food',
@@ -98,13 +123,8 @@
             max: 10000,
             units: 'g',
           },
-        ],
-        isSearchingFood: true,
-        foodToAdd: {},
-      };
-    },
-    computed: {
-      ...mapGetters(['getMealtimeOfFood', 'getIsAddFoodManually']),
+        ];
+      },
     },
     methods: {
       ...mapMutations(['setModalOpened', 'addFood']),

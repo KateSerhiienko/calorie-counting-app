@@ -1,20 +1,5 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <div v-if="mealtime">
-      <label for="mealtimes">Mealtime:</label>
-      <select
-        id="mealtime"
-        v-model="formData.mealtime"
-      >
-        <option
-          v-for="mealtime in getMealtimeList"
-          :key="mealtime"
-          :value="mealtime"
-        >
-          {{ mealtime }}
-        </option>
-      </select>
-    </div>
     <ul>
       <li
         v-for="field in fieldsList"
@@ -43,6 +28,44 @@
           <p>{{ field.value }}</p>
           <span v-if="field.units">{{ field.units }}</span>
         </div>
+        <div v-if="field.tag === 'select'">
+          <label :for="field.name">{{ field.label }}:</label>
+          <select
+            :name="field.name"
+            required
+            :value="
+              formData[field.name] !== undefined
+                ? formData[field.name]
+                : field.value
+            "
+            @change="updateFormData(field.name, $event.target.value)"
+          >
+            <template v-for="option in field.list">
+              <option
+                v-if="typeof option === 'string' || typeof option === 'number'"
+                :key="option"
+              >
+                {{ option }}
+              </option>
+              <option
+                v-else-if="typeof option === 'object'"
+                :key="option.id"
+                :value="option.value"
+              >
+                {{ option.label }}
+              </option>
+            </template>
+          </select>
+          <div v-if="field.tag === 'select'">
+            <p>
+              {{
+                field.list.find(
+                  (option) => option.value === formData[field.name]
+                )?.explanation
+              }}
+            </p>
+          </div>
+        </div>
       </li>
     </ul>
     <div v-if="countTotalKcal">
@@ -58,10 +81,6 @@
   export default {
     name: 'FormComponent',
     props: {
-      mealtime: {
-        type: String,
-        default: '',
-      },
       fieldsList: {
         type: Array,
         required: true,
@@ -77,9 +96,7 @@
     },
     data() {
       return {
-        formData: {
-          mealtime: this.mealtime,
-        },
+        formData: {},
       };
     },
     computed: {

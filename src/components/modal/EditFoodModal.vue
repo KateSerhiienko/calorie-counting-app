@@ -1,7 +1,6 @@
 <template>
   <div v-if="!editedFood.idDatabase">
     <form-component
-      :mealtime="editedFood.mealtime"
       :fields-list="manuallyFieldsList"
       :count-total-kcal="true"
       :button="'Save'"
@@ -10,7 +9,6 @@
   </div>
   <div v-else>
     <form-component
-      :mealtime="editedFood.mealtime"
       :fields-list="fromDatabaseFieldsList"
       :count-total-kcal="true"
       :button="'Save'"
@@ -39,9 +37,16 @@
       );
     },
     computed: {
-      ...mapGetters(['getIdEditingFood', 'getFoodsList']),
+      ...mapGetters(['getIdEditingFood', 'getFoodsList', 'getMealtimeList']),
       manuallyFieldsList() {
         return [
+          {
+            name: 'mealtime',
+            label: 'Mealtime',
+            tag: 'select',
+            list: this.getMealtimeList,
+            value: this.editedFood.mealtime,
+          },
           {
             name: 'name',
             label: 'Name of food',
@@ -73,6 +78,13 @@
       },
       fromDatabaseFieldsList() {
         return [
+          {
+            name: 'mealtime',
+            label: 'Mealtime',
+            tag: 'select',
+            list: this.getMealtimeList,
+            value: this.editedFood.mealtime,
+          },
           {
             name: 'name',
             label: 'Name of food',

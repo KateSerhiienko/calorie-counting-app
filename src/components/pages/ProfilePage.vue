@@ -1,40 +1,84 @@
 <template>
-  <header class="glb-header">
-    <h1>Total Daily Energy Expenditure (TDEE)</h1>
-  </header>
-  <main class="main">
-    <div
-      class="panel"
-      :class="{ left: getCountingMode }"
+  <div v-if="Object.keys(getUserData).length <= 0">
+    <p>
+      To better understand your daily calorie needs, please provide us with some
+      additional information:
+    </p>
+    <button
+      type="button"
+      @click="setModalOpened('edit-profile')"
     >
-      <h2 class="panel-title">Calculation<br />Harris-Benedict equation</h2>
-      <img
-        class="panel-img"
-        src="./../../assets/imgs/cc-img.png"
-        alt="Calculation Harris-Benedict equation"
-      />
+      Complete profile
+    </button>
+  </div>
+
+  <div v-else>
+    <div>
+      <ul>
+        <li v-if="getUserData.firstName || getUserData.lastName">
+          <span>{{ getUserData.firstName }}</span>
+          <span>{{ getUserData.lastName }}</span>
+        </li>
+        <li v-if="getUserData.sex">
+          <span>{{ getUserData.sex }}</span>
+        </li>
+        <li v-if="getUserData.age">
+          <span>Age:</span>
+          <span>{{ getUserData.age }} years</span>
+        </li>
+        <li v-if="getUserData.height">
+          <span>Height:</span>
+          <span>{{ getUserData.height }} cm</span>
+        </li>
+        <li v-if="getUserData.weight">
+          <span>Weight:</span>
+          <span>{{ getUserData.weight }} kg</span>
+        </li>
+        <li v-if="getUserData.activity">
+          <span>Activity Level:</span>
+          <span> {{ getActivityLabel }}</span>
+        </li>
+      </ul>
+      <svg
+        class="user-image"
+        :viewBox="svg['user-avatar'].viewBox"
+      >
+        <path :d="svg['user-avatar'].path" />
+      </svg>
+      <button
+        type="button"
+        @click="setModalOpened('edit-profile')"
+      >
+        Edit profile
+      </button>
     </div>
-    <div class="content">
-      <section class="content-item content-item-info">
-        <calorie-counting-total />
-      </section>
-      <section class="content-item content-item-form">
-        <calorie-counting-form />
-      </section>
+    <div>
+      <p>Daily calorie allowance:</p>
+      <p>{{ getUserData.totalDailyEnergyExpenditure.toFixed() }}</p>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
-  import CalorieCountingForm from '../CalorieCountingForm.vue';
-  import CalorieCountingTotal from '../CalorieCountingTotal.vue';
+  import { mapGetters, mapMutations } from 'vuex';
+  import svgJSON from '../../assets/svg/svg.json';
 
   export default {
-    name: 'CalorieCountingPage',
-    components: { CalorieCountingForm, CalorieCountingTotal },
+    name: 'ProfilePage',
     computed: {
-      ...mapGetters(['getCountingMode']),
+      ...mapGetters(['getUserData', 'getActivityLevels']),
+      getActivityLabel() {
+        const activity = this.getActivityLevels.find(
+          (level) => level.value === this.getUserData.activity
+        );
+        return activity ? activity.label : this.getUserData.activity;
+      },
+      svg() {
+        return svgJSON;
+      },
+    },
+    methods: {
+      ...mapMutations(['setModalOpened']),
     },
   };
 </script>
@@ -42,4 +86,8 @@
 <style
   scoped
   lang="scss"
-></style>
+>
+  svg {
+    width: 100px;
+  }
+</style>

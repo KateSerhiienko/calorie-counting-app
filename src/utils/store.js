@@ -20,14 +20,13 @@ const store = createStore({
         title: 'ArtStation',
       },
     ],
-    countingMode: true,
-    caloriesAndUserData: {
-      "sex": "female",
-      "weight": 0,
-      "height": 0,
-      "age": 0,
-      "activity": "1.55",
-      "totalDailyEnergyExpenditure": 0
+    userData: {
+      // "sex": "female",
+      // "weight": 0,
+      // "height": 0,
+      // "age": 0,
+      // "activity": "1.55",
+      // "totalDailyEnergyExpenditure": 0
     },
     activityLevels: [
       {
@@ -100,17 +99,8 @@ const store = createStore({
     idEditingFood: ''
   },
   mutations: {
-    setCountingMode(state, newValue) {
-      state.countingMode = newValue;
-    },
-    setCaloriesAndUserData(state, formCaloriesAndUserData) {
-      state.caloriesAndUserData = {
-        ...formCaloriesAndUserData.userData,
-        totalDailyEnergyExpenditure: formCaloriesAndUserData.totalDailyEnergyExpenditure,
-      };
-    },
-    clearcaloriesAndUserData(state) {
-      state.caloriesAndUserData = null;
+    setUserData(state, newValue) {
+      state.userData = newValue;
     },
     addFood(state, newFood) {
       state.foodsList.push(newFood);
@@ -142,9 +132,8 @@ const store = createStore({
   },
   getters: {
     getMedia: (state) => state.media,
-    getCountingMode: (state) => state.countingMode,
     getActivityLevels: (state) => state.activityLevels,
-    getCaloriesAndUserData: (state) => state.caloriesAndUserData,
+    getUserData: (state) => state.userData,
     getMealtimeList: (state) => state.mealtimeList,
     getFoodsList: (state) => state.foodsList,
     getClosedSectionsFoodsList: (state) => state.closedSectionsFoodsList,
