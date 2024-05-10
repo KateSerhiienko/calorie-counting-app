@@ -28,7 +28,7 @@
     name: 'ChartComponent',
     props: {
       dataDasharray: {
-        type: Array,
+        type: Object,
         required: true,
       },
       radius: {
@@ -46,9 +46,9 @@
     },
     computed: {
       precisePercent() {
-        return ((this.dataDasharray[0] * 100) / this.dataDasharray[1]).toFixed(
-          1
-        );
+        const value = this.dataDasharray.value;
+        const total = this.dataDasharray.total;
+        return ((value * 100) / total).toFixed(1);
       },
     },
     mounted() {

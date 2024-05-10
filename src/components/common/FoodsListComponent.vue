@@ -4,7 +4,7 @@
     :key="index"
     class="foods-list-component"
   >
-    <div @click="toggleSection(index, mealtime)">
+    <div @click="toggleClosedSectionFoodsList(index)">
       <h2>
         {{ mealtime }}
       </h2>
@@ -83,14 +83,14 @@
       },
     },
     methods: {
-      ...mapMutations(['setIdEditingFood', 'deleteFood', 'setModalOpened']),
+      ...mapMutations([
+        'setIdEditingFood',
+        'deleteFood',
+        'setModalOpened',
+        'toggleClosedSectionFoodsList',
+      ]),
       filteredFoods(mealtime) {
         return this.getFoodsList.filter((food) => food.mealtime === mealtime);
-      },
-      toggleSection(index, mealtime) {
-        if (this.filteredFoods(mealtime).length > 0) {
-          this.$store.commit('toggleClosedSectionFoodsList', index);
-        }
       },
       openPopup(id) {
         this.openedPopupId = id;

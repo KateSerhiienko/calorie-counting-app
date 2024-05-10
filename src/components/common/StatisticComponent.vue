@@ -4,11 +4,11 @@
     class="total-wrapper"
   >
     <chart-component
-      :data-dasharray="[
-        totalCountedCalories,
-        getUserData.totalDailyEnergyExpenditure,
-      ]"
-      :radius="'18px'"
+      :data-dasharray="{
+        value: totalCountedCalories,
+        total: getUserData.totalDailyEnergyExpenditure,
+      }"
+      :radius="18"
     ></chart-component>
 
     <div>
