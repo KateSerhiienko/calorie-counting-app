@@ -1,34 +1,18 @@
-// colors
-$primary-color: #618b7d;
-$primary-color-light: #98c5b6;
-$primary-color-dark: #205a47;
+$mobile-max-width: 959px;
+$mobile-min-width: 375px;
+$mobile-max-height: 1439px;
+$mobile-min-height: 667px;
 
-$secondary-color: #fab5a6;
-$secondary-color-light: #fdc8bd;
-$secondary-color-dark: #bb948c;
+$primary-color:#aad4c8;
+$secondary-color-lavender:#9e87b5;
+$secondary-color-beige:#ebc9c6;
+$secondary-color-pink:#d4a5bc;
+$secondary-color-blue:#a2d2ff;
 
-$accent-color: #94b77f;
-$accent-color-light: #bcdba9;
-$accent-color-dark: #75896a;
+$primary-text-color: #394250;
+$secondary-text-color: #6c737f;
 
-$background-color: #f1f1f1;
-$background-color-light: #ffffff;
-$background-color-dark: #000000;
+$primary-bg-color: #f9fafb;
+$secondary-bg-color: #ffffff;
 
-$reserve-color: #627588;
-$reserve-color-light: #9bafc3;
-$reserve-color-dark: #515b66;
-$reserve-color-1: #fad2a6;
-$reserve-color-2: #9cc0ce;
-$reserve-color-3: #c0edd1;
-
-$gradient-color-1: #839486;
-$gradient-color-2: #989a8c;
-$gradient-color-3: #afa092;
-$gradient-color-4: #c6a698;
-$gradient-color-5: #e1ae9f;
-
-// rest
-$transition: 0.3s ease;
-$border-radius: 40px;
-$box-shadow: -10px 10px 15px rgba($background-color-dark, 0.2);
+$not-active-color: #b2b7bd;

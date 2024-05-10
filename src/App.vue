@@ -35,30 +35,42 @@
   lang="scss"
 >
   .app-wrapper {
+    position: relative;
     width: 100%;
-    max-width: 959px;
-    min-width: 375px;
+    max-width: $mobile-max-width;
+    min-width: $mobile-min-width;
+    max-height: $mobile-max-height;
+    min-height: $mobile-min-height;
+    padding-top: 40px;
+
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: $primary-text-color;
+    background: $primary-bg-color;
+  }
 
-    padding-bottom: 100px;
+  header {
+    position: sticky;
+    top: 0;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
 
-    header {
-      position: sticky;
-      top: 0;
-      display: flex;
-      justify-content: space-between;
-      padding: 40px 20px 0;
-    }
+  main {
+    height: calc(100vh - 40px - 40px - 68px);
+    /* - (padding-top .app-wrapper) - (height header) - (height nav) */
+    max-height: calc($mobile-max-height - 40px - 40px - 68px);
+    min-height: calc($mobile-min-height - 40px - 40px - 68px);
+    padding: 0 20px;
+  }
 
-    main {
-      padding: 0 20px 0;
-    }
-
-    nav {
-      width: 100%;
-      position: fixed;
-      bottom: 0;
-      padding: 0 20px 20px;
-    }
+  nav {
+    position: sticky;
+    bottom: 0;
+    height: 68px;
+    width: 100%;
+    padding: 0 20px 20px;
   }
 </style>

@@ -9,14 +9,16 @@
       <path :d="svg['arrow'].path" />
     </svg>
     <h1>{{ title }}</h1>
-    <svg
-      v-if="isMenu"
-      :viewBox="svg['nav-burger'].viewBox"
-      @click="isOpenedPopup = true"
-    >
-      <path :d="svg['nav-burger'].path" />
-    </svg>
-    <div>
+    <div class="burger">
+      <svg
+        v-if="isMenu"
+        :viewBox="svg['nav-burger'].viewBox"
+        @click="isOpenedPopup = true"
+      >
+        <path :d="svg['nav-burger'].path" />
+      </svg>
+    </div>
+    <div class="popup">
       <popup-component
         :visible="isOpenedPopup"
         @close="isOpenedPopup = false"
@@ -90,12 +92,28 @@
   lang="scss"
 >
   .header-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
     svg {
-      width: 32px;
+      width: 40px;
+    }
+
+    h1 {
+      font-size: 26px;
     }
 
     .arrow {
       transform: rotate(90deg);
+    }
+
+    .burger {
+      min-width: 40px;
+    }
+
+    .popup {
+      position: absolute;
     }
   }
 </style>
