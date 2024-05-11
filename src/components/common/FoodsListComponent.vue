@@ -137,15 +137,15 @@
       }
     }
     &:nth-child(4) {
-      @include custom-background($secondary-color-pink);
-      ul {
-        border-left: 2px solid $secondary-color-pink;
-      }
-    }
-    &:nth-child(5) {
       @include custom-background($secondary-color-blue);
       ul {
         border-left: 2px solid $secondary-color-blue;
+      }
+    }
+    &:nth-child(5) {
+      @include custom-background($secondary-color-pink);
+      ul {
+        border-left: 2px solid $secondary-color-pink;
       }
     }
 
