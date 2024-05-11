@@ -24,12 +24,36 @@
           </ul>
         </div>
       </header-component>
-      <div class="modal">
-        <mealtime-modal v-if="getModalOpened === 'mealtime'" />
-        <add-food-modal v-else-if="getModalOpened === 'add-food'" />
-        <developer-modal v-else-if="getModalOpened === 'developer'" />
-        <edit-food-modal v-else-if="getModalOpened === 'edit-food'" />
-        <edit-profile-modal v-else-if="getModalOpened === 'edit-profile'" />
+
+      <div
+        class="modal short"
+        v-if="getModalOpened === 'mealtime'"
+      >
+        <mealtime-modal />
+      </div>
+      <div
+        class="modal"
+        v-else-if="getModalOpened === 'add-food'"
+      >
+        <add-food-modal />
+      </div>
+      <div
+        class="modal"
+        v-else-if="getModalOpened === 'developer'"
+      >
+        <developer-modal />
+      </div>
+      <div
+        class="modal"
+        v-else-if="getModalOpened === 'edit-food'"
+      >
+        <edit-food-modal />
+      </div>
+      <div
+        class="modal"
+        v-else-if="getModalOpened === 'edit-profile'"
+      >
+        <edit-profile-modal />
       </div>
     </div>
   </div>
@@ -112,18 +136,24 @@
     bottom: 0;
     background-color: rgba($primary-text-color, 0.5);
     backdrop-filter: blur(5px);
-    padding-top: 40px;
   }
 
   .modal-wrapper {
-    height: 100%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
-    padding: 20px;
+    padding: 20px 20px calc(20px + $container-padding);
     background-color: $secondary-bg-color;
 
     .modal {
       margin-top: $container-padding;
+      height: calc(100vh - 130px);
+
+      &.short {
+        height: fit-content;
+      }
     }
   }
 </style>

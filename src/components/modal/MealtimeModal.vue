@@ -75,7 +75,7 @@
     }
 
     svg {
-      width: 50px;
+      width: 46px;
       fill: none;
       stroke: $secondary-bg-color;
     }
