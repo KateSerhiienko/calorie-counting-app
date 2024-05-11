@@ -43,6 +43,7 @@
   .popup-wrapper {
     svg {
       width: 32px;
+      fill: $primary-text-color;
     }
   }
 </style>

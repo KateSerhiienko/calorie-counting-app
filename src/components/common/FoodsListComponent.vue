@@ -177,6 +177,7 @@
     .arrow {
       width: 14px;
       margin-left: $container-padding;
+      fill: $primary-text-color;
 
       &.up {
         transform: rotate(180deg);

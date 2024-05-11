@@ -164,6 +164,7 @@
         width: 100%;
         min-width: 90px;
         max-width: 90px;
+        fill: $primary-text-color;
       }
     }
 

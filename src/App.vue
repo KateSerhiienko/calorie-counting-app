@@ -49,29 +49,29 @@
     color: $primary-text-color;
     background-color: $primary-bg-color;
     box-shadow: $box-shadow;
-  }
 
-  header {
-    position: sticky;
-    top: 0;
-    height: 40px;
-    padding: 0 20px;
-    margin-bottom: $container-padding;
-  }
+    header {
+      position: sticky;
+      top: 0;
+      height: 40px;
+      padding: 0 20px;
+      margin-bottom: $container-padding;
+    }
 
-  main {
-    height: calc(100vh - 40px - 40px - 68px);
-    /* - (padding-top .app-wrapper) - (height header) - (height nav) */
-    max-height: calc($mobile-max-height - 40px - 40px - 68px);
-    min-height: calc($mobile-min-height - 40px - 40px - 68px);
-    padding: 0 20px;
-  }
+    main {
+      height: calc(100vh - 40px - 40px - 68px);
+      /* - (padding-top .app-wrapper) - (height header) - (height nav) */
+      max-height: calc($mobile-max-height - 40px - 40px - 68px);
+      min-height: calc($mobile-min-height - 40px - 40px - 68px);
+      padding: 0 20px;
+    }
 
-  nav {
-    position: sticky;
-    bottom: 0;
-    height: 68px;
-    width: 100%;
-    padding: 0 20px 20px;
+    nav {
+      position: sticky;
+      bottom: 0;
+      height: 68px;
+      width: 100%;
+      padding: 0 20px 20px;
+    }
   }
 </style>

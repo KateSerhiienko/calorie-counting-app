@@ -98,6 +98,7 @@
 
     svg {
       width: 40px;
+      fill: $primary-text-color;
     }
 
     h1 {

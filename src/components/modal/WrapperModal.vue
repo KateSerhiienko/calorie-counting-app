@@ -1,34 +1,36 @@
 <template>
   <div
-    class="modal-wrapper"
+    class="modal-overlay"
     v-show="getModalOpened"
   >
-    <header-component
-      :title="modalTitle"
-      :is-menu="modalIsMenu"
-      :is-arrow="true"
-    >
-      <div v-if="getModalOpened === 'add-food'">
-        <ul>
-          <li @click="toggleIsAddFoodManually()">
-            <svg
-              class="user-image"
-              :viewBox="svg['write'].viewBox"
-            >
-              <path :d="svg['write'].path" />
-            </svg>
-            <p v-if="!getIsAddFoodManually">Create custom food</p>
-            <p v-else>Add food from database</p>
-          </li>
-        </ul>
+    <div class="modal-wrapper">
+      <header-component
+        :title="modalTitle"
+        :is-menu="modalIsMenu"
+        :is-arrow="true"
+      >
+        <div v-if="getModalOpened === 'add-food'">
+          <ul>
+            <li @click="toggleIsAddFoodManually()">
+              <svg
+                class="user-image"
+                :viewBox="svg['write'].viewBox"
+              >
+                <path :d="svg['write'].path" />
+              </svg>
+              <p v-if="!getIsAddFoodManually">Create custom food</p>
+              <p v-else>Add food from database</p>
+            </li>
+          </ul>
+        </div>
+      </header-component>
+      <div class="modal">
+        <mealtime-modal v-if="getModalOpened === 'mealtime'" />
+        <add-food-modal v-else-if="getModalOpened === 'add-food'" />
+        <developer-modal v-else-if="getModalOpened === 'developer'" />
+        <edit-food-modal v-else-if="getModalOpened === 'edit-food'" />
+        <edit-profile-modal v-else-if="getModalOpened === 'edit-profile'" />
       </div>
-    </header-component>
-    <div class="modals">
-      <mealtime-modal v-if="getModalOpened === 'mealtime'" />
-      <add-food-modal v-else-if="getModalOpened === 'add-food'" />
-      <developer-modal v-else-if="getModalOpened === 'developer'" />
-      <edit-food-modal v-else-if="getModalOpened === 'edit-food'" />
-      <edit-profile-modal v-else-if="getModalOpened === 'edit-profile'" />
     </div>
   </div>
 </template>
@@ -102,4 +104,26 @@
 <style
   scoped
   lang="scss"
-></style>
+>
+  .modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    background-color: rgba($primary-text-color, 0.5);
+    backdrop-filter: blur(5px);
+    padding-top: 40px;
+  }
+
+  .modal-wrapper {
+    height: 100%;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    padding: 20px;
+    background-color: $secondary-bg-color;
+
+    .modal {
+      margin-top: $container-padding;
+    }
+  }
+</style>

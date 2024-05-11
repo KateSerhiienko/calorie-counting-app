@@ -104,7 +104,7 @@
 >
   svg {
     width: 32px;
-    stroke: #000000;
+    stroke: $primary-text-color;
     fill: transparent;
     stroke-width: 2;
   }

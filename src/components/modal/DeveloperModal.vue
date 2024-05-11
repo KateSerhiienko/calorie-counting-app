@@ -43,5 +43,6 @@
 >
   svg {
     width: 60px;
+    fill: $primary-text-color;
   }
 </style>
