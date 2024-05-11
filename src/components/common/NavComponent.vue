@@ -85,22 +85,55 @@
   .nav-wrapper {
     svg {
       width: 32px;
-      fill: $primary-text-color;
+      fill: $not-active-color;
     }
 
     .active {
       pointer-events: none;
+
+      svg {
+        fill: $primary-text-color;
+      }
+
+      &::after {
+        content: '';
+        /* position: absolute; */
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: $primary-text-color;
+      }
     }
   }
 
   .nav-wrapper.bottom {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: $container-padding;
+
     ul {
+      width: 100%;
       display: flex;
+      justify-content: space-evenly;
+      align-items: start;
+    }
+
+    li {
+      display: flex;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
     }
 
     .add-food {
       order: 1;
+      align-self: flex-start;
+
+      svg {
+        transform: scale(1.6);
+        fill: $primary-color;
+      }
     }
 
     .profile {

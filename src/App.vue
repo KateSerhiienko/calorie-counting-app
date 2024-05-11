@@ -6,7 +6,9 @@
       </header-component>
     </header>
     <main>
-      <router-view />
+      <div class="main-wrapper">
+        <router-view />
+      </div>
     </main>
     <nav>
       <nav-component :view="'bottom'" />
@@ -37,12 +39,12 @@
   .app-wrapper {
     position: relative;
     width: 100%;
+    height: 100%;
     max-width: $mobile-max-width;
     min-width: $mobile-min-width;
     max-height: $mobile-max-height;
     min-height: $mobile-min-height;
     margin: 0 auto;
-    padding-top: 40px;
 
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -51,27 +53,33 @@
     box-shadow: $box-shadow;
 
     header {
-      position: sticky;
+      position: absolute;
       top: 0;
-      height: 40px;
-      padding: 0 20px;
+      width: 100%;
       margin-bottom: $container-padding;
+      z-index: 1;
+      padding: 40px 20px 0;
+      @include blur-bg($primary-bg-color);
     }
 
     main {
-      height: calc(100vh - 40px - 40px - 68px);
-      /* - (padding-top .app-wrapper) - (height header) - (height nav) */
-      max-height: calc($mobile-max-height - 40px - 40px - 68px);
-      min-height: calc($mobile-min-height - 40px - 40px - 68px);
-      padding: 0 20px;
+      height: 100vh;
+      padding: 30px 20px;
+
+      .main-wrapper {
+        padding: 60px 0 40px;
+        height: 100%;
+        overflow: scroll;
+      }
     }
 
     nav {
-      position: sticky;
+      position: absolute;
       bottom: 0;
-      height: 68px;
+      height: 70px;
       width: 100%;
-      padding: 0 20px 20px;
+      @include blur-bg($secondary-bg-color);
+      box-shadow: 0 -2px 2px rgba($primary-text-color, 0.02);
     }
   }
 </style>

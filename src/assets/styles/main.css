@@ -10,10 +10,16 @@ html {
   background: #e6e9f2;
 }
 
-/* html,
+html,
 body {
   overscroll-behavior: none;
-} */
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  /* WebKit (Chrome, Safari) */
+}
 
 * {
   margin: 0;
@@ -23,6 +29,12 @@ body {
 
 a {
   text-decoration: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ul {

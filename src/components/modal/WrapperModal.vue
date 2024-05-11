@@ -132,10 +132,10 @@
   .modal-overlay {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     bottom: 0;
-    background-color: rgba($primary-text-color, 0.5);
-    backdrop-filter: blur(5px);
+    @include blur-bg($primary-text-color);
+    z-index: 2;
   }
 
   .modal-wrapper {
@@ -145,7 +145,7 @@
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
     padding: 20px 20px calc(20px + $container-padding);
-    background-color: $secondary-bg-color;
+    background-color: $primary-bg-color;
 
     .modal {
       margin-top: $container-padding;
