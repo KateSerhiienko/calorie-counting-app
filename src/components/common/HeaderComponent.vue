@@ -18,14 +18,12 @@
         <path :d="svg['nav-burger'].path" />
       </svg>
     </div>
-    <div class="popup">
-      <popup-component
-        :visible="isOpenedPopup"
-        @close="isOpenedPopup = false"
-      >
-        <slot></slot>
-      </popup-component>
-    </div>
+    <popup-component
+      :visible="isOpenedPopup"
+      @close="isOpenedPopup = false"
+    >
+      <slot></slot>
+    </popup-component>
   </div>
 </template>
 
@@ -111,10 +109,6 @@
 
     .burger {
       min-width: 40px;
-    }
-
-    .popup {
-      position: absolute;
     }
   }
 </style>

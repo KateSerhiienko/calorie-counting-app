@@ -2,7 +2,7 @@
   <div class="app-wrapper">
     <header>
       <header-component :title="$route.name">
-        <nav-component :view="'burger'" />
+        <nav-component />
       </header-component>
     </header>
     <main>

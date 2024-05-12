@@ -1,58 +1,56 @@
 <template>
-  <div
+  <ul
     class="nav-wrapper"
-    :class="view"
+    :class="view || 'glb-popup'"
   >
-    <ul>
-      <li
-        class="add-food"
-        @click="setModalOpened('mealtime')"
-      >
-        <svg :viewBox="svg[`nav-item-1`].viewBox">
-          <path :d="svg[`nav-item-1`].path" />
+    <li
+      class="add-food"
+      @click="setModalOpened('mealtime')"
+    >
+      <svg :viewBox="svg[`nav-item-1`].viewBox">
+        <path :d="svg[`nav-item-1`].path" />
+      </svg>
+      <p>Add food</p>
+    </li>
+
+    <li
+      class="dashboard"
+      :class="{
+        active: $route.path === '/',
+      }"
+    >
+      <router-link :to="'/'">
+        <svg :viewBox="svg[`nav-item-2`].viewBox">
+          <path :d="svg[`nav-item-2`].path" />
         </svg>
-        <p>Add food</p>
-      </li>
+        <p>Dashboard</p>
+      </router-link>
+    </li>
 
-      <li
-        class="dashboard"
-        :class="{
-          active: $route.path === '/',
-        }"
-      >
-        <router-link :to="'/'">
-          <svg :viewBox="svg[`nav-item-2`].viewBox">
-            <path :d="svg[`nav-item-2`].path" />
-          </svg>
-          <p>Dashboard</p>
-        </router-link>
-      </li>
-
-      <li
-        class="profile"
-        :class="{
-          active: $route.path === '/profile',
-        }"
-      >
-        <router-link :to="'/profile'">
-          <svg :viewBox="svg[`nav-item-3`].viewBox">
-            <path :d="svg[`nav-item-3`].path" />
-          </svg>
-          <p>Profile</p>
-        </router-link>
-      </li>
-
-      <li
-        class="developer"
-        @click="setModalOpened('developer')"
-      >
-        <svg :viewBox="svg[`nav-item-4`].viewBox">
-          <path :d="svg[`nav-item-4`].path" />
+    <li
+      class="profile"
+      :class="{
+        active: $route.path === '/profile',
+      }"
+    >
+      <router-link :to="'/profile'">
+        <svg :viewBox="svg[`nav-item-3`].viewBox">
+          <path :d="svg[`nav-item-3`].path" />
         </svg>
-        <p>Developer</p>
-      </li>
-    </ul>
-  </div>
+        <p>Profile</p>
+      </router-link>
+    </li>
+
+    <li
+      class="developer"
+      @click="setModalOpened('developer')"
+    >
+      <svg :viewBox="svg[`nav-item-4`].viewBox">
+        <path :d="svg[`nav-item-4`].path" />
+      </svg>
+      <p>Developer</p>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -64,7 +62,7 @@
     props: {
       view: {
         type: String,
-        default: 'bottom',
+        default: '',
       },
     },
     computed: {
@@ -83,6 +81,10 @@
   lang="scss"
 >
   .nav-wrapper {
+    p {
+      color: $not-active-color;
+    }
+
     svg {
       width: 32px;
       fill: $not-active-color;
@@ -95,9 +97,14 @@
         fill: $primary-text-color;
       }
 
+      p {
+        color: $primary-text-color;
+        font-weight: bold;
+      }
+
       &::after {
+        display: block;
         content: '';
-        /* position: absolute; */
         width: 5px;
         height: 5px;
         border-radius: 50%;
@@ -107,17 +114,11 @@
   }
 
   .nav-wrapper.bottom {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
     padding-top: $container-padding;
-
-    ul {
-      width: 100%;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: start;
-    }
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
 
     li {
       display: flex;
@@ -147,9 +148,6 @@
     p {
       display: none;
     }
-  }
-
-  .nav-wrapper.burger {
   }
 
   .for-modal {

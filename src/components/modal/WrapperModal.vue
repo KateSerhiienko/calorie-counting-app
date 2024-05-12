@@ -1,6 +1,6 @@
 <template>
   <div
-    class="modal-overlay"
+    class="glb-overlay modal-overlay"
     v-show="getModalOpened"
   >
     <div class="modal-wrapper">
@@ -130,13 +130,6 @@
   lang="scss"
 >
   .modal-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    max-height: $mobile-max-height;
-    min-height: $mobile-min-height;
-    bottom: 0;
-    @include blur-bg($primary-text-color);
     z-index: 2;
   }
 

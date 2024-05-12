@@ -1,15 +1,17 @@
 <template>
   <div
     v-show="visible"
-    class="popup-wrapper"
+    class="glb-overlay popup-overlay"
   >
-    <svg
-      :viewBox="svg['close-popup'].viewBox"
-      @click="close"
-    >
-      <path :d="svg['close-popup'].path" />
-    </svg>
-    <slot></slot>
+    <div class="glb-wrapper popup-wrapper">
+      <svg
+        :viewBox="svg['close-popup'].viewBox"
+        @click="close"
+      >
+        <path :d="svg['close-popup'].path" />
+      </svg>
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -39,10 +41,22 @@
   };
 </script>
 
-<style>
+<style
+  lang="scss"
+  scoped
+>
+  .popup-overlay {
+    z-index: 2;
+    padding: 20px 20px 32px;
+  }
   .popup-wrapper {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+
     svg {
-      width: 32px;
+      align-self: flex-end;
+      width: 18px;
       fill: $primary-text-color;
     }
   }

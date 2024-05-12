@@ -37,3 +37,47 @@
 .glb-input {
   padding-left: calc($container-padding / 4);
 }
+
+.glb-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: $mobile-max-width;
+  min-width: $mobile-min-width;
+  max-height: $mobile-max-height;
+  min-height: $mobile-min-height;
+  @include blur-bg($primary-text-color);
+}
+
+.glb-popup {
+  display: flex;
+  flex-direction: column;
+
+  li:not(:has(> a)), li > a {
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    padding: $container-padding;
+  }
+
+  li:not(:last-child) {
+    border-bottom: 1px solid rgba($not-active-light-color, .5);
+  }
+
+  svg {
+    margin-right: $container-padding;
+  }
+
+  .active {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    &::after {
+      margin-left: -5px;
+      transform: translate(5px, 0);
+    }
+  }
+}
