@@ -53,3 +53,8 @@ svg {
   fill-rule: evenodd;
   clip-rule: evenodd;
 }
+
+input,
+select {
+  outline: none;
+}

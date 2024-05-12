@@ -1,13 +1,21 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form
+    @submit.prevent="handleSubmit"
+    class="form-wrapper"
+  >
     <ul>
-      <li
+      <template
         v-for="field in fieldsList"
         :key="field.name"
       >
-        <div v-if="field.tag === 'input'">
-          <label :for="field.name">{{ field.label }}:</label>
+        <li v-if="field.tag === 'input'">
+          <label
+            class="glb-label"
+            :for="field.name"
+            >{{ field.label }}:</label
+          >
           <input
+            class="glb-input"
             :type="field.type"
             :name="field.name"
             :placeholder="field.placeholder"
@@ -21,16 +29,29 @@
             "
             @input="updateFormData(field.name, $event.target.value)"
           />
-          <span v-if="field.units">{{ field.units }}</span>
-        </div>
-        <div v-if="field.tag === 'p'">
-          <p>{{ field.label }}:</p>
+          <span
+            class="units"
+            v-if="field.units"
+            >{{ field.units }}</span
+          >
+        </li>
+        <li v-if="field.tag === 'p'">
+          <p class="glb-label">{{ field.label }}:</p>
           <p>{{ field.value }}</p>
-          <span v-if="field.units">{{ field.units }}</span>
-        </div>
-        <div v-if="field.tag === 'select'">
-          <label :for="field.name">{{ field.label }}:</label>
+          <span
+            class="units"
+            v-if="field.units"
+            >{{ field.units }}</span
+          >
+        </li>
+        <li v-if="field.tag === 'select'">
+          <label
+            class="glb-label"
+            :for="field.name"
+            >{{ field.label }}:</label
+          >
           <select
+            class="glb-select"
             :name="field.name"
             required
             :value="
@@ -56,22 +77,28 @@
               </option>
             </template>
           </select>
-          <div v-if="field.tag === 'select'">
-            <p>
-              {{
-                field.list.find(
-                  (option) => option.value === formData[field.name]
-                )?.explanation
-              }}
+          <div v-if="field.tag === 'select' && field.explenation">
+            <p class="glb-label explanation">
+              {{ optionExplanations[formData[field.name]] }}
             </p>
           </div>
-        </div>
-      </li>
+        </li>
+      </template>
+      <div
+        class="total"
+        v-if="countTotalKcal"
+      >
+        <p>
+          Total: <span>{{ totalKcal }} kcal</span>
+        </p>
+      </div>
     </ul>
-    <div v-if="countTotalKcal">
-      <p>Total: {{ totalKcal }}</p>
-    </div>
-    <button type="submit">{{ button }}</button>
+    <button
+      class="glb-btn"
+      type="submit"
+    >
+      {{ button }}
+    </button>
   </form>
 </template>
 
@@ -96,7 +123,12 @@
     },
     data() {
       return {
-        formData: {},
+        formData: Object.fromEntries(
+          this.fieldsList.map((field) => [
+            field.name,
+            field.value !== undefined ? field.value : '',
+          ])
+        ),
       };
     },
     computed: {
@@ -113,6 +145,19 @@
           0;
 
         return ((kcalPer100g / 100) * weight).toFixed();
+      },
+      optionExplanations() {
+        const explanations = {};
+        for (const field of this.fieldsList) {
+          if (field.tag === 'select') {
+            for (const option of field.list) {
+              if (typeof option === 'object') {
+                explanations[option.value] = option.explanation;
+              }
+            }
+          }
+        }
+        return explanations;
       },
     },
     methods: {
@@ -136,3 +181,57 @@
     emits: ['submit-form'],
   };
 </script>
+
+<style
+  scoped
+  lang="scss"
+>
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+    }
+
+    li {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: calc($container-padding * 2);
+      position: relative;
+    }
+
+    p:not(.glb-label) {
+      font-weight: bold;
+    }
+
+    .explanation {
+      font-size: 12px;
+      padding-top: calc($container-padding / 4);
+      padding-left: calc($container-padding / 4);
+    }
+
+    .units {
+      position: absolute;
+      right: 2px;
+      bottom: 0;
+    }
+
+    .total {
+      align-self: flex-end;
+
+      span {
+        display: inline-block;
+        width: 80px;
+        text-align: right;
+      }
+    }
+
+    button {
+      align-self: center;
+    }
+  }
+</style>

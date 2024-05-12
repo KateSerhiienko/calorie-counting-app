@@ -11,3 +11,28 @@
   box-shadow:$box-shadow;
   padding: $container-padding;
 }
+
+.glb-label {
+  @include secondary-text(16px);
+  margin-bottom: calc($container-padding / 2);
+}
+
+.glb-input, .glb-select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $not-active-light-color;
+  font-size: 16px;
+  padding: 0;
+  font-weight: bold;
+  color: $primary-text-color;
+
+  &::placeholder {
+    color: $not-active-light-color;
+    font-size: 14px;
+    font-weight: normal;
+  }
+}
+
+.glb-input {
+  padding-left: calc($container-padding / 4);
+}

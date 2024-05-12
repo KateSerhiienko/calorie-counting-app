@@ -1,29 +1,25 @@
 <template>
-  <div class="modal">
-    <div v-if="getIsAddFoodManually">
-      Manually
+  <template v-if="getIsAddFoodManually">
+    <form-component
+      :fields-list="manuallyFieldsList"
+      :count-total-kcal="true"
+      :button="'Add'"
+      @submit-form="handleFormSubmit"
+    />
+  </template>
+  <template v-else>
+    <template v-if="isSearchingFood">
+      <food-search-component @select-food="handleFoodSelect" />
+    </template>
+    <template v-else>
       <form-component
-        :fields-list="manuallyFieldsList"
+        :fields-list="fromDatabaseFieldsList"
         :count-total-kcal="true"
         :button="'Add'"
         @submit-form="handleFormSubmit"
       />
-    </div>
-    <div v-else>
-      Database
-      <div v-if="isSearchingFood">
-        <food-search-component @select-food="handleFoodSelect" />
-      </div>
-      <div v-else>
-        <form-component
-          :fields-list="fromDatabaseFieldsList"
-          :count-total-kcal="true"
-          :button="'Add'"
-          @submit-form="handleFormSubmit"
-        />
-      </div>
-    </div>
-  </div>
+    </template>
+  </template>
 </template>
 
 <script>

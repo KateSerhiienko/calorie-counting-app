@@ -105,9 +105,9 @@
       font-size: 26px;
     }
 
-    .arrow {
+    /* .arrow {
       transform: rotate(90deg);
-    }
+    } */
 
     .burger {
       min-width: 40px;

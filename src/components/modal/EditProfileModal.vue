@@ -85,6 +85,7 @@
             label: 'Activity level',
             tag: 'select',
             list: this.getActivityLevels,
+            explenation: true,
             value: this.getUserData.activity || '1.375',
           },
         ];
