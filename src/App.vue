@@ -64,7 +64,10 @@
 
     main {
       height: 100vh;
+      max-height: $mobile-max-height;
+      min-height: $mobile-min-height;
       padding: 30px 20px;
+      overflow: hidden;
 
       .main-wrapper {
         padding: 60px 0 40px;

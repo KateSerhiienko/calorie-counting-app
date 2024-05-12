@@ -133,6 +133,8 @@
     position: absolute;
     width: 100%;
     height: 100vh;
+    max-height: $mobile-max-height;
+    min-height: $mobile-min-height;
     bottom: 0;
     @include blur-bg($primary-text-color);
     z-index: 2;
@@ -150,9 +152,12 @@
     .modal {
       margin-top: $container-padding;
       height: calc(100vh - 130px);
+      max-height: calc($mobile-max-height - 130px);
+      min-height: calc($mobile-min-height - 130px);
 
       &.short {
         height: fit-content;
+        min-height: fit-content;
       }
     }
   }

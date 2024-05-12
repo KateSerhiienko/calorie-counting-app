@@ -1,20 +1,20 @@
 <template>
-  <div v-if="!editedFood.idDatabase">
+  <template v-if="!editedFood.idDatabase">
     <form-component
       :fields-list="manuallyFieldsList"
       :count-total-kcal="true"
       :button="'Save'"
       @submit-form="handleFormSubmit"
     />
-  </div>
-  <div v-else>
+  </template>
+  <template v-else>
     <form-component
       :fields-list="fromDatabaseFieldsList"
       :count-total-kcal="true"
       :button="'Save'"
       @submit-form="handleFormSubmit"
     />
-  </div>
+  </template>
 </template>
 
 <script>
@@ -131,3 +131,8 @@
     },
   };
 </script>
+
+<style
+  lang="scss"
+  scoped
+></style>
