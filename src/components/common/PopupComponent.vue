@@ -48,7 +48,11 @@
   .popup-overlay {
     z-index: 2;
     padding: 20px 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
   .popup-wrapper {
     width: fit-content;
     display: flex;

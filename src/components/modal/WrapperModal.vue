@@ -9,20 +9,21 @@
         :is-menu="modalIsMenu"
         :is-arrow="true"
       >
-        <div v-if="getModalOpened === 'add-food'">
-          <ul>
-            <li @click="toggleIsAddFoodManually()">
-              <svg
-                class="user-image"
-                :viewBox="svg['write'].viewBox"
-              >
-                <path :d="svg['write'].path" />
-              </svg>
-              <p v-if="!getIsAddFoodManually">Create custom food</p>
-              <p v-else>Add food from database</p>
-            </li>
-          </ul>
-        </div>
+        <ul
+          class="glb-popup"
+          v-if="getModalOpened === 'add-food'"
+        >
+          <li @click="toggleIsAddFoodManually()">
+            <svg
+              class="user-image"
+              :viewBox="svg['write'].viewBox"
+            >
+              <path :d="svg['write'].path" />
+            </svg>
+            <p v-if="!getIsAddFoodManually">Create custom food</p>
+            <p v-else>Add food from database</p>
+          </li>
+        </ul>
       </header-component>
 
       <div

@@ -26,6 +26,7 @@
       </div>
     </div>
     <ul
+      class="foods-list"
       :class="{
         visible:
           !getClosedSectionsFoodsList[index] &&
@@ -33,6 +34,7 @@
       }"
     >
       <li
+        class="list-item"
         v-for="food in filteredFoods(mealtime)"
         :key="food.id"
       >
@@ -53,8 +55,20 @@
           @close="openedPopupId = 0"
           :visible="openedPopupId === food.id"
         >
-          <p @click="editFood(food.id)">Edit food</p>
-          <p @click="deleteFood(food.id)">Remove food</p>
+          <ul class="glb-popup">
+            <li @click="editFood(food.id)">
+              <svg :viewBox="svg['edit'].viewBox">
+                <path :d="svg['edit'].path" />
+              </svg>
+              <p>Edit food</p>
+            </li>
+            <li @click="deleteFood(food.id)">
+              <svg :viewBox="svg['remove'].viewBox">
+                <path :d="svg['remove'].path" />
+              </svg>
+              <p>Remove food</p>
+            </li>
+          </ul>
         </popup-component>
       </li>
     </ul>
@@ -128,24 +142,28 @@
       @include custom-background($secondary-color-lavender);
       ul {
         border-left: 2px solid $secondary-color-lavender;
+        padding-left: calc($container-padding / 2);
       }
     }
     &:nth-child(3) {
       @include custom-background($secondary-color-beige);
       ul {
         border-left: 2px solid $secondary-color-beige;
+        padding-left: calc($container-padding / 2);
       }
     }
     &:nth-child(4) {
       @include custom-background($secondary-color-blue);
       ul {
         border-left: 2px solid $secondary-color-blue;
+        padding-left: calc($container-padding / 2);
       }
     }
     &:nth-child(5) {
       @include custom-background($secondary-color-pink);
       ul {
         border-left: 2px solid $secondary-color-pink;
+        padding-left: calc($container-padding / 2);
       }
     }
 
@@ -184,7 +202,7 @@
       }
     }
 
-    ul {
+    .foods-list {
       display: none;
       margin-top: $container-padding;
 
@@ -193,7 +211,7 @@
       }
     }
 
-    li {
+    .list-item {
       margin-left: calc($container-padding / 2);
 
       &:not(:last-child) {
