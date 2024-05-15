@@ -1,44 +1,45 @@
 <template>
-  <svg
-    :viewBox="svg['loupe'].viewBox"
-    @click="close"
-  >
-    <path :d="svg['loupe'].path" />
-  </svg>
-  <input
-    type="text"
-    v-model="searchTerm"
-    placeholder="Search in food database"
-    @input="fetchFoodData"
-  />
-  <p
-    class="warning"
-    v-show="this.searchTerm && this.searchTerm.trim().length < 3"
-  >
-    Write at least 3 characters
-  </p>
-  <p
-    class="warning"
-    v-show="this.searchTerm.trim().length >= 3 && database.length === 0"
-  >
-    There don't appear to be any matches in our database.<br />Try changing your
-    search parameters or adding/removing search characters
-  </p>
-  <ul
-    class="search-list"
-    v-show="searchTerm != ''"
-  >
-    <li
-      class="search-list-item"
-      v-for="food in database"
-      :key="food.id"
-      :title="food.name"
-      @click="selectFood(food)"
+  <div class="food-search-wrapper">
+    <div class="search">
+      <svg
+        :viewBox="svg['loupe'].viewBox"
+        @click="close"
+      >
+        <path :d="svg['loupe'].path" />
+      </svg>
+      <input
+        class="glb-input"
+        type="text"
+        v-model="searchTerm"
+        placeholder="Search in food database"
+        @input="fetchFoodData"
+      />
+    </div>
+    <p
+      class="warning"
+      v-show="this.searchTerm && this.searchTerm.trim().length < 3"
     >
-      <span class="search-list-item-title">{{ food.name }}</span>
-      <span>{{ food.kcalPer100g.toFixed(0) }} kcal</span>
-    </li>
-  </ul>
+      Write at least 3 characters
+    </p>
+    <p
+      class="warning"
+      v-show="this.searchTerm.trim().length >= 3 && database.length === 0"
+    >
+      There don't appear to be any matches in our database.<br /><br />Try
+      changing your search parameters or adding/removing search characters
+    </p>
+    <ul v-show="searchTerm != ''">
+      <li
+        v-for="food in database"
+        :key="food.id"
+        :title="food.name"
+        @click="selectFood(food)"
+      >
+        <p>{{ food.name }}</p>
+        <p class="kcal">{{ food.kcalPer100g.toFixed(0) }} kcal</p>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -102,10 +103,54 @@
   lang="scss"
   scoped
 >
-  svg {
-    width: 32px;
-    stroke: $primary-text-color;
-    fill: transparent;
-    stroke-width: 2;
+  .food-search-wrapper {
+    height: 100%;
+    overflow: hidden;
+
+    .search {
+      display: flex;
+      position: relative;
+    }
+
+    svg {
+      position: absolute;
+      top: calc($container-padding / 2);
+      left: calc($container-padding / 2);
+      width: 32px;
+      stroke: $not-active-light-color;
+      fill: transparent;
+      stroke-width: 1;
+    }
+
+    input {
+      width: 100%;
+      height: 44px;
+      padding-left: calc(32px + $container-padding);
+      border: 1px solid $not-active-light-color;
+      border-radius: 10px;
+    }
+
+    .warning {
+      padding: $container-padding;
+      color: $secondary-color-pink;
+      font-size: 14px;
+    }
+
+    ul {
+      overflow: scroll;
+      height: 100%;
+      padding: $container-padding $container-padding 34px;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: $container-padding;
+    }
+
+    .kcal {
+      min-width: 60px;
+      text-align: right;
+    }
   }
 </style>
