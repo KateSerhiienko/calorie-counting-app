@@ -56,7 +56,7 @@
   flex-direction: column;
 
   li:not(:has(> a)), li > a {
-    min-width: 180px;
+    min-width: 200px;
     display: flex;
     align-items: center;
     padding: $container-padding;
@@ -67,8 +67,8 @@
   }
 
   svg {
-    width: 32px;
-    margin-right: $container-padding;
+    width: 24px;
+    margin-right: calc($container-padding / 2);
   }
 
   .active {

@@ -2,6 +2,7 @@
   <div
     v-show="visible"
     class="glb-overlay popup-overlay"
+    :class="{ 'with-modal': getModalOpened }"
   >
     <div class="glb-wrapper popup-wrapper">
       <svg
@@ -17,6 +18,7 @@
 
 <script>
   import svgJSON from '../../assets/svg/svg.json';
+  import { mapGetters } from 'vuex';
 
   export default {
     name: 'PopupComponent',
@@ -28,6 +30,7 @@
       },
     },
     computed: {
+      ...mapGetters(['getModalOpened']),
       svg() {
         return svgJSON;
       },
@@ -51,6 +54,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &.with-modal {
+      top: -22px;
+    }
   }
 
   .popup-wrapper {
