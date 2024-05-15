@@ -1,30 +1,33 @@
 <template>
-  <div class="global-wrapper">
-    <div class="app-wrapper">
-      <aside>
-        <side-section />
-      </aside>
-      <main>
-        <div class="main-bg">
-          <router-view />
-        </div>
-      </main>
-      <footer>
-        <footer-section />
-      </footer>
-    </div>
+  <div class="app-wrapper">
+    <header>
+      <header-component :title="$route.name">
+        <nav-component />
+      </header-component>
+    </header>
+    <main>
+      <div class="main-wrapper">
+        <router-view />
+      </div>
+    </main>
+    <nav>
+      <nav-component :view="'bottom'" />
+    </nav>
+    <wrapper-modal />
   </div>
 </template>
 
 <script>
-  import SideSection from './components/SideSection.vue';
-  import FooterSection from './components/FooterSection.vue';
+  import HeaderComponent from './components/common/HeaderComponent.vue';
+  import NavComponent from './components/common/NavComponent.vue';
+  import WrapperModal from './components/modal/WrapperModal.vue';
 
   export default {
     name: 'App',
     components: {
-      SideSection,
-      FooterSection,
+      HeaderComponent,
+      NavComponent,
+      WrapperModal,
     },
   };
 </script>
@@ -33,74 +36,53 @@
   scoped
   lang="scss"
 >
-  .global-wrapper {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: $primary-color-light;
-    background: linear-gradient(
-      45deg,
-      $primary-color-light 0%,
-      lighten($primary-color-light, 10%) 100%
-    );
-  }
-
   .app-wrapper {
-    width: 1024px;
-    height: 700px;
-    display: grid;
-    grid-template-columns: 20% auto;
-    grid-template-rows: 84% auto;
-    grid-template-areas: 'aside main' 'aside footer';
-    background: $primary-color;
-    background: linear-gradient(
-      0deg,
-      $primary-color 0%,
-      lighten($primary-color, 5%) 100%
-    );
-    border-radius: $border-radius;
-    box-shadow: $box-shadow;
-    overflow: hidden;
-    font-family: Amiko;
-  }
-
-  aside,
-  main,
-  footer {
-    padding: 30px 24px;
-  }
-
-  aside {
-    grid-area: aside;
-  }
-
-  main {
-    grid-area: main;
-    background: $background-color;
-    color: $primary-color-dark;
-    box-shadow: $box-shadow;
-    padding-left: 0;
-  }
-
-  .main-bg {
+    position: relative;
     width: 100%;
     height: 100%;
-    background: $background-color;
-    transform: translate(0px, 0);
-    padding-left: 30px;
-  }
+    max-width: $mobile-max-width;
+    min-width: $mobile-min-width;
+    max-height: $mobile-max-height;
+    min-height: $mobile-min-height;
+    margin: 0 auto;
 
-  footer {
-    grid-area: footer;
-    background: $primary-color;
-    background: linear-gradient(
-      90deg,
-      $primary-color 0%,
-      $secondary-color-dark 100%
-    );
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: $primary-text-color;
+    background-color: $primary-bg-color;
     box-shadow: $box-shadow;
-    z-index: 1;
+
+    header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      margin-bottom: $container-padding;
+      z-index: 1;
+      padding: 40px 20px 0;
+      @include blur-bg($primary-bg-color);
+    }
+
+    main {
+      height: 100vh;
+      max-height: $mobile-max-height;
+      min-height: $mobile-min-height;
+      padding: 30px 20px;
+      overflow: hidden;
+
+      .main-wrapper {
+        padding: 60px 0 40px;
+        height: 100%;
+        overflow: scroll;
+      }
+    }
+
+    nav {
+      position: absolute;
+      bottom: 0;
+      height: 70px;
+      width: 100%;
+      @include blur-bg($secondary-bg-color);
+      box-shadow: 0 -2px 2px rgba($primary-text-color, 0.02);
+    }
   }
 </style>

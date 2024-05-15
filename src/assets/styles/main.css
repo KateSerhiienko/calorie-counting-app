@@ -2,39 +2,24 @@
 
 @import './global.scss';
 
-/* fonts */
+/* all */
 
-@font-face {
-  font-family: Righteous;
-  src: url(../fonts/Righteous-Regular.ttf);
-  font-weight: normal;
+
+html {
+  scroll-behavior: smooth;
+  background: #e6e9f2;
 }
 
-@font-face {
-  font-family: Ubuntu;
-  src: url(../fonts/Ubuntu-Regular.ttf);
-  font-weight: normal;
+html,
+body {
+  overscroll-behavior: none;
+  scrollbar-width: none;
 }
 
-@font-face {
-  font-family: Ubuntu;
-  src: url(../fonts/Ubuntu-Bold.ttf);
-  font-weight: bold;
+::-webkit-scrollbar {
+  display: none;
+  /* WebKit (Chrome, Safari) */
 }
-
-@font-face {
-  font-family: Amiko;
-  src: url(../fonts/Amiko-Regular.ttf);
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: Amiko;
-  src: url(../fonts/Amiko-Bold.ttf);
-  font-weight: bold;
-}
-
-/* reset */
 
 * {
   margin: 0;
@@ -44,6 +29,13 @@
 
 a {
   text-decoration: none;
+  color: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ul {
@@ -54,24 +46,16 @@ button {
   border: none;
 }
 
-/* new */
-
-h1 {
-  font-size: 26px;
-  font-family: Ubuntu;
+svg {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  fill-rule: evenodd;
+  clip-rule: evenodd;
 }
 
-h2 {
-  font-size: 24px;
-  font-family: Ubuntu;
-}
-
-h3 {
-  font-size: 20px;
-  font-family: Ubuntu;
-}
-
-h4 {
-  font-size: 18px;
-  font-family: Ubuntu;
+input,
+select {
+  outline: none;
 }

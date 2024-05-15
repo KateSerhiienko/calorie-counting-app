@@ -2,20 +2,6 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
-    nav: [
-      {
-        to: '/',
-        title: 'Greeting',
-      },
-      {
-        to: '/calorie_counting',
-        title: 'Calorie counting',
-      },
-      {
-        to: '/calorie_recording',
-        title: 'Calorie recording',
-      },
-    ],
     media: [
       {
         href: 'mailto:kate.serhiienko@gmail.com',
@@ -34,14 +20,13 @@ const store = createStore({
         title: 'ArtStation',
       },
     ],
-    countingMode: true,
-    caloriesAndUserData: {
-      "sex": "female",
-      "weight": 0,
-      "height": 0,
-      "age": 0,
-      "activity": "1.55",
-      "totalDailyEnergyExpenditure": 0
+    userData: {
+      // "sex": "female",
+      // "weight": 0,
+      // "height": 0,
+      // "age": 0,
+      // "activity": "1.55",
+      // "totalDailyEnergyExpenditure": 1400
     },
     activityLevels: [
       {
@@ -70,14 +55,11 @@ const store = createStore({
         explanation: 'heavy exercise or physical work every day',
       },
     ],
-    mealtimeMap: [
-      'unnamed',
+    mealtimeList: [
       'breakfast',
-      'brunch',
       'lunch',
-      'snack',
       'dinner',
-      'supper',
+      'snack',
     ],
     foodsList: [
       // {
@@ -85,44 +67,33 @@ const store = createStore({
       //   mealtime: 'lunch',
       //   name: 'food-1',
       //   weight: 100,
-      //   caloriesPer100g: 100.5,
+      //   kcalPer100g: 100,
       // },
       // {
+      //   idDatabase: 2121,
       //   id: 222,
       //   mealtime: 'lunch',
       //   name: 'food-2',
       //   weight: 100,
-      //   caloriesPer100g: 102.5,
+      //   kcalPer100g: 102,
       // },
       // {
       //   id: 333,
       //   mealtime: 'breakfast',
       //   name: 'food-3',
       //   weight: 30,
-      //   caloriesPer100g: 300,
-      // },
-      // {
-      //   id: 444,
-      //   mealtime: 'lunch',
-      //   name: 'food-444444444444444444444444444444444444444444444444',
-      //   weight: 1400,
-      //   caloriesPer100g: 440,
+      //   kcalPer100g: 300,
       // },
     ],
     closedSectionsFoodsList: {},
+    modalOpened: '',
+    mealtimeOfFood: 'breakfast',
+    isAddFoodManually: false,
+    idEditingFood: ''
   },
   mutations: {
-    setCountingMode(state, newValue) {
-      state.countingMode = newValue;
-    },
-    setCaloriesAndUserData(state, formCaloriesAndUserData) {
-      state.caloriesAndUserData = {
-        ...formCaloriesAndUserData.userData,
-        totalDailyEnergyExpenditure: formCaloriesAndUserData.totalDailyEnergyExpenditure,
-      };
-    },
-    clearcaloriesAndUserData(state) {
-      state.caloriesAndUserData = null;
+    setUserData(state, newValue) {
+      state.userData = newValue;
     },
     addFood(state, newFood) {
       state.foodsList.push(newFood);
@@ -139,16 +110,30 @@ const store = createStore({
     toggleClosedSectionFoodsList(state, index) {
       state.closedSectionsFoodsList[index] = !state.closedSectionsFoodsList[index];
     },
+    setModalOpened(state, newValue) {
+      state.modalOpened = newValue;
+    },
+    setMealtimeOfFood(state, newValue) {
+      state.mealtimeOfFood = newValue;
+    },
+    toggleIsAddFoodManually(state) {
+      state.isAddFoodManually = !state.isAddFoodManually;
+    },
+    setIdEditingFood(state, newValue) {
+      state.idEditingFood = newValue;
+    },
   },
   getters: {
-    getNav: (state) => state.nav,
     getMedia: (state) => state.media,
-    getCountingMode: (state) => state.countingMode,
     getActivityLevels: (state) => state.activityLevels,
-    getCaloriesAndUserData: (state) => state.caloriesAndUserData,
-    getMealtimeMap: (state) => state.mealtimeMap,
+    getUserData: (state) => state.userData,
+    getMealtimeList: (state) => state.mealtimeList,
     getFoodsList: (state) => state.foodsList,
     getClosedSectionsFoodsList: (state) => state.closedSectionsFoodsList,
+    getModalOpened: (state) => state.modalOpened,
+    getMealtimeOfFood: (state) => state.mealtimeOfFood,
+    getIsAddFoodManually: (state) => state.isAddFoodManually,
+    getIdEditingFood: (state) => state.idEditingFood,
   },
 });
 

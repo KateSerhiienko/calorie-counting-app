@@ -1,3 +1,5 @@
+# calorie-counting-app
+
 ## Project Setup
 
 ```sh

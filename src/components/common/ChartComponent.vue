@@ -12,35 +12,27 @@
     <circle
       ref="mainChart"
       class="front"
+      :class="{ overflow: isOverflow }"
       :stroke-dasharray="dasharray"
       :stroke-linecap="'round'"
       :r="radius"
       cx="50%"
       cy="50%"
     />
-    <text
-      x="50%"
-      y="50%"
-      dy=".3em"
-      class="chart-text"
-      text-anchor="middle"
-    >
-      {{ displayPercent }}%
-    </text>
   </svg>
 </template>
 
 <script>
   export default {
-    name: 'CircleChart',
+    name: 'ChartComponent',
     props: {
       dataDasharray: {
-        type: Array,
+        type: Object,
         required: true,
       },
       radius: {
-        type: String,
-        required: false,
+        type: Number,
+        required: true,
       },
     },
     data() {
@@ -53,14 +45,12 @@
     },
     computed: {
       precisePercent() {
-        return ((this.dataDasharray[0] * 100) / this.dataDasharray[1]).toFixed(
-          1
-        );
+        const value = this.dataDasharray.value;
+        const total = this.dataDasharray.total;
+        return ((value * 100) / total).toFixed(1);
       },
-      displayPercent() {
-        return ((this.dataDasharray[0] * 100) / this.dataDasharray[1]).toFixed(
-          0
-        );
+      isOverflow() {
+        return this.dataDasharray.value >= this.dataDasharray.total;
       },
     },
     mounted() {
@@ -70,7 +60,7 @@
     },
     methods: {
       updateDasharray() {
-        const percent = this.precisePercent; // Используем точное значение для вычислений
+        const percent = this.precisePercent;
         this.setLengthDasharray(percent, this.circumference);
       },
       setLengthDasharray(percent, circumference) {
@@ -95,35 +85,25 @@
 </script>
 
 <style
-  lang="scss"
   scoped
+  lang="scss"
 >
   .chart {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
     overflow: visible;
-    filter: drop-shadow($box-shadow);
   }
 
   circle {
     fill: transparent;
-    stroke: $background-color-light;
-    stroke-width: 8px;
+    stroke: rgba($not-active-color, 0.3);
+    stroke-width: 3px;
     transform-origin: center;
     transform: rotate(-90deg);
-    transition: stroke-dasharray $transition;
+    transition: stroke-dasharray 0.3s ease-in;
     &.front {
-      stroke: $primary-color-dark;
+      stroke: $primary-color;
     }
-  }
-
-  .chart-text {
-    fill: $primary-color-dark;
-    font-weight: bold;
-    font-size: 8px;
-    font-family: Ubuntu;
+    &.overflow {
+      stroke: $secondary-color-pink;
+    }
   }
 </style>
