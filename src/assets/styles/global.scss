@@ -48,7 +48,8 @@
   min-width: $mobile-min-width;
   max-height: $mobile-max-height;
   min-height: $mobile-min-height;
-  @include blur-bg($primary-text-color);
+  // @include blur-bg($primary-text-color);
+  background: rgba($primary-text-color, .6);
 }
 
 .glb-popup {
@@ -81,4 +82,10 @@
       transform: translate(5px, 0);
     }
   }
+}
+
+.glb-warning {
+  padding: $container-padding;
+  color: $secondary-color-pink;
+  font-size: 14px;
 }

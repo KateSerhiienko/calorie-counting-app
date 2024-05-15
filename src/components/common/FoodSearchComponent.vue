@@ -16,13 +16,13 @@
       />
     </div>
     <p
-      class="warning"
+      class="glb-warning"
       v-show="this.searchTerm && this.searchTerm.trim().length < 3"
     >
       Write at least 3 characters
     </p>
     <p
-      class="warning"
+      class="glb-warning"
       v-show="this.searchTerm.trim().length >= 3 && database.length === 0"
     >
       There don't appear to be any matches in our database.<br /><br />Try
@@ -128,12 +128,6 @@
       padding-left: calc(32px + $container-padding);
       border: 1px solid $not-active-light-color;
       border-radius: 10px;
-    }
-
-    .warning {
-      padding: $container-padding;
-      color: $secondary-color-pink;
-      font-size: 14px;
     }
 
     ul {

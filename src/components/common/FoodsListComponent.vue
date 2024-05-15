@@ -6,7 +6,11 @@
   >
     <div
       class="header"
-      @click="toggleClosedSectionFoodsList(index)"
+      @click="
+        filteredFoods(mealtime).length > 0
+          ? toggleClosedSectionFoodsList(index)
+          : null
+      "
     >
       <h2>
         {{ mealtime }}
@@ -73,6 +77,13 @@
       </li>
     </ul>
   </div>
+  <p
+    v-show="getFoodsList.length <= 0"
+    class="glb-warning"
+  >
+    It seems like the food list is currently empty. To add a new item, click on
+    the "+" button or "Add food" in the menu
+  </p>
 </template>
 
 <script>
