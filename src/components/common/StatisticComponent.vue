@@ -69,7 +69,7 @@
       ...mapGetters(['getFoodsList', 'getUserData']),
       totalCountedWeight() {
         return this.getFoodsList.reduce(
-          (total, food) => total + food.weight,
+          (total, food) => total + +food.weight,
           0
         );
       },
