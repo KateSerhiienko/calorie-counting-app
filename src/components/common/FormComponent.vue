@@ -134,15 +134,9 @@
     computed: {
       ...mapGetters(['getMealtimeList']),
       totalKcal() {
-        const weight =
-          this.formData.weight ||
-          this.fieldsList.find((field) => field.name === 'weight')?.value ||
-          0;
-        const kcalPer100g =
-          this.formData.kcalPer100g ||
-          this.fieldsList.find((field) => field.name === 'kcalPer100g')
-            ?.value ||
-          0;
+        const weight = this.formData.weight || 0;
+
+        const kcalPer100g = this.formData.kcalPer100g || 0;
 
         return ((kcalPer100g / 100) * weight).toFixed();
       },
