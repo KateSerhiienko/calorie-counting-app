@@ -2,6 +2,8 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
+    isTablet: false,
+    isDesktop: false,
     media: [
       {
         href: 'mailto:kate.serhiienko@gmail.com',
@@ -62,28 +64,28 @@ const store = createStore({
       'snack',
     ],
     foodsList: [
-      // {
-      //   id: 111,
-      //   mealtime: 'lunch',
-      //   name: 'food-1',
-      //   weight: 100,
-      //   kcalPer100g: 100,
-      // },
-      // {
-      //   idDatabase: 2121,
-      //   id: 222,
-      //   mealtime: 'lunch',
-      //   name: 'food-2',
-      //   weight: 100,
-      //   kcalPer100g: 102,
-      // },
-      // {
-      //   id: 333,
-      //   mealtime: 'breakfast',
-      //   name: 'food-3',
-      //   weight: 30,
-      //   kcalPer100g: 300,
-      // },
+      {
+        id: 111,
+        mealtime: 'lunch',
+        name: 'food-1',
+        weight: 100,
+        kcalPer100g: 100,
+      },
+      {
+        idDatabase: 2121,
+        id: 222,
+        mealtime: 'lunch',
+        name: 'food-2',
+        weight: 100,
+        kcalPer100g: 102,
+      },
+      {
+        id: 333,
+        mealtime: 'breakfast',
+        name: 'food-3',
+        weight: 30,
+        kcalPer100g: 300,
+      },
     ],
     closedSectionsFoodsList: {},
     modalOpened: '',
@@ -92,6 +94,12 @@ const store = createStore({
     idEditingFood: ''
   },
   mutations: {
+    setIsTablet(state, payload) {
+      state.isTablet = payload;
+    },
+    setIsDesktop(state, payload) {
+      state.isDesktop = payload;
+    },
     setUserData(state, newValue) {
       state.userData = newValue;
     },
@@ -123,7 +131,16 @@ const store = createStore({
       state.idEditingFood = newValue;
     },
   },
+  actions: {
+    detectDeviceType({ commit }) {
+      const screenWidth = window.innerWidth;
+      commit('setIsTablet', screenWidth >= 600 && screenWidth < 1024);
+      commit('setIsDesktop', screenWidth >= 1024);
+    }
+  },
   getters: {
+    getIsTablet: (state) => state.isTablet,
+    getIsDesktop: (state) => state.isDesktop,
     getMedia: (state) => state.media,
     getActivityLevels: (state) => state.activityLevels,
     getUserData: (state) => state.userData,

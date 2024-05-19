@@ -146,12 +146,9 @@
     .modal {
       margin-top: $container-padding;
       height: calc(100vh - 130px);
-      max-height: calc($mobile-max-height - 130px);
-      min-height: calc($mobile-min-height - 130px);
 
       &.short {
         height: fit-content;
-        min-height: fit-content;
       }
     }
   }

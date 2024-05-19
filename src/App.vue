@@ -11,6 +11,7 @@
       </div>
     </main>
     <nav>
+      <div @click="test">Test</div>
       <nav-component :view="'bottom'" />
     </nav>
     <wrapper-modal />
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
   import HeaderComponent from './components/common/HeaderComponent.vue';
   import NavComponent from './components/common/NavComponent.vue';
   import WrapperModal from './components/modal/WrapperModal.vue';
@@ -28,6 +30,17 @@
       HeaderComponent,
       NavComponent,
       WrapperModal,
+    },
+    computed: {
+      ...mapGetters(['getIsTablet', 'getIsDesktop']),
+    },
+    methods: {
+      test() {
+        console.log(
+          'desktop - ' + this.getIsDesktop,
+          'tablet - ' + this.getIsTablet
+        );
+      },
     },
   };
 </script>
@@ -40,10 +53,6 @@
     position: relative;
     width: 100%;
     height: 100%;
-    max-width: $mobile-max-width;
-    min-width: $mobile-min-width;
-    max-height: $mobile-max-height;
-    min-height: $mobile-min-height;
     margin: 0 auto;
 
     font-family: Arial, Helvetica, sans-serif;
@@ -64,8 +73,6 @@
 
     main {
       height: 100vh;
-      max-height: $mobile-max-height;
-      min-height: $mobile-min-height;
       padding: 30px 20px;
       overflow: hidden;
 
@@ -83,6 +90,18 @@
       width: 100%;
       @include blur-bg($secondary-bg-color);
       box-shadow: 0 -2px 2px rgba($primary-text-color, 0.02);
+    }
+  }
+
+  @include respond-to(tablet) {
+    .app-wrapper {
+      background: red;
+    }
+  }
+
+  @include respond-to(desktop) {
+    .app-wrapper {
+      background: blue;
     }
   }
 </style>

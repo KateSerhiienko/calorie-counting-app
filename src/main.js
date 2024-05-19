@@ -17,3 +17,7 @@ app.use(router);
 app.use(store);
 
 app.mount('#app');
+
+window.addEventListener('resize', () => {
+  store.dispatch('detectDeviceType');
+});
