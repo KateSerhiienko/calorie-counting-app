@@ -2,18 +2,27 @@
   <div class="app-wrapper">
     <header>
       <header-component :title="$route.name">
-        <nav-component />
+        <template v-if="!getIsDesktop">
+          <nav-component />
+        </template>
       </header-component>
     </header>
+    <aside v-if="getIsDesktop">
+      <nav-component />
+    </aside>
     <main>
       <div class="main-wrapper">
         <router-view />
       </div>
     </main>
-    <nav>
-      <div @click="test">Test</div>
-      <nav-component :view="'bottom'" />
-    </nav>
+    <footer>
+      <template v-if="getIsTablet || getIsDesktop">
+        <developer-modal />
+      </template>
+      <template v-else>
+        <nav-component :view="'bottom'" />
+      </template>
+    </footer>
     <wrapper-modal />
   </div>
 </template>
@@ -23,6 +32,7 @@
   import HeaderComponent from './components/common/HeaderComponent.vue';
   import NavComponent from './components/common/NavComponent.vue';
   import WrapperModal from './components/modal/WrapperModal.vue';
+  import DeveloperModal from './components/modal/DeveloperModal.vue';
 
   export default {
     name: 'App',
@@ -30,17 +40,10 @@
       HeaderComponent,
       NavComponent,
       WrapperModal,
+      DeveloperModal,
     },
     computed: {
       ...mapGetters(['getIsTablet', 'getIsDesktop']),
-    },
-    methods: {
-      test() {
-        console.log(
-          'desktop - ' + this.getIsDesktop,
-          'tablet - ' + this.getIsTablet
-        );
-      },
     },
   };
 </script>
@@ -83,7 +86,7 @@
       }
     }
 
-    nav {
+    footer {
       position: absolute;
       bottom: 0;
       height: 70px;
@@ -93,15 +96,21 @@
     }
   }
 
+  @include respond-to-tablet-and-desktop {
+    .app-wrapper {
+      footer {
+        height: 100px;
+      }
+    }
+  }
+
   @include respond-to(tablet) {
     .app-wrapper {
-      background: red;
     }
   }
 
   @include respond-to(desktop) {
     .app-wrapper {
-      background: blue;
     }
   }
 </style>
