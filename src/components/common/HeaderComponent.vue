@@ -1,29 +1,34 @@
 <template>
   <div class="header-wrapper">
-    <svg
-      v-if="isArrow"
-      class="arrow"
-      :viewBox="svg['arrow'].viewBox"
-      @click="setModalOpened('')"
-    >
-      <path :d="svg['arrow'].path" />
-    </svg>
-    <h1>{{ title }}</h1>
-    <div class="burger">
-      <svg
-        v-if="isMenu"
-        :viewBox="svg['nav-burger'].viewBox"
-        @click="isOpenedPopup = true"
-      >
-        <path :d="svg['nav-burger'].path" />
-      </svg>
-    </div>
-    <popup-component
-      :visible="isOpenedPopup"
-      @close="isOpenedPopup = false"
-    >
+    <template v-if="getIsTablet">
       <slot></slot>
-    </popup-component>
+    </template>
+    <div class="header-title">
+      <svg
+        v-if="isArrow"
+        class="arrow"
+        :viewBox="svg['arrow'].viewBox"
+        @click="setModalOpened('')"
+      >
+        <path :d="svg['arrow'].path" />
+      </svg>
+      <h1>{{ title }}</h1>
+      <div class="burger">
+        <svg
+          v-if="isMenu"
+          :viewBox="svg['nav-burger'].viewBox"
+          @click="isOpenedPopup = true"
+        >
+          <path :d="svg['nav-burger'].path" />
+        </svg>
+      </div>
+      <popup-component
+        :visible="isOpenedPopup"
+        @close="isOpenedPopup = false"
+      >
+        <slot></slot>
+      </popup-component>
+    </div>
   </div>
 </template>
 
@@ -59,7 +64,12 @@
       };
     },
     computed: {
-      ...mapGetters(['getModalOpened', 'getIsAddFoodManually']),
+      ...mapGetters([
+        'getModalOpened',
+        'getIsAddFoodManually',
+        'getIsTablet',
+        'getIsDesktop',
+      ]),
       svg() {
         return svgJSON;
       },
@@ -90,9 +100,11 @@
   lang="scss"
 >
   .header-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    .header-title {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
 
     svg {
       width: 40px;
@@ -103,12 +115,16 @@
       font-size: 26px;
     }
 
-    /* .arrow {
-      transform: rotate(90deg);
-    } */
-
     .burger {
       min-width: 40px;
+    }
+  }
+
+  @include respond-to(tablet) {
+    .header-wrapper {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: $container-padding;
     }
   }
 </style>

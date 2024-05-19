@@ -92,7 +92,6 @@
       justify-content: space-between;
       align-items: center;
       height: 100%;
-      padding: $container-padding;
     }
 
     p:last-of-type {

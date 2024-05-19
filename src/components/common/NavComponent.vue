@@ -55,7 +55,7 @@
 
 <script>
   import svgJSON from '../../assets/svg/svg.json';
-  import { mapMutations } from 'vuex';
+  import { mapGetters, mapMutations } from 'vuex';
 
   export default {
     name: 'NavComponent',
@@ -66,6 +66,7 @@
       },
     },
     computed: {
+      ...mapGetters(['getIsTablet', 'getIsDesktop']),
       svg() {
         return svgJSON;
       },
@@ -113,7 +114,7 @@
     }
   }
 
-  .nav-wrapper.bottom {
+  .nav-wrapper.line-view {
     padding-top: $container-padding;
     width: 100%;
     display: flex;
@@ -150,9 +151,31 @@
     }
   }
 
-  .for-modal {
-    width: 100px;
-    height: 100px;
-    background: red;
+  @include respond-to(tablet) {
+    .nav-wrapper.line-view {
+      border-bottom: 1px solid rgba($not-active-light-color, 0.5);
+      padding-bottom: $container-padding;
+      margin-bottom: $container-padding;
+
+      li {
+        min-width: 100px;
+      }
+
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      svg {
+        margin-bottom: $container-padding;
+      }
+
+      p {
+        display: block;
+        margin-bottom: calc($container-padding / 2);
+      }
+    }
   }
 </style>

@@ -1,9 +1,12 @@
 <template>
   <div class="app-wrapper">
     <header>
-      <header-component :title="$route.name">
+      <header-component
+        :title="$route.name"
+        :is-menu="!getIsTablet && !getIsDesktop"
+      >
         <template v-if="!getIsDesktop">
-          <nav-component />
+          <nav-component :view="getIsTablet ? 'line-view' : ''" />
         </template>
       </header-component>
     </header>
@@ -20,7 +23,7 @@
         <developer-modal />
       </template>
       <template v-else>
-        <nav-component :view="'bottom'" />
+        <nav-component :view="'line-view'" />
       </template>
     </footer>
     <wrapper-modal />
@@ -100,17 +103,36 @@
     .app-wrapper {
       footer {
         height: 100px;
+        padding: 0 20px;
       }
     }
   }
 
   @include respond-to(tablet) {
     .app-wrapper {
+      main {
+        padding: 140px 20px 70px;
+      }
     }
   }
 
   @include respond-to(desktop) {
     .app-wrapper {
+      display: grid;
+      grid-template: 'aside header' 'aside main';
+      grid-template-columns: 200px auto;
+
+      header {
+        grid-area: header;
+      }
+
+      aside {
+        grid-area: aside;
+      }
+
+      main {
+        grid-area: main;
+      }
     }
   }
 </style>
