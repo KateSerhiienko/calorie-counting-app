@@ -52,7 +52,7 @@
           </div>
           <p class="food-kcal">
             {{ ((food.kcalPer100g / 100) * food.weight).toFixed() }}
-            kcal
+            <span>kcal</span>
           </p>
         </div>
         <popup-component
@@ -188,7 +188,7 @@
       }
 
       span {
-        font-size: 10px;
+        font-size: 12px;
       }
     }
 
@@ -256,6 +256,48 @@
         min-width: 70px;
         font-size: 12px;
         text-align: right;
+
+        span {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+
+  @include respond-to(tablet) {
+    .foods-list-wrapper {
+      h2 {
+        font-size: 22px;
+      }
+
+      .header {
+        p {
+          font-size: 20px;
+        }
+
+        span {
+          font-size: 14px;
+        }
+      }
+
+      .food {
+        div {
+          p {
+            @include secondary-text(14px);
+          }
+        }
+
+        h3 {
+          font-size: 16px;
+        }
+
+        .food-kcal {
+          font-size: 16px;
+
+          span {
+            font-size: 12px;
+          }
+        }
       }
     }
   }

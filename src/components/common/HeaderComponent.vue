@@ -125,6 +125,10 @@
       display: flex;
       flex-direction: column;
       padding-bottom: $container-padding;
+
+      h1 {
+        font-size: 30px;
+      }
     }
   }
 </style>

@@ -110,6 +110,14 @@
       128px + $container-padding * 2
     ); // height .chart + .glb-wrapper top and bottom paddings
 
+    h2 {
+      font-size: 20px;
+    }
+
+    h3 {
+      font-size: 16px;
+    }
+
     &.data {
       .chart {
         position: absolute;
@@ -120,14 +128,6 @@
       .data-item {
         text-align: center;
         min-width: 30%;
-      }
-
-      h2 {
-        font-size: 20px;
-      }
-
-      h3 {
-        font-size: 16px;
       }
 
       p {
@@ -158,7 +158,6 @@
 
       .total {
         h2 {
-          font-size: 20px;
           margin-bottom: $container-padding;
         }
 
@@ -177,6 +176,31 @@
         span {
           font-weight: normal;
           @include secondary-text(10px);
+        }
+      }
+    }
+  }
+
+  @include respond-to(tablet) {
+    .statistic-wrapper {
+      h2 {
+        font-size: 24px;
+      }
+
+      &.no-data {
+        .placeholder {
+          p {
+            font-size: 14px;
+          }
+        }
+
+        .total {
+          p {
+            font-size: 22px;
+          }
+          span {
+            @include secondary-text(14px);
+          }
         }
       }
     }

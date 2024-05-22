@@ -154,27 +154,47 @@
   @include respond-to(tablet) {
     .nav-wrapper.line-view {
       border-bottom: 1px solid rgba($not-active-light-color, 0.5);
-      padding-bottom: $container-padding;
-      margin-bottom: $container-padding;
+      padding-bottom: calc($container-padding * 2);
+      margin-bottom: calc($container-padding * 2);
 
       li {
         min-width: 100px;
+        flex-direction: row;
+        width: 33%;
+
+        &:not(:nth-child(3)) {
+          border-right: 1px solid $not-active-light-color;
+        }
+      }
+
+      .active {
+        &::after {
+          display: none;
+        }
+
+        &::before {
+          content: '';
+          width: 5px;
+          height: 5px;
+          position: relative;
+          right: calc($container-padding / 2);
+          border-radius: 50%;
+          background-color: #394250;
+        }
       }
 
       a {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        justify-content: center;
       }
 
       svg {
-        margin-bottom: $container-padding;
+        margin-right: $container-padding;
       }
 
       p {
         display: block;
-        margin-bottom: calc($container-padding / 2);
       }
     }
   }
