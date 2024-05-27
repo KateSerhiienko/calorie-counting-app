@@ -1,14 +1,17 @@
 <template>
   <div class="app-wrapper">
     <header>
-      <header-component :title="$route.name">
-        <template v-if="!getIsDesktop">
+      <header-component
+        :title="$route.name"
+        :is-menu="!getIsTablet && !getIsDesktop"
+      >
+        <template v-if="!getIsTablet && !getIsDesktop">
           <nav-component />
         </template>
       </header-component>
     </header>
-    <aside v-if="getIsDesktop">
-      <nav-component />
+    <aside v-if="getIsTablet || getIsDesktop">
+      <nav-component :view="'left'" />
     </aside>
     <main>
       <div class="main-wrapper">
@@ -55,6 +58,7 @@
   .app-wrapper {
     position: relative;
     width: 100%;
+    max-width: $main-wrapper-max-width;
     height: 100%;
     margin: 0 auto;
 
@@ -98,6 +102,24 @@
 
   @include respond-to-tablet-and-desktop {
     .app-wrapper {
+      display: grid;
+      grid-template: 'aside header' 'aside main';
+
+      header {
+        grid-area: header;
+      }
+
+      aside {
+        grid-area: aside;
+        padding: 80px 0 0 20px;
+        background: $secondary-bg-color;
+        box-shadow: $box-shadow;
+      }
+
+      main {
+        grid-area: main;
+      }
+
       footer {
         height: 100px;
       }
@@ -106,11 +128,13 @@
 
   @include respond-to(tablet) {
     .app-wrapper {
+      grid-template-columns: 80px auto;
     }
   }
 
   @include respond-to(desktop) {
     .app-wrapper {
+      grid-template-columns: 220px auto;
     }
   }
 </style>

@@ -44,8 +44,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  max-width: $mobile-max-width;
-  min-width: $mobile-min-width;
+  max-width: $main-wrapper-max-width;
   // @include blur-bg($primary-text-color);
   background: rgba($primary-text-color, .6);
 }
@@ -72,12 +71,10 @@
 
   .active {
     display: flex;
-    flex-direction: row-reverse;
     align-items: center;
 
-    &::after {
-      margin-left: -5px;
-      transform: translate(5px, 0);
+    &::before {
+      transform: translate(0, -30px);
     }
   }
 }

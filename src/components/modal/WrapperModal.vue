@@ -146,6 +146,9 @@
     .modal {
       margin-top: $container-padding;
       height: calc(100vh - 130px);
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: scroll;
 
       &.short {
         height: fit-content;
