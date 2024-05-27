@@ -71,4 +71,30 @@
       fill: $primary-text-color;
     }
   }
+
+  @include respond-to-tablet-and-desktop {
+    .popup-overlay {
+      z-index: 2;
+      padding: 20px 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.with-modal {
+        top: -22px;
+      }
+    }
+
+    .popup-wrapper {
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+
+      svg {
+        align-self: flex-end;
+        width: 18px;
+        fill: $primary-text-color;
+      }
+    }
+  }
 </style>

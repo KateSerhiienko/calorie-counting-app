@@ -58,6 +58,7 @@
   .app-wrapper {
     position: relative;
     width: 100%;
+    max-width: $main-wrapper-max-width;
     height: 100%;
     margin: 0 auto;
 
@@ -120,7 +121,7 @@
     .app-wrapper {
       display: grid;
       grid-template: 'aside header' 'aside main';
-      grid-template-columns: 200px auto;
+      grid-template-columns: 220px auto;
 
       header {
         grid-area: header;
@@ -128,6 +129,9 @@
 
       aside {
         grid-area: aside;
+        padding: 80px 0 0 20px;
+        background: $secondary-bg-color;
+        box-shadow: $box-shadow;
       }
 
       main {

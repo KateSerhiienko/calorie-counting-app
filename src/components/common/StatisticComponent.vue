@@ -181,7 +181,7 @@
     }
   }
 
-  @include respond-to(tablet) {
+  @include respond-to-tablet-and-desktop {
     .statistic-wrapper {
       h2 {
         font-size: 24px;
@@ -190,7 +190,8 @@
       &.no-data {
         .placeholder {
           p {
-            font-size: 14px;
+            font-size: 16px;
+            text-align: center;
           }
         }
 

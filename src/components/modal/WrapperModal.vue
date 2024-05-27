@@ -138,6 +138,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+    max-width: $main-wrapper-max-width;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
     padding: 20px 20px calc(20px + $container-padding);
@@ -146,6 +147,9 @@
     .modal {
       margin-top: $container-padding;
       height: calc(100vh - 130px);
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: scroll;
 
       &.short {
         height: fit-content;

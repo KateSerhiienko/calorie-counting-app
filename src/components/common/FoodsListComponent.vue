@@ -264,7 +264,7 @@
     }
   }
 
-  @include respond-to(tablet) {
+  @include respond-to-tablet-and-desktop {
     .foods-list-wrapper {
       h2 {
         font-size: 22px;

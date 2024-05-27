@@ -85,4 +85,21 @@
       font-weight: bold;
     }
   }
+
+  @include respond-to-tablet-and-desktop {
+    .mealtime-wrapper {
+      .img-wrapper {
+        width: 126px;
+        height: 126px;
+      }
+
+      svg {
+        width: 86px;
+      }
+
+      p {
+        font-size: 22px;
+      }
+    }
+  }
 </style>

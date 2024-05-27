@@ -120,14 +120,14 @@
     }
   }
 
-  @include respond-to(tablet) {
+  @include respond-to-tablet-and-desktop {
     .header-wrapper {
       display: flex;
       flex-direction: column;
       padding-bottom: $container-padding;
 
       h1 {
-        font-size: 30px;
+        font-size: 34px;
       }
     }
   }

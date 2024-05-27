@@ -198,4 +198,12 @@
       }
     }
   }
+
+  @include respond-to(desktop) {
+    .nav-wrapper {
+      .developer {
+        display: none;
+      }
+    }
+  }
 </style>
