@@ -92,6 +92,7 @@
 
     .active {
       pointer-events: none;
+      position: relative;
 
       svg {
         fill: $primary-text-color;
@@ -102,7 +103,9 @@
         font-weight: bold;
       }
 
-      &::after {
+      &::before {
+        position: absolute;
+        bottom: -5px;
         display: block;
         content: '';
         width: 5px;
@@ -150,9 +153,35 @@
     }
   }
 
-  .for-modal {
-    width: 100px;
-    height: 100px;
-    background: red;
+  .nav-wrapper.left {
+    li:not(:has(> a)),
+    li > a {
+      display: flex;
+      align-items: center;
+      padding: $container-padding 0;
+    }
+
+    .developer {
+      display: none;
+    }
+
+    svg {
+      margin-right: 10px;
+    }
+
+    .active {
+      &::before {
+        bottom: 25px;
+        left: -10px;
+      }
+    }
+  }
+
+  @include respond-to(tablet) {
+    .nav-wrapper.left {
+      p {
+        display: none;
+      }
+    }
   }
 </style>

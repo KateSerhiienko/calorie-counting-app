@@ -1,7 +1,12 @@
 <template>
-  <div class="glb-wrapper developer-wrapper">
-    <h2>Kateryna Serhiienko</h2>
-    <p>09599 Freiberg Germany</p>
+  <div
+    class="developer-wrapper"
+    :class="{ 'glb-wrapper': !getIsTablet && !getIsDesktop }"
+  >
+    <div>
+      <h2>Kateryna Serhiienko</h2>
+      <p>09599 Freiberg Germany</p>
+    </div>
     <div class="media">
       <a
         v-for="(mediaItem, index) in getMedia"
@@ -25,7 +30,8 @@
   export default {
     name: 'DeveloperModal',
     computed: {
-      ...mapGetters(['getMedia']),
+      ...mapGetters(['getMedia', 'getIsTablet', 'getIsDesktop']),
+
       svg() {
         return svgJSON;
       },
@@ -77,6 +83,24 @@
     svg {
       width: 54px;
       fill: $secondary-bg-color;
+    }
+  }
+
+  @include respond-to-tablet-and-desktop {
+    .developer-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      padding: $container-padding;
+    }
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    a {
+      margin-left: $container-padding;
     }
   }
 </style>
