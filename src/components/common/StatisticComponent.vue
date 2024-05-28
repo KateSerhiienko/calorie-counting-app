@@ -181,4 +181,11 @@
       }
     }
   }
+
+  @include respond-to(desktop) {
+    .statistic-wrapper {
+      min-width: 300px;
+      flex-direction: column;
+    }
+  }
 </style>

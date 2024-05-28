@@ -1,6 +1,8 @@
 <template>
-  <statistic-component />
-  <foods-list-component />
+  <div class="dashboard-wrapper">
+    <statistic-component />
+    <foods-list-component />
+  </div>
 </template>
 
 <script>
@@ -19,4 +21,11 @@
 <style
   scoped
   lang="scss"
-></style>
+>
+  @include respond-to(desktop) {
+    .dashboard-wrapper {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+</style>
