@@ -23,12 +23,22 @@
     </p>
     <p
       class="glb-warning"
-      v-show="this.searchTerm.trim().length >= 3 && database.length === 0"
+      v-show="
+        this.searchTerm.trim().length >= 3 &&
+        !isLoading &&
+        database.length === 0
+      "
     >
-      There don't appear to be any matches in our database.<br /><br />Try
-      changing your search parameters or adding/removing search characters
+      There don't appear to be any matches in our database. Try changing your
+      search parameters or adding/removing search characters
     </p>
-    <ul v-show="searchTerm != ''">
+    <loading-spinner-component v-if="isLoading">
+      <p v-if="showLoadMessage">
+        Please wait while the data is loading. In rare cases, the loading
+        process may take up to two minutes. We appreciate your patience!
+      </p>
+    </loading-spinner-component>
+    <ul v-show="searchTerm !== '' && !isLoading && database.length > 0">
       <li
         v-for="food in database"
         :key="food.id"
@@ -45,13 +55,21 @@
 <script>
   import axios from 'axios';
   import svgJSON from '../../assets/svg/svg.json';
+  import LoadingSpinnerComponent from './LoadingSpinnerComponent.vue';
 
   export default {
     name: 'FoodSearchComponent',
+    components: {
+      LoadingSpinnerComponent,
+    },
     data() {
       return {
         database: [],
         searchTerm: '',
+        isLoading: false,
+        hasError: false,
+        showLoadMessage: false,
+        loadMessageTimeout: null,
       };
     },
     watch: {
@@ -72,10 +90,18 @@
       },
       fetchFoodData() {
         this.database = [];
+        this.hasError = false;
+        this.showLoadMessage = false;
 
         const processedSearchTerm = this.searchTerm;
 
         if (this.searchTerm.trim().length >= 3) {
+          this.isLoading = true;
+
+          this.loadMessageTimeout = setTimeout(() => {
+            this.showLoadMessage = true;
+          }, 10000);
+
           axios
             .get(
               `https://node-server-v342.onrender.com/api/products?title=${processedSearchTerm}`
@@ -89,8 +115,12 @@
               }));
             })
             .catch((error) => {
-              // eslint-disable-next-line
               console.error('Error fetching data:', error);
+              this.hasError = true;
+            })
+            .finally(() => {
+              this.isLoading = false;
+              clearTimeout(this.loadMessageTimeout);
             });
         }
       },

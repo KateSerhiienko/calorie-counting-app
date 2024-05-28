@@ -32,6 +32,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import axios from 'axios';
   import HeaderComponent from './components/common/HeaderComponent.vue';
   import NavComponent from './components/common/NavComponent.vue';
   import WrapperModal from './components/modal/WrapperModal.vue';
@@ -47,6 +48,20 @@
     },
     computed: {
       ...mapGetters(['getIsTablet', 'getIsDesktop']),
+    },
+    methods: {
+      preloadDatabase() {
+        axios
+          .get(
+            'https://node-server-v342.onrender.com/api/products?title=preload'
+          )
+          .catch((error) => {
+            console.error('Error preloading database:', error);
+          });
+      },
+    },
+    mounted() {
+      this.preloadDatabase();
     },
   };
 </script>
