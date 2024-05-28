@@ -134,7 +134,7 @@
       main {
         grid-area: main;
         .main-wrapper {
-          padding: 60px 0 80px;
+          padding: 60px 0 70px;
         }
       }
 

@@ -81,7 +81,7 @@
     }
 
     svg {
-      width: 60px;
+      width: 56px;
       fill: $secondary-bg-color;
     }
   }
@@ -101,14 +101,14 @@
 
       .media {
         a {
-          width: 42px;
-          height: 42px;
+          width: 50px;
+          height: 50px;
           margin-left: $container-padding;
           background-color: $not-active-color;
         }
 
         svg {
-          width: 42px;
+          width: 46px;
         }
       }
     }

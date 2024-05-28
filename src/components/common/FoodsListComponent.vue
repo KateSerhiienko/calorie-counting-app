@@ -84,7 +84,7 @@
       v-show="getFoodsList.length <= 0"
       class="glb-warning"
     >
-      It seems like the food list is currently empty. To add a new item, click
+      It seems like the food list is currently empty. To add a new food, click
       on the "+" button or "Add food" in the menu
     </p>
   </div>
@@ -154,32 +154,33 @@
     .foods-list-wrapper {
       margin: 6px 0;
 
+      ul {
+        padding-left: calc($container-padding / 2);
+        border-left: 2px solid;
+      }
+
       &:nth-child(1) {
         @include custom-background($secondary-color-lavender);
         ul {
-          border-left: 2px solid $secondary-color-lavender;
-          padding-left: calc($container-padding / 2);
+          border-left-color: $secondary-color-lavender;
         }
       }
       &:nth-child(2) {
         @include custom-background($secondary-color-beige);
         ul {
-          border-left: 2px solid $secondary-color-beige;
-          padding-left: calc($container-padding / 2);
+          border-left-color: $secondary-color-beige;
         }
       }
       &:nth-child(3) {
         @include custom-background($secondary-color-blue);
         ul {
-          border-left: 2px solid $secondary-color-blue;
-          padding-left: calc($container-padding / 2);
+          border-left-color: $secondary-color-blue;
         }
       }
       &:nth-child(4) {
         @include custom-background($secondary-color-pink);
         ul {
-          border-left: 2px solid $secondary-color-pink;
-          padding-left: calc($container-padding / 2);
+          border-left-color: $secondary-color-pink;
         }
       }
     }

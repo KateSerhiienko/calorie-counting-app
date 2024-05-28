@@ -99,9 +99,11 @@
     transform-origin: center;
     transform: rotate(-90deg);
     transition: stroke-dasharray 0.3s ease-in;
+
     &.front {
       stroke: $primary-color;
     }
+
     &.overflow {
       stroke: $secondary-color-pink;
     }
