@@ -8,6 +8,7 @@
         :title="modalTitle"
         :is-menu="modalIsMenu"
         :is-arrow="true"
+        :is-modal="true"
       >
         <ul
           class="glb-popup"

@@ -84,3 +84,11 @@
   color: $secondary-color-pink;
   font-size: 14px;
 }
+
+@include respond-to(desktop) {
+  .glb-popup {
+    li:not(:has(> a)), li > a {
+      min-width: 225px;
+    }
+  }
+}

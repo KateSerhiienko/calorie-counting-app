@@ -18,6 +18,9 @@ app.use(store);
 
 app.mount('#app');
 
-window.addEventListener('resize', () => {
+function detectDeviceType() {
   store.dispatch('detectDeviceType');
-});
+}
+
+window.addEventListener('load', detectDeviceType);
+window.addEventListener('resize', detectDeviceType);

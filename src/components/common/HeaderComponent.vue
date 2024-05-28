@@ -1,23 +1,34 @@
 <template>
   <div class="header-wrapper">
-    <svg
-      v-if="isArrow"
+    <div
       class="arrow"
-      :viewBox="svg['arrow'].viewBox"
-      @click="setModalOpened('')"
+      v-if="isArrow"
     >
-      <path :d="svg['arrow'].path" />
-    </svg>
-    <h1>{{ title }}</h1>
-    <div class="burger">
       <svg
-        v-if="isMenu"
+        :viewBox="svg['arrow'].viewBox"
+        @click="setModalOpened('')"
+      >
+        <path :d="svg['arrow'].path" />
+      </svg>
+    </div>
+    <h1 :class="{ 'center-align': isModal }">{{ title }}</h1>
+
+    <div v-if="isMenu && getIsDesktop">
+      <slot></slot>
+    </div>
+
+    <div
+      class="burger"
+      v-else-if="isMenu"
+    >
+      <svg
         :viewBox="svg['nav-burger'].viewBox"
         @click="isOpenedPopup = true"
       >
         <path :d="svg['nav-burger'].path" />
       </svg>
     </div>
+
     <popup-component
       :visible="isOpenedPopup"
       @close="isOpenedPopup = false"
@@ -52,6 +63,10 @@
         type: Boolean,
         default: true,
       },
+      isModal: {
+        type: Boolean,
+        default: false,
+      },
     },
     data() {
       return {
@@ -59,7 +74,12 @@
       };
     },
     computed: {
-      ...mapGetters(['getModalOpened', 'getIsAddFoodManually']),
+      ...mapGetters([
+        'getModalOpened',
+        'getIsAddFoodManually',
+        'getIsTablet',
+        'getIsDesktop',
+      ]),
       svg() {
         return svgJSON;
       },
@@ -92,7 +112,6 @@
   .header-wrapper {
     width: 100%;
     display: flex;
-    justify-content: space-between;
 
     svg {
       width: 40px;
@@ -100,15 +119,28 @@
     }
 
     h1 {
+      width: calc(100% - 80px);
       font-size: 26px;
+
+      &.center-align {
+        text-align: center;
+      }
     }
 
-    /* .arrow {
-      transform: rotate(90deg);
-    } */
-
     .burger {
-      min-width: 40px;
+      width: 40px;
+    }
+  }
+
+  @include respond-to(desktop) {
+    .header-wrapper {
+      .arrow {
+        width: 225px;
+      }
+
+      h1 {
+        width: calc(100% - 225px * 2);
+      }
     }
   }
 </style>
