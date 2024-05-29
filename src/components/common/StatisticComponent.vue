@@ -219,7 +219,7 @@
         flex-direction: column;
         justify-content: space-around;
         margin-bottom: $container-padding;
-        height: 300px;
+        height: 400px;
         padding-top: calc($container-padding * 2);
         padding-bottom: calc($container-padding * 2);
 
