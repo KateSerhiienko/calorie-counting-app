@@ -133,6 +133,9 @@
 
       main {
         grid-area: main;
+        .main-wrapper {
+          padding: 60px 0 70px;
+        }
       }
 
       footer {

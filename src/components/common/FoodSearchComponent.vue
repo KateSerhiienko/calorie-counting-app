@@ -100,7 +100,7 @@
 
           this.loadMessageTimeout = setTimeout(() => {
             this.showLoadMessage = true;
-          }, 10000);
+          }, 5000);
 
           axios
             .get(

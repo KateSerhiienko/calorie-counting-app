@@ -177,6 +177,29 @@
     }
   }
 
+  .nav-wrapper.add-only {
+    height: 100%;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-width: 180px;
+    }
+
+    svg {
+      margin-right: $container-padding;
+      fill: $primary-color;
+    }
+
+    .developer,
+    .dashboard,
+    .profile {
+      display: none;
+    }
+  }
+
   @include respond-to(tablet) {
     .nav-wrapper.left {
       p {

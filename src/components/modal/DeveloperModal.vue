@@ -81,7 +81,7 @@
     }
 
     svg {
-      width: 54px;
+      width: 56px;
       fill: $secondary-bg-color;
     }
   }
@@ -93,14 +93,24 @@
       align-items: center;
       height: 100%;
       padding: $container-padding;
-    }
+      color: $secondary-text-color;
 
-    p:last-of-type {
-      margin-bottom: 0;
-    }
+      p:last-of-type {
+        margin-bottom: 0;
+      }
 
-    a {
-      margin-left: $container-padding;
+      .media {
+        a {
+          width: 50px;
+          height: 50px;
+          margin-left: $container-padding;
+          background-color: $not-active-color;
+        }
+
+        svg {
+          width: 46px;
+        }
+      }
     }
   }
 </style>

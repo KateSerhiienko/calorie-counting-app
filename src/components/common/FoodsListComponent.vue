@@ -1,89 +1,93 @@
 <template>
-  <div
-    v-for="(mealtime, index) in getMealtimeList"
-    :key="index"
-    class="glb-wrapper foods-list-wrapper"
-  >
+  <div class="foods-list-component-wrapper">
     <div
-      class="header"
-      @click="
-        filteredFoods(mealtime).length > 0
-          ? toggleClosedSectionFoodsList(index)
-          : null
-      "
+      v-for="(mealtime, index) in getMealtimeList"
+      :key="index"
+      class="glb-wrapper foods-list-wrapper"
     >
-      <h2>
-        {{ mealtime }}
-      </h2>
       <div
-        class="overview"
-        v-show="filteredFoods(mealtime).length > 0"
+        class="header"
+        @click="
+          filteredFoods(mealtime).length > 0
+            ? toggleClosedSectionFoodsList(index)
+            : null
+        "
       >
-        <p>{{ caloriesSumByMealtime[mealtime].toFixed() }} <span>kcal</span></p>
-        <svg
-          class="arrow"
-          :class="getClosedSectionsFoodsList[index] ? '' : 'up'"
-          :viewBox="svg['arrow'].viewBox"
-        >
-          <path :d="svg['arrow'].path" />
-        </svg>
-      </div>
-    </div>
-    <ul
-      class="foods-list"
-      :class="{
-        visible:
-          !getClosedSectionsFoodsList[index] &&
-          filteredFoods(mealtime).length > 0,
-      }"
-    >
-      <li
-        class="list-item"
-        v-for="food in filteredFoods(mealtime)"
-        :key="food.id"
-      >
+        <h2>
+          {{ mealtime }}
+        </h2>
         <div
-          class="food"
-          @click="openPopup(food.id)"
+          class="overview"
+          v-show="filteredFoods(mealtime).length > 0"
         >
-          <div>
-            <h3>{{ food.name }}</h3>
-            <p>{{ food.weight }} g</p>
-          </div>
-          <p class="food-kcal">
-            {{ ((food.kcalPer100g / 100) * food.weight).toFixed() }}
-            kcal
+          <p>
+            {{ caloriesSumByMealtime[mealtime].toFixed() }} <span>kcal</span>
           </p>
+          <svg
+            class="arrow"
+            :class="getClosedSectionsFoodsList[index] ? '' : 'up'"
+            :viewBox="svg['arrow'].viewBox"
+          >
+            <path :d="svg['arrow'].path" />
+          </svg>
         </div>
-        <popup-component
-          @close="openedPopupId = 0"
-          :visible="openedPopupId === food.id"
+      </div>
+      <ul
+        class="foods-list"
+        :class="{
+          visible:
+            !getClosedSectionsFoodsList[index] &&
+            filteredFoods(mealtime).length > 0,
+        }"
+      >
+        <li
+          class="list-item"
+          v-for="food in filteredFoods(mealtime)"
+          :key="food.id"
         >
-          <ul class="glb-popup">
-            <li @click="editFood(food.id)">
-              <svg :viewBox="svg['edit'].viewBox">
-                <path :d="svg['edit'].path" />
-              </svg>
-              <p>Edit food</p>
-            </li>
-            <li @click="deleteFood(food.id)">
-              <svg :viewBox="svg['remove'].viewBox">
-                <path :d="svg['remove'].path" />
-              </svg>
-              <p>Remove food</p>
-            </li>
-          </ul>
-        </popup-component>
-      </li>
-    </ul>
+          <div
+            class="food"
+            @click="openPopup(food.id)"
+          >
+            <div>
+              <h3>{{ food.name }}</h3>
+              <p>{{ food.weight }} g</p>
+            </div>
+            <p class="food-kcal">
+              {{ ((food.kcalPer100g / 100) * food.weight).toFixed() }}
+              kcal
+            </p>
+          </div>
+          <popup-component
+            @close="openedPopupId = 0"
+            :visible="openedPopupId === food.id"
+          >
+            <ul class="glb-popup">
+              <li @click="editFood(food.id)">
+                <svg :viewBox="svg['edit'].viewBox">
+                  <path :d="svg['edit'].path" />
+                </svg>
+                <p>Edit food</p>
+              </li>
+              <li @click="deleteFood(food.id)">
+                <svg :viewBox="svg['remove'].viewBox">
+                  <path :d="svg['remove'].path" />
+                </svg>
+                <p>Remove food</p>
+              </li>
+            </ul>
+          </popup-component>
+        </li>
+      </ul>
+    </div>
+    <p
+      v-show="getFoodsList.length <= 0"
+      class="glb-warning"
+    >
+      It seems like the food list is currently empty. To add a new food, click
+      on the "+" button or "Add food" in the menu
+    </p>
   </div>
-  <p
-    v-show="getFoodsList.length <= 0"
-    class="glb-warning"
-  >
-    It seems like the food list is currently empty. To add a new item, click on
-    the "+" button or "Add food" in the menu
-  </p>
 </template>
 
 <script>
@@ -146,35 +150,38 @@
   scoped
   lang="scss"
 >
-  .foods-list-wrapper {
-    margin: 6px 0;
+  .foods-list-component-wrapper {
+    .foods-list-wrapper {
+      margin: 6px 0;
 
-    &:nth-child(2) {
-      @include custom-background($secondary-color-lavender);
       ul {
-        border-left: 2px solid $secondary-color-lavender;
         padding-left: calc($container-padding / 2);
+        border-left: 2px solid;
       }
-    }
-    &:nth-child(3) {
-      @include custom-background($secondary-color-beige);
-      ul {
-        border-left: 2px solid $secondary-color-beige;
-        padding-left: calc($container-padding / 2);
+
+      &:nth-child(1) {
+        @include custom-background($secondary-color-lavender);
+        ul {
+          border-left-color: $secondary-color-lavender;
+        }
       }
-    }
-    &:nth-child(4) {
-      @include custom-background($secondary-color-blue);
-      ul {
-        border-left: 2px solid $secondary-color-blue;
-        padding-left: calc($container-padding / 2);
+      &:nth-child(2) {
+        @include custom-background($secondary-color-beige);
+        ul {
+          border-left-color: $secondary-color-beige;
+        }
       }
-    }
-    &:nth-child(5) {
-      @include custom-background($secondary-color-pink);
-      ul {
-        border-left: 2px solid $secondary-color-pink;
-        padding-left: calc($container-padding / 2);
+      &:nth-child(3) {
+        @include custom-background($secondary-color-blue);
+        ul {
+          border-left-color: $secondary-color-blue;
+        }
+      }
+      &:nth-child(4) {
+        @include custom-background($secondary-color-pink);
+        ul {
+          border-left-color: $secondary-color-pink;
+        }
       }
     }
 
@@ -257,6 +264,13 @@
         font-size: 12px;
         text-align: right;
       }
+    }
+  }
+
+  @include respond-to(desktop) {
+    .foods-list-component-wrapper {
+      flex-grow: 1;
+      margin-right: $container-padding;
     }
   }
 </style>

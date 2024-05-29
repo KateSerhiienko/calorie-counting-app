@@ -1,86 +1,90 @@
 <template>
-  <div
-    class="glb-wrapper profile-wrapper no-data"
-    v-if="Object.keys(getUserData).length <= 0"
-  >
-    <p>
-      To better understand your daily calorie needs, please provide us with some
-      additional information by completing your profile.
-    </p>
-    <button
-      class="glb-btn"
-      type="button"
-      @click="setModalOpened('edit-profile')"
-    >
-      Complete profile
-    </button>
-  </div>
-
-  <div v-else>
-    <div class="glb-wrapper profile-wrapper data">
-      <h2 v-if="getUserData.firstName || getUserData.lastName">
-        <span>{{ getUserData.firstName }}</span>
-        <span>{{ getUserData.lastName }}</span>
-      </h2>
-      <div class="info">
-        <ul>
-          <li v-if="getUserData.sex">
-            <p>{{ getUserData.sex }}</p>
-          </li>
-          <li v-if="getUserData.age">
-            <p class="label">Age:</p>
-            <p>{{ getUserData.age }} years</p>
-          </li>
-          <li v-if="getUserData.height">
-            <p class="label">Height:</p>
-            <p>{{ getUserData.height }} cm</p>
-          </li>
-          <li v-if="getUserData.weight">
-            <p class="label">Weight:</p>
-            <p>{{ getUserData.weight }} kg</p>
-          </li>
-          <li v-if="getUserData.activity">
-            <p class="label">Activity Level:</p>
-            <p>{{ getActivityLabel }}</p>
-          </li>
-        </ul>
-        <svg :viewBox="svg['user-avatar'].viewBox">
-          <path :d="svg['user-avatar'].path" />
-        </svg>
+  <div class="profile-page-wrapper">
+    <template v-if="Object.keys(getUserData).length <= 0">
+      <div class="glb-wrapper profile-wrapper no-data">
+        <p>
+          To better understand your daily calorie needs, please provide us with
+          some additional information by completing your profile.
+        </p>
+        <button
+          class="glb-btn"
+          type="button"
+          @click="setModalOpened('edit-profile')"
+        >
+          Complete profile
+        </button>
       </div>
-      <button
-        class="glb-btn"
-        type="button"
-        @click="setModalOpened('edit-profile')"
-      >
-        Edit profile
-      </button>
-    </div>
-    <div class="glb-wrapper profile-wrapper kcal">
-      <h3>Daily calorie allowance:</h3>
-      <p>
-        <span>{{ getUserData.totalDailyEnergyExpenditure.toFixed() }}</span>
-        kcal
-      </p>
-    </div>
-    <div class="glb-wrapper profile-wrapper kcal">
-      <h3>Calorie deficit for weight loss:</h3>
-      <p>
-        <span
-          >{{ (getUserData.totalDailyEnergyExpenditure * 0.9).toFixed() }}
-        </span>
-        kcal
-      </p>
-    </div>
-    <div class="glb-wrapper profile-wrapper kcal">
-      <h3>Excess calories for weight gain:</h3>
-      <p>
-        <span
-          >{{ (getUserData.totalDailyEnergyExpenditure * 1.1).toFixed() }}
-        </span>
-        kcal
-      </p>
-    </div>
+    </template>
+
+    <template v-else>
+      <div class="glb-wrapper profile-wrapper data">
+        <h2 v-if="getUserData.firstName || getUserData.lastName">
+          <span>{{ getUserData.firstName }}</span>
+          <span>{{ getUserData.lastName }}</span>
+        </h2>
+        <div class="info">
+          <ul>
+            <li v-if="getUserData.sex">
+              <p>{{ getUserData.sex }}</p>
+            </li>
+            <li v-if="getUserData.age">
+              <p class="label">Age:</p>
+              <p>{{ getUserData.age }} years</p>
+            </li>
+            <li v-if="getUserData.height">
+              <p class="label">Height:</p>
+              <p>{{ getUserData.height }} cm</p>
+            </li>
+            <li v-if="getUserData.weight">
+              <p class="label">Weight:</p>
+              <p>{{ getUserData.weight }} kg</p>
+            </li>
+            <li v-if="getUserData.activity">
+              <p class="label">Activity Level:</p>
+              <p>{{ getActivityLabel }}</p>
+            </li>
+          </ul>
+          <svg :viewBox="svg['user-avatar'].viewBox">
+            <path :d="svg['user-avatar'].path" />
+          </svg>
+        </div>
+        <button
+          class="glb-btn"
+          type="button"
+          @click="setModalOpened('edit-profile')"
+        >
+          Edit profile
+        </button>
+      </div>
+
+      <div>
+        <div class="glb-wrapper profile-wrapper kcal">
+          <h3>Daily calorie allowance:</h3>
+          <p>
+            <span>{{ getUserData.totalDailyEnergyExpenditure.toFixed() }}</span>
+            kcal
+          </p>
+        </div>
+        <div class="glb-wrapper profile-wrapper kcal">
+          <h3>Calorie deficit for weight loss:</h3>
+          <p>
+            <span>{{
+              (getUserData.totalDailyEnergyExpenditure * 0.9).toFixed()
+            }}</span>
+            kcal
+          </p>
+        </div>
+        <div class="glb-wrapper profile-wrapper kcal">
+          <h3>Excess calories for weight gain:</h3>
+          <p>
+            <span>{{
+              (getUserData.totalDailyEnergyExpenditure * 1.1).toFixed()
+            }}</span>
+            kcal
+          </p>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -174,13 +178,13 @@
       justify-content: space-between;
       align-items: center;
 
-      &:nth-child(2) {
+      &:nth-child(1) {
         @include custom-background($secondary-color-lavender);
       }
-      &:nth-child(3) {
+      &:nth-child(2) {
         @include custom-background($secondary-color-beige);
       }
-      &:nth-child(4) {
+      &:nth-child(3) {
         @include custom-background($secondary-color-blue);
       }
 
@@ -196,6 +200,17 @@
       span {
         font-size: 18px;
       }
+    }
+  }
+
+  @include respond-to(desktop) {
+    .profile-page-wrapper {
+      display: flex;
+    }
+
+    .profile-wrapper {
+      flex-grow: 1;
+      margin-right: $container-padding;
     }
   }
 </style>

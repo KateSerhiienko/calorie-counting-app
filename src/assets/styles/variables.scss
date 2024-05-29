@@ -18,7 +18,7 @@ $secondary-color-pink:#d4a5bc;
 $primary-text-color: #394250;
 $secondary-text-color: #6c737f;
 
-$primary-bg-color: #f9fafb;
+$primary-bg-color: #f3f5f7;
 $secondary-bg-color: #ffffff;
 
 $not-active-color: #b2b7bd;
@@ -28,7 +28,7 @@ $border-radius: 10px;
 
 $container-padding: 12px;
 
-$box-shadow:  0 2px 2px rgba($primary-text-color, 0.02);
+$box-shadow:  0 2px 2px rgba($primary-text-color, 0.04);
 
 @mixin respond-to($device) {
    @if $device == tablet {
