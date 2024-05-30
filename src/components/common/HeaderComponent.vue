@@ -116,6 +116,12 @@
     svg {
       width: 40px;
       fill: $primary-text-color;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        fill: $primary-hover-color;
+      }
     }
 
     h1 {
@@ -125,10 +131,6 @@
       &.center-align {
         text-align: center;
       }
-    }
-
-    .burger {
-      width: 40px;
     }
   }
 

@@ -81,8 +81,41 @@
   lang="scss"
 >
   .nav-wrapper {
+    li {
+      position: relative;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      p,
+      svg {
+        transition: $transition;
+      }
+
+      &:hover {
+        p {
+          color: $primary-hover-color;
+        }
+
+        svg {
+          fill: $primary-hover-color;
+        }
+      }
+
+      &::before {
+        display: block;
+        content: '';
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: transparent;
+        transition: $transition;
+      }
+    }
+
     p {
       color: $not-active-color;
+      font-weight: bold;
     }
 
     svg {
@@ -92,7 +125,6 @@
 
     .active {
       pointer-events: none;
-      position: relative;
 
       svg {
         fill: $primary-text-color;
@@ -100,17 +132,9 @@
 
       p {
         color: $primary-text-color;
-        font-weight: bold;
       }
 
       &::before {
-        position: absolute;
-        bottom: -5px;
-        display: block;
-        content: '';
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
         background-color: $primary-text-color;
       }
     }
@@ -124,10 +148,7 @@
     align-items: start;
 
     li {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column-reverse;
     }
 
     .add-food {
@@ -197,6 +218,17 @@
     .dashboard,
     .profile {
       display: none;
+    }
+  }
+
+  @include respond-to-tablet-and-desktop {
+    .nav-wrapper.left {
+      li {
+        margin-left: -1 * $container-padding / 2;
+        &::before {
+          margin-right: $container-padding / 2;
+        }
+      }
     }
   }
 

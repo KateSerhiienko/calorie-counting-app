@@ -4,6 +4,12 @@
   border-radius: 40px;
   color: $secondary-bg-color;
   font-weight: bold;
+  transition: $transition;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primary-hover-color;
+  }
 }
 
 .glb-wrapper {
@@ -53,6 +59,16 @@
   display: flex;
   flex-direction: column;
 
+  li {
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+      fill: $primary-hover-color;
+      color: $primary-hover-color;
+    }
+  }
+
   li:not(:has(> a)), li > a {
     min-width: 200px;
     display: flex;
@@ -67,15 +83,6 @@
   svg {
     width: 24px;
     margin-right: calc($container-padding / 2);
-  }
-
-  .active {
-    display: flex;
-    align-items: center;
-
-    &::before {
-      transform: translate(0, -30px);
-    }
   }
 }
 

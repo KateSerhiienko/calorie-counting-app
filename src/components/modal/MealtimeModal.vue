@@ -48,7 +48,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-width: 50%;
+      margin-left: calc(25% - 76px / 2);
+      margin-right: calc(25% - 76px / 2);
+      cursor: pointer;
+      transition: $transition;
 
       &:nth-child(1) .img-wrapper {
         background-color: $secondary-color-lavender;
@@ -62,6 +65,14 @@
       &:nth-child(4) .img-wrapper {
         background-color: $secondary-color-pink;
       }
+
+      &:hover {
+        color: $primary-hover-color;
+
+        .img-wrapper {
+          background-color: $primary-hover-color;
+        }
+      }
     }
 
     .img-wrapper {
@@ -72,6 +83,7 @@
       width: 76px;
       height: 76px;
       margin-bottom: $container-padding;
+      transition: $transition;
     }
 
     svg {

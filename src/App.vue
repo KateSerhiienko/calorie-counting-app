@@ -91,6 +91,10 @@
       z-index: 1;
       padding: 40px 20px 0;
       @include blur-bg($primary-bg-color);
+
+      .header-wrapper {
+        justify-content: space-between;
+      }
     }
 
     main {

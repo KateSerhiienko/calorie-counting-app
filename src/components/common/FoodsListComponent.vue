@@ -214,6 +214,8 @@
       width: 14px;
       margin-left: $container-padding;
       fill: $primary-text-color;
+      cursor: pointer;
+      transition: $transition;
 
       &.up {
         transform: rotate(180deg);
@@ -239,6 +241,19 @@
       }
     }
 
+    li.list-item {
+      cursor: pointer;
+
+      &:hover {
+        .food {
+          h3,
+          p {
+            color: $primary-hover-color;
+          }
+        }
+      }
+    }
+
     .food {
       display: flex;
       align-items: center;
@@ -249,6 +264,8 @@
 
         p {
           @include secondary-text(10px);
+
+          transition: $transition;
         }
       }
 
@@ -257,12 +274,15 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        transition: $transition;
       }
 
       .food-kcal {
         min-width: 70px;
         font-size: 12px;
         text-align: right;
+
+        transition: $transition;
       }
     }
   }

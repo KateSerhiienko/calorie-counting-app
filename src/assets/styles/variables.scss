@@ -15,6 +15,8 @@ $secondary-color-beige:#ebc9c6;
 $secondary-color-blue:#a2d2ff;
 $secondary-color-pink:#d4a5bc;
 
+$primary-hover-color:#76948c;
+
 $primary-text-color: #394250;
 $secondary-text-color: #6c737f;
 
@@ -29,6 +31,8 @@ $border-radius: 10px;
 $container-padding: 12px;
 
 $box-shadow:  0 2px 2px rgba($primary-text-color, 0.04);
+
+$transition:  .3s ease-in;
 
 @mixin respond-to($device) {
    @if $device == tablet {

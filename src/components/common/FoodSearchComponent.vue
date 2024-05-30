@@ -170,6 +170,12 @@
       display: flex;
       justify-content: space-between;
       padding-bottom: $container-padding;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        color: $primary-hover-color;
+      }
     }
 
     .kcal {
