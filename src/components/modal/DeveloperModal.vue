@@ -65,6 +65,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: $transition;
 
       &:nth-child(1) {
         background-color: $secondary-color-lavender;
@@ -77,6 +78,10 @@
       }
       &:nth-child(4) {
         background-color: $secondary-color-pink;
+      }
+
+      &:hover {
+        background-color: $primary-hover-color;
       }
     }
 
@@ -99,17 +104,23 @@
         margin-bottom: 0;
       }
 
-      .media {
-        a {
-          width: 50px;
-          height: 50px;
-          margin-left: $container-padding;
+      a {
+        width: 50px;
+        height: 50px;
+        margin-left: $container-padding;
+        cursor: pointer;
+
+        &:nth-child(n) {
           background-color: $not-active-color;
         }
 
-        svg {
-          width: 46px;
+        &:hover {
+          background-color: $primary-hover-color;
         }
+      }
+
+      svg {
+        width: 46px;
       }
     }
   }

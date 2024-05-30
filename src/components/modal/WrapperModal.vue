@@ -15,10 +15,7 @@
           v-if="getModalOpened === 'add-food'"
         >
           <li @click="toggleIsAddFoodManually()">
-            <svg
-              class="user-image"
-              :viewBox="svg['write'].viewBox"
-            >
+            <svg :viewBox="svg['write'].viewBox">
               <path :d="svg['write'].path" />
             </svg>
             <p v-if="!getIsAddFoodManually">Create custom food</p>

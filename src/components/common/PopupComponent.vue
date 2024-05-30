@@ -69,6 +69,12 @@
       align-self: flex-end;
       width: 18px;
       fill: $primary-text-color;
+      transition: $transition;
+      cursor: pointer;
+
+      &:hover {
+        fill: $primary-hover-color;
+      }
     }
   }
 </style>
