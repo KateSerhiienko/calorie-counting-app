@@ -5,30 +5,37 @@
       :key="index"
       class="glb-wrapper foods-list-wrapper"
     >
-      <div
-        class="header"
-        @click="
-          filteredFoods(mealtime).length > 0
-            ? toggleClosedSectionFoodsList(index)
-            : null
-        "
-      >
+      <div class="header">
         <h2>
           {{ mealtime }}
         </h2>
-        <div
-          class="overview"
-          v-show="filteredFoods(mealtime).length > 0"
-        >
-          <p>
-            {{ caloriesSumByMealtime[mealtime].toFixed() }} <span>kcal</span>
-          </p>
-          <svg
-            class="arrow"
-            :class="getClosedSectionsFoodsList[index] ? '' : 'up'"
-            :viewBox="svg['arrow'].viewBox"
+        <div class="header-right">
+          <div
+            class="overview"
+            v-show="filteredFoods(mealtime).length > 0"
           >
-            <path :d="svg['arrow'].path" />
+            <p>
+              {{ caloriesSumByMealtime[mealtime].toFixed() }} <span>kcal</span>
+            </p>
+            <svg
+              class="arrow"
+              @click="
+                filteredFoods(mealtime).length > 0
+                  ? toggleClosedSectionFoodsList(index)
+                  : null
+              "
+              :class="getClosedSectionsFoodsList[index] ? '' : 'up'"
+              :viewBox="svg['arrow'].viewBox"
+            >
+              <path :d="svg['arrow'].path" />
+            </svg>
+          </div>
+          <svg
+            class="plus"
+            @click="setModalOpened('add-food'), setMealtimeOfFood(mealtime)"
+            :viewBox="svg['nav-item-1'].viewBox"
+          >
+            <path :d="svg['nav-item-1'].path" />
           </svg>
         </div>
       </div>
@@ -129,6 +136,7 @@
         'setIdEditingFood',
         'deleteFood',
         'setModalOpened',
+        'setMealtimeOfFood',
         'toggleClosedSectionFoodsList',
       ]),
       filteredFoods(mealtime) {
@@ -188,6 +196,7 @@
     .header {
       display: flex;
       align-items: center;
+      width: 100%;
       justify-content: space-between;
 
       p {
@@ -202,6 +211,10 @@
     h2 {
       font-size: 16px;
       text-transform: capitalize;
+    }
+
+    .header-right {
+      display: flex;
     }
 
     .overview {
@@ -219,6 +232,22 @@
 
       &.up {
         transform: rotate(180deg);
+      }
+
+      &:hover {
+        fill: $primary-hover-color;
+      }
+    }
+
+    .plus {
+      width: 20px;
+      margin-left: $container-padding;
+      fill: $secondary-bg-color;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        fill: $primary-hover-color;
       }
     }
 
