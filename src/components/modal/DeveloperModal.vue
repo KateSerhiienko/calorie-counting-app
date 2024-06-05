@@ -105,8 +105,8 @@
       }
 
       a {
-        width: 50px;
-        height: 50px;
+        width: 46px;
+        height: 46px;
         margin-left: $container-padding;
         cursor: pointer;
 
@@ -120,7 +120,7 @@
       }
 
       svg {
-        width: 46px;
+        width: 43px;
       }
     }
   }

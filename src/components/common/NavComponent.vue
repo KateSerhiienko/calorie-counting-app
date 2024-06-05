@@ -206,12 +206,18 @@
       align-items: center;
       justify-content: center;
       height: 100%;
-      min-width: 180px;
+      min-width: 20vw;
+      font-size: 18px;
+
+      &::before {
+        display: none;
+      }
     }
 
     svg {
-      margin-right: $container-padding;
+      margin-right: calc($container-padding / 2);
       fill: $primary-color;
+      width: 36px;
     }
 
     .developer,
@@ -224,9 +230,10 @@
   @include respond-to-tablet-and-desktop {
     .nav-wrapper.left {
       li {
-        margin-left: -1 * $container-padding / 2;
+        margin-left: calc(-1 * $container-padding / 2);
+
         &::before {
-          margin-right: $container-padding / 2;
+          margin-right: calc($container-padding / 2);
         }
       }
     }
