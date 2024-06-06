@@ -86,7 +86,7 @@
     }
 
     svg {
-      width: 56px;
+      width: 100%;
       fill: $secondary-bg-color;
     }
   }
@@ -100,13 +100,22 @@
       padding: $container-padding;
       color: $secondary-text-color;
 
+      h2 {
+        font-size: 18px;
+        margin-bottom: auto;
+      }
+
+      p {
+        font-size: 12px;
+      }
+
       p:last-of-type {
         margin-bottom: 0;
       }
 
       a {
-        width: 46px;
-        height: 46px;
+        width: 36px;
+        height: 36px;
         margin-left: $container-padding;
         cursor: pointer;
 
@@ -117,10 +126,6 @@
         &:hover {
           background-color: $primary-hover-color;
         }
-      }
-
-      svg {
-        width: 43px;
       }
     }
   }

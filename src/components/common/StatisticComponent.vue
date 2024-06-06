@@ -173,6 +173,7 @@
 
         .placeholder {
           p {
+            text-align: center;
             margin-bottom: $container-padding;
           }
         }
@@ -182,11 +183,17 @@
             margin-bottom: $container-padding;
           }
 
+          h2 {
+            min-width: 84px;
+            text-align: center;
+          }
+
           div {
             display: flex;
             align-items: center;
             justify-content: space-evenly;
             width: 100%;
+            flex-wrap: wrap;
           }
 
           span {

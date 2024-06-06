@@ -206,7 +206,7 @@
       align-items: center;
       justify-content: center;
       height: 100%;
-      min-width: 20vw;
+      min-width: 134px;
       font-size: 18px;
 
       &::before {
@@ -228,12 +228,27 @@
   }
 
   @include respond-to-tablet-and-desktop {
-    .nav-wrapper.left {
-      li {
-        margin-left: calc(-1 * $container-padding / 2);
+    .nav-wrapper {
+      svg {
+        width: 36px;
+      }
 
-        &::before {
-          margin-right: calc($container-padding / 2);
+      li::before {
+        width: 6px;
+        height: 6px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+
+      &.left {
+        li {
+          margin-left: calc(-1 * $container-padding / 2);
+
+          &::before {
+            margin-right: calc($container-padding / 2);
+          }
         }
       }
     }

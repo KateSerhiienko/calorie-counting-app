@@ -160,7 +160,7 @@
 >
   .foods-list-component-wrapper {
     .foods-list-wrapper {
-      margin: 6px 0;
+      margin: calc($container-padding / 2) 0;
 
       ul {
         padding-left: calc($container-padding / 2);
@@ -312,6 +312,47 @@
         text-align: right;
 
         transition: $transition;
+      }
+    }
+  }
+
+  @include respond-to-tablet-and-desktop {
+    .foods-list-component-wrapper {
+      .header {
+        p {
+          font-size: 22px;
+        }
+
+        span {
+          font-size: 16px;
+        }
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      .arrow {
+        width: 22px;
+      }
+
+      .plus {
+        width: 26px;
+      }
+
+      .food {
+        h3,
+        .food-kcal {
+          font-size: 16px;
+        }
+      }
+
+      .food {
+        div {
+          p {
+            @include secondary-text(14px);
+          }
+        }
       }
     }
   }
