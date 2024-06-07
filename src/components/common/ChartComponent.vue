@@ -108,4 +108,10 @@
       stroke: $secondary-color-pink;
     }
   }
+
+  @include respond-to-tablet-and-desktop {
+    circle {
+      stroke-width: 4px;
+    }
+  }
 </style>

@@ -10,14 +10,17 @@
             value: totalCountedCalories,
             total: getUserData.totalDailyEnergyExpenditure,
           }"
-          :radius="18"
+          :radius="getIsTablet || getIsDesktop ? 19 : 18"
         ></chart-component>
       </div>
       <div class="data-item">
         <h3>{{ getUserData.totalDailyEnergyExpenditure.toFixed(0) }}</h3>
         <p>kcal Total</p>
       </div>
-      <div class="data-item">
+      <div
+        class="data-item"
+        :class="{ overflow: isCaloriesoverflow }"
+      >
         <h2>{{ totalCountedCalories.toFixed(0) }}</h2>
         <p>kcal Used</p>
       </div>
@@ -48,10 +51,10 @@
         </button>
       </div>
       <div class="total">
-        <h2 class="total-title">Total used:</h2>
+        <h3 class="total-title">Total used:</h3>
         <div>
-          <p>{{ totalCountedCalories.toFixed(0) }} <span>kcal</span></p>
-          <p>{{ totalCountedWeight.toFixed(0) }} <span>g</span></p>
+          <h2>{{ totalCountedCalories.toFixed(0) }}<span>kcal</span></h2>
+          <h2>{{ totalCountedWeight.toFixed(0) }}<span>g</span></h2>
         </div>
       </div>
     </div>
@@ -128,6 +131,19 @@
         128px + $container-padding * 2
       ); // height .chart + .glb-wrapper top and bottom paddings
 
+      h2 {
+        font-size: 20px;
+      }
+
+      h3 {
+        font-size: 16px;
+      }
+
+      p,
+      span {
+        @include secondary-text(10px);
+      }
+
       &.data {
         .chart {
           position: absolute;
@@ -137,19 +153,7 @@
 
         .data-item {
           text-align: center;
-          min-width: 30%;
-        }
-
-        h2 {
-          font-size: 20px;
-        }
-
-        h3 {
-          font-size: 16px;
-        }
-
-        p {
-          @include secondary-text(10px);
+          min-width: 24%;
         }
 
         .overflow {
@@ -160,7 +164,7 @@
       &.no-data {
         .placeholder,
         .total {
-          width: 44%;
+          width: 48%;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -169,15 +173,19 @@
 
         .placeholder {
           p {
-            font-size: 10px;
+            text-align: center;
             margin-bottom: $container-padding;
           }
         }
 
         .total {
-          h2 {
-            font-size: 20px;
+          h3 {
             margin-bottom: $container-padding;
+          }
+
+          h2 {
+            min-width: 84px;
+            text-align: center;
           }
 
           div {
@@ -185,17 +193,36 @@
             align-items: center;
             justify-content: space-evenly;
             width: 100%;
-          }
-
-          p {
-            font-size: 18px;
-            font-weight: bold;
+            flex-wrap: wrap;
           }
 
           span {
             font-weight: normal;
-            @include secondary-text(10px);
+            margin-left: calc($container-padding/4);
           }
+        }
+      }
+    }
+  }
+
+  @include respond-to-tablet-and-desktop {
+    .statistic-container-wrapper {
+      .statistic-wrapper {
+        h2 {
+          font-size: 26px;
+        }
+
+        h3 {
+          font-size: 20px;
+        }
+
+        p,
+        span {
+          @include secondary-text(12px);
+        }
+
+        &.data .chart {
+          height: 160px;
         }
       }
     }
@@ -206,6 +233,7 @@
       display: flex;
 
       .statistic-wrapper {
+        height: 194px;
         flex-grow: 1;
         margin-right: $container-padding;
       }
@@ -215,18 +243,25 @@
   @include respond-to(desktop) {
     .statistic-container-wrapper {
       .statistic-wrapper {
-        width: 320px;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
+        width: 320px;
+        height: 340px;
         margin-bottom: $container-padding;
-        height: 400px;
         padding-top: calc($container-padding * 2);
         padding-bottom: calc($container-padding * 2);
 
         &.data .chart {
           width: 100%;
-          height: 160px;
           top: calc(50% - (160px / 2));
+        }
+
+        &.no-data {
+          .placeholder,
+          .total {
+            width: 70%;
+            height: 50%;
+          }
         }
       }
     }

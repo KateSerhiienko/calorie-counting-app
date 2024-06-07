@@ -89,7 +89,7 @@
       width: 100%;
       margin-bottom: $container-padding;
       z-index: 1;
-      padding: 40px 20px 0;
+      padding: 40px $container-padding 0;
       @include blur-bg($primary-bg-color);
 
       .header-wrapper {
@@ -99,11 +99,11 @@
 
     main {
       height: 100vh;
-      padding: 30px 20px;
+      padding: 30px $container-padding;
       overflow: hidden;
 
       .main-wrapper {
-        padding: 60px 0 40px;
+        padding: 60px 0 $container-padding;
         height: 100%;
         overflow: scroll;
       }
@@ -130,9 +130,10 @@
 
       aside {
         grid-area: aside;
-        padding: 80px 0 0 20px;
+        padding: 80px 0 0 $container-padding;
         background: $secondary-bg-color;
         box-shadow: $box-shadow;
+        z-index: 1;
       }
 
       main {
@@ -141,22 +142,26 @@
           padding: 60px 0 70px;
         }
       }
-
-      footer {
-        height: 100px;
-      }
     }
   }
 
   @include respond-to(tablet) {
     .app-wrapper {
-      grid-template-columns: 80px auto;
+      grid-template-columns: 68px auto;
+
+      footer {
+        padding-left: 68px;
+      }
     }
   }
 
   @include respond-to(desktop) {
     .app-wrapper {
-      grid-template-columns: 220px auto;
+      grid-template-columns: 188px auto;
+
+      footer {
+        padding-left: 188px;
+      }
     }
   }
 </style>

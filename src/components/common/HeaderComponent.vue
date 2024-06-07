@@ -134,6 +134,14 @@
     }
   }
 
+  @include respond-to-tablet-and-desktop {
+    .header-wrapper {
+      h1 {
+        font-size: 34px;
+      }
+    }
+  }
+
   @include respond-to(desktop) {
     .header-wrapper {
       .arrow {
