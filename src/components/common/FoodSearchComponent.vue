@@ -72,13 +72,6 @@
         loadMessageTimeout: null,
       };
     },
-    watch: {
-      searchMode(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          this.fetchFoodData();
-        }
-      },
-    },
     computed: {
       svg() {
         return svgJSON;
@@ -102,10 +95,10 @@
             this.showLoadMessage = true;
           }, 5000);
 
+          const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
+
           axios
-            .get(
-              `https://node-server-v342.onrender.com/api/products?title=${processedSearchTerm}`
-            )
+            .get(`${BASE_API_URL}/api/products?title=${processedSearchTerm}`)
             .then((response) => {
               const { data } = response;
               this.database = data.map((item) => ({
